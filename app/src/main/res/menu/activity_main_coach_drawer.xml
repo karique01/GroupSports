@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_my_athletes"
+            android:icon="@drawable/ic_directions_run"
+            android:title="@string/my_athletes" />
+        <item
+            android:id="@+id/nav_categories"
+            android:icon="@drawable/ic_categories"
+            android:title="@string/categories" />
+        <item
+            android:id="@+id/nav_my_teams"
+            android:icon="@drawable/ic_team"
+            android:title="@string/my_teams"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_assistance"
+            android:icon="@drawable/ic_assistance"
+            android:title="@string/assistance" />
+        <item
+            android:id="@+id/nav_work_plan"
+            android:icon="@drawable/ic_work_plan"
+            android:title="@string/workplan" />
+        <item
+            android:id="@+id/nav_binnacle"
+            android:icon="@drawable/ic_binnacle"
+            android:title="@string/binnacle" />
+        <item
+            android:id="@+id/nav_log_out_coach"
+            android:icon="@drawable/ic_exit"
+            android:title="@string/log_out" />
+    </group>
+
+</menu>

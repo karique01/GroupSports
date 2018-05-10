@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">GroupSports</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="log_in">Log in</string>
+    <string name="upload_training">Upload training</string>
+    <string name="my_highlights">My highlights</string>
+    <string name="tools">Tools</string>
+    <string name="communicate">Communicate</string>
+    <string name="share_highlights">Share highlights</string>
+    <string name="chat_with_coach">Chat with coach</string>
+    <string name="last_updates">Last updates</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="log_out">Log out</string>
+    <string name="today_session">Today Session</string>
+    <string name="my_athletes">My Athletes</string>
+    <string name="my_teams">My Teams</string>
+    <string name="assistance">Assistance</string>
+    <string name="workplan">Workplan</string>
+    <string name="binnacle">Binnacle</string>
+
+    <string-array name="Intensities">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string name="title_activity_main_coach">MainCoachActivity</string>
+    <string name="athlete">Athlete</string>
+    <string name="coach">Coach</string>
+    <string name="categories">Categories</string>
+    <string name="add_athlete">Add Athlete</string>
+    <string name="athlete_name">Athlete name</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="add">Add</string>
+</resources>

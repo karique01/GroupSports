@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GroupSports</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Ajustes</string>
+    <string name="username">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="log_in">Ingresar</string>
+    <string name="upload_training">Subir Entrenamiento</string>
+    <string name="my_highlights">Mi Rendimiento</string>
+    <string name="tools">Herramientas</string>
+    <string name="communicate">Communicación</string>
+    <string name="share_highlights">Compartir Rendimiento</string>
+    <string name="chat_with_coach">Chatear con Entrenador</string>
+    <string name="last_updates">Ultimas Actualizaciones</string>
+    <string name="log_out">Salir</string>
+    <string name="today_session">Sesion de Hoy</string>
+    <string name="my_athletes">Mis Atletas</string>
+    <string name="my_teams">Mis Equipos</string>
+    <string name="assistance">Asistencia</string>
+    <string name="workplan">Plan de Trabajo</string>
+    <string name="binnacle">Bitacora</string>
+    <string name="athlete">Atleta</string>
+    <string name="coach">Entrenador</string>
+    <string name="categories">Categoría</string>
+    <string name="add_athlete">Agregar Atleta</string>
+    <string name="athlete_name">Nombre del Atleta</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">Ok</string>
+    <string name="add">Agregar</string>
+
+    <string-array name="Intensities">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>

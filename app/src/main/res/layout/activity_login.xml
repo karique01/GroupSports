@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pe.edu.upc.groupsports.activities.LoginActivity">
+
+    <VideoView
+        android:id="@+id/loginVideoVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonsLinearLayout"/>
+
+    <View
+        android:id="@+id/startLoginBackgroundView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_gradient"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/upcLogoImageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/upc_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"
+        android:visibility="visible"/>
+
+    <ImageButton
+        android:id="@+id/backImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:layout_margin="@dimen/default_margin"
+        android:background="@color/colorTransparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/usernameTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/upcLogoImageView"
+        android:layout_margin="@dimen/fab_margin"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/usernameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="albertoAtleta"
+            android:hint="@string/username"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/passwordTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_constraintTop_toBottomOf="@id/usernameTextInputLayout"
+        app:passwordToggleEnabled="true"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:text="123456"
+            android:hint="@string/password"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/loginConfirmedButton"
+        android:text="@string/log_in"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginEnd="@dimen/fab_margin"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextInputLayout"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/buttonsLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:weightSum="2">
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sign_up"
+            android:textColor="@android:color/white"
+            android:background="@color/colorAccent"/>
+        <Button
+            android:id="@+id/logInButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/log_in"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
