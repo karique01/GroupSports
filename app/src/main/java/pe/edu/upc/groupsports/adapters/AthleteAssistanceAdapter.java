@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -35,12 +36,30 @@ public class AthleteAssistanceAdapter extends RecyclerView.Adapter<AthleteAssist
     }
 
     @Override
-    public void onBindViewHolder(AthleteViewHolder holder, int position) {
+    public void onBindViewHolder(final AthleteViewHolder holder, int position) {
         final Athlete athlete = athletes.get(position);
         // TODO: Assign value to ImageView
         holder.nameTextView.setText(athlete.getFullName());
         holder.cellphoneTextView.setText(athlete.getCellPhone());
         holder.disciplineNameTextView.setText(athlete.getDisciplineName());
+        holder.cumplimientooSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                holder.cumplimientoTextView.setText(String.format("%d %%", progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+//        holder.mesoscicloSeekBar.getThumb().mutate().setAlpha(0);
+//        holder.semanaSeekBar.getThumb().mutate().setAlpha(0);
     }
 
     @Override
@@ -60,7 +79,11 @@ public class AthleteAssistanceAdapter extends RecyclerView.Adapter<AthleteAssist
         ImageView athleteImageView;
         TextView nameTextView;
         TextView cellphoneTextView;
+        TextView cumplimientoTextView;
         TextView disciplineNameTextView;
+        SeekBar cumplimientooSeekBar;
+        SeekBar mesoscicloSeekBar;
+        SeekBar semanaSeekBar;
 
         public AthleteViewHolder(View itemView) {
             super(itemView);
@@ -68,6 +91,10 @@ public class AthleteAssistanceAdapter extends RecyclerView.Adapter<AthleteAssist
             nameTextView = (TextView) itemView.findViewById(R.id.nameTextView);
             cellphoneTextView = (TextView) itemView.findViewById(R.id.cellphoneTextView);
             disciplineNameTextView = (TextView) itemView.findViewById(R.id.disciplineNameTextView);
+            cumplimientoTextView = (TextView) itemView.findViewById(R.id.cumplimientoTextView);
+            cumplimientooSeekBar = (SeekBar) itemView.findViewById(R.id.cumplimientooSeekBar);
+            mesoscicloSeekBar = (SeekBar) itemView.findViewById(R.id.mesoscicloSeekBar);
+            semanaSeekBar = (SeekBar) itemView.findViewById(R.id.semanaSeekBar);
         }
     }
 }

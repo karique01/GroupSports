@@ -32,6 +32,18 @@
     <string name="cancel">Cancelar</string>
     <string name="ok">Ok</string>
     <string name="add">Agregar</string>
+    <string name="register">Registrar atleta</string>
+    <string name="username_desc">Nombre de usuario</string>
+    <string name="first_name">Nombre(s)</string>
+    <string name="last_name">Apellidos</string>
+    <string name="cellphone_number">Numero celular</string>
+    <string name="address">Dirección</string>
+    <string name="email">Correo electrónico</string>
+    <string name="about">Acerca de</string>
+    <string name="save">Guardar</string>
+    <string name="register_athlete">Registrar atleta</string>
+    <string name="add_athlete_to_my_team">Agregar atleta a mi equipo</string>
+    <string name="register_only">Registrar</string>
 
     <string-array name="Intensities">
         <item>1</item>
@@ -39,5 +51,10 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+    </string-array>
+
+    <string-array name="array_disciplines">
+        <item>Velocista</item>
+        <item>Saltos de valla</item>
     </string-array>
 </resources>

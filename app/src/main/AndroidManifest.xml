@@ -23,7 +23,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.LoginActivity"
-            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +31,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.RegisterActivity"
-            android:parentActivityName=".activities.LoginActivity" />
+            android:name=".activities.RegisterAthleteActivity"
+            android:parentActivityName=".activities.LoginActivity"
+            android:label="@string/register_athlete"/>
         <activity android:name=".activities.SessionHistoryActivity" />
         <activity
             android:name=".activities.MainCoachActivity"

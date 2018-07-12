@@ -46,10 +46,18 @@ public class AthletesCategoriesAdapter extends RecyclerView.Adapter<AthletesCate
         holder.categoryNameTextView.setText(athlete.getCategoryName());
         holder.startAgeTextView.setText(athlete.getEdadInicio());
         holder.endAgeTextView.setText(athlete.getEdadFin());
+
         holder.cardConstraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.getContext().startActivity(new Intent(view.getContext(), AthletesByCategoryActivity.class));
+                AthletesByCategoryActivity.categoria = athlete.getCategoryName();
+                view.getContext()
+                        .startActivity(
+                                new Intent(
+                                        view.getContext(),
+                                        AthletesByCategoryActivity.class
+                                )
+                        );
             }
         });
     }

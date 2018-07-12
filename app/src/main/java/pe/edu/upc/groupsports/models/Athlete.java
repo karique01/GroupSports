@@ -3,6 +3,10 @@ package pe.edu.upc.groupsports.models;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by karique on 3/05/2018.
  */
@@ -20,6 +24,8 @@ public class Athlete {
     private String disciplineName;
     private String disciplineId;
     private String userId;
+    private String pictureUrl;
+    private Date   birthDate;
 
     public Athlete() {
     }
@@ -37,6 +43,22 @@ public class Athlete {
         this.disciplineName = disciplineName;
         this.disciplineId = disciplineId;
         this.userId = userId;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getId() {
@@ -149,6 +171,16 @@ public class Athlete {
             athlete.setLastName(jsonObject.getString("lastName"));
             athlete.setCellPhone(jsonObject.getString("cellPhone"));
             athlete.setDisciplineName(jsonObject.getString("disciplineName"));
+            athlete.setPictureUrl(jsonObject.getString("pictureUrl"));
+            String fechaString = jsonObject.getString("birthDate");
+
+            try {
+                Date birthDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(fechaString);
+                athlete.setBirthDate(birthDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

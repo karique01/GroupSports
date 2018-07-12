@@ -34,6 +34,12 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+
+    <string-array name="array_disciplines">
+        <item>Velocista</item>
+        <item>Saltos de valla</item>
+    </string-array>
+
     <string name="title_activity_main_coach">MainCoachActivity</string>
     <string name="athlete">Athlete</string>
     <string name="coach">Coach</string>
@@ -43,4 +49,43 @@
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
     <string name="add">Add</string>
+    <string name="register">Register</string>
+    <string name="username_desc">Username</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="cellphone_number">Cellphone number</string>
+    <string name="address">Address</string>
+    <string name="email">Email</string>
+    <string name="about">About</string>
+    <string name="save">Save</string>
+    <string name="register_athlete">Register athlete</string>
+    <string name="add_athlete_to_my_team">Add athlete to my team</string>
+    <string name="register_only">Register</string>
+
+    <string name="material_calendar_monday">M</string>
+    <string name="material_calendar_tuesday">T</string>
+    <string name="material_calendar_wednesday">W</string>
+    <string name="material_calendar_thursday">T</string>
+    <string name="material_calendar_friday">F</string>
+    <string name="material_calendar_saturday">S</string>
+    <string name="material_calendar_sunday">S</string>
+
+    <array name="material_calendar_months_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
+
+    <string name="material_calendar_today_button">Today</string>
+    <string name="material_calendar_positive_button">OK</string>
+    <string name="material_calendar_negative_button">Cancel</string>
 </resources>

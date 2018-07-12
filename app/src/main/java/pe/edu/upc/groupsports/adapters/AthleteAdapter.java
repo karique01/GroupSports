@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidnetworking.widget.ANImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.activities.AthleteDeatilActivity;
 import pe.edu.upc.groupsports.models.Athlete;
@@ -46,6 +48,13 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteV
         holder.nameTextView.setText(athlete.getFullName());
         holder.cellphoneTextView.setText(athlete.getCellPhone());
         holder.disciplineNameTextView.setText(athlete.getDisciplineName());
+
+        Picasso.with(holder.itemView.getContext())
+                .load(athlete.getPictureUrl())
+                .placeholder(R.drawable.athlete)
+                .error(R.drawable.athlete)
+                .into(holder.athleteImageView);
+
         holder.cardConstraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,14 +78,14 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteV
 
     class AthleteViewHolder extends RecyclerView.ViewHolder{
         ConstraintLayout cardConstraintLayout;
-        ImageView athleteImageView;
+        CircleImageView athleteImageView;
         TextView nameTextView;
         TextView cellphoneTextView;
         TextView disciplineNameTextView;
         public AthleteViewHolder(View itemView) {
             super(itemView);
             cardConstraintLayout = (ConstraintLayout) itemView.findViewById(R.id.cardConstraintLayout);
-            athleteImageView = (ImageView) itemView.findViewById(R.id.athleteImageView);
+            athleteImageView = (CircleImageView) itemView.findViewById(R.id.athleteImageView);
             nameTextView = (TextView) itemView.findViewById(R.id.nameTextView);
             cellphoneTextView = (TextView) itemView.findViewById(R.id.cellphoneTextView);
             disciplineNameTextView = (TextView) itemView.findViewById(R.id.disciplineNameTextView);

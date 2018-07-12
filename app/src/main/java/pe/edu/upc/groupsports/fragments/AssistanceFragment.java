@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -38,6 +39,7 @@ public class AssistanceFragment extends Fragment {
     AthleteAssistanceAdapter athletesAdapter;
     RecyclerView.LayoutManager athletesLayoutManager;
     List<Athlete> athletes;
+    Button saveAssistanceButton;
 
     public AssistanceFragment() {
         // Required empty public constructor
@@ -52,11 +54,20 @@ public class AssistanceFragment extends Fragment {
 
         session = new SessionManager(view.getContext());
         athletesRecyclerView = (RecyclerView) view.findViewById(R.id.athletesRecyclerView);
+
         athletes = new ArrayList<>();
         athletesAdapter = new AthleteAssistanceAdapter(athletes);
         athletesLayoutManager = new LinearLayoutManager(view.getContext());
         athletesRecyclerView.setAdapter(athletesAdapter);
         athletesRecyclerView.setLayoutManager(athletesLayoutManager);
+
+        saveAssistanceButton = (Button) view.findViewById(R.id.saveAssistanceButton);
+        saveAssistanceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onAssistanceButtonPressed.OnAssistanceSaved();
+            }
+        });
 
         updateData();
 
@@ -91,5 +102,15 @@ public class AssistanceFragment extends Fragment {
 
                     }
                 });
+    }
+
+    public interface OnAssistanceButtonPressed {
+        public void OnAssistanceSaved();
+    }
+
+    OnAssistanceButtonPressed onAssistanceButtonPressed;
+
+    public void setOnAssistanceButtonPressed(OnAssistanceButtonPressed onAssistanceButtonPressed) {
+        this.onAssistanceButtonPressed = onAssistanceButtonPressed;
     }
 }

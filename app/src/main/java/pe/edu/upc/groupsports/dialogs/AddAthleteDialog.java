@@ -5,8 +5,20 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import pe.edu.upc.groupsports.R;
+import pe.edu.upc.groupsports.Session.SessionManager;
+import pe.edu.upc.groupsports.network.GroupSportsApiService;
 
 /**
  * Created by karique on 4/05/2018.
@@ -15,6 +27,9 @@ import pe.edu.upc.groupsports.R;
 public class AddAthleteDialog extends AlertDialog {
     Button cancelButton;
     Button okButton;
+    SessionManager session;
+    EditText athleteNameEditText;
+    Context context;
 
     public AddAthleteDialog(Context context) {
         super(context);
@@ -35,6 +50,8 @@ public class AddAthleteDialog extends AlertDialog {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.dialog_add_athlete, null);
 
+        session = new SessionManager(view.getContext());
+        context = view.getContext();
         cancelButton = view.findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,11 +64,43 @@ public class AddAthleteDialog extends AlertDialog {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onOkButtonClickListener.OnOkButtonClicked();
+                addAthleteToTeam();
             }
         });
+        athleteNameEditText = view.findViewById(R.id.athleteNameEditText);
 
         setView(view);
+    }
+
+    private void addAthleteToTeam(){
+        String url = GroupSportsApiService.COACHS_URL+session.getuserLoggedTypeId()+"/"+athleteNameEditText.getText().toString();
+        AndroidNetworking.post(url)
+                .addHeaders("Authorization", "bearer " + session.getaccess_token())
+                .addHeaders("Content-Type", "application/json")
+                .setPriority(Priority.HIGH)
+                .setTag(context.getString(R.string.app_name))
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if (response.getString("respuesta").equals("Atleta encontrado")) {
+                                Toast.makeText(context, "Atleta agregado al equipo", Toast.LENGTH_LONG).show();
+                                onOkButtonClickListener.OnOkButtonClicked();
+                            }
+                            else {
+                                Toast.makeText(context, "Nombre invalido", Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(context, "Hubo un error al agregar el atleta al equipo", Toast.LENGTH_LONG).show();
+                    }
+                });
+
     }
 
     public interface OnCancelButtonClickListener {

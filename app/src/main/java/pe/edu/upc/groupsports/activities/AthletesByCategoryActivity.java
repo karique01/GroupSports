@@ -31,6 +31,7 @@ public class AthletesByCategoryActivity extends AppCompatActivity {
     AthleteAdapter athletesAdapter;
     RecyclerView.LayoutManager athletesLayoutManager;
     List<Athlete> athletes;
+    public static String categoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,8 @@ public class AthletesByCategoryActivity extends AppCompatActivity {
     }
 
     private void updateData(){
-        AndroidNetworking.get(GroupSportsApiService.ATHLETES_URL)
+        int coachId = Integer.parseInt(session.getuserLoggedTypeId());
+        AndroidNetworking.get(GroupSportsApiService.ATHELETES_BY_COACH_BY_CATEGORY_URL(coachId,categoria))
                 .addHeaders("Authorization", "bearer " + session.getaccess_token())
                 .addHeaders("Content-Type", "application/json")
                 .setPriority(Priority.HIGH)

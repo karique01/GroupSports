@@ -3,6 +3,7 @@ package pe.edu.upc.groupsports.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -21,10 +22,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import io.github.yavski.fabspeeddial.FabSpeedDial;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
 import pe.edu.upc.groupsports.adapters.AthleteAdapter;
 import pe.edu.upc.groupsports.dialogs.AddAthleteDialog;
+import pe.edu.upc.groupsports.dialogs.RegisterAthleteDialog;
 import pe.edu.upc.groupsports.fragments.AssistanceFragment;
 import pe.edu.upc.groupsports.fragments.AthletesFragment;
 import pe.edu.upc.groupsports.fragments.CategoriesFragment;
@@ -36,7 +39,7 @@ public class MainCoachActivity extends AppCompatActivity
 
     SessionManager sessionManager;
     Context context;
-    FloatingActionButton fab;
+    FabSpeedDial fabSpeedDial;
     Toolbar toolbar;
     int id;
 
@@ -51,11 +54,29 @@ public class MainCoachActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fab = (FloatingActionButton) findViewById(R.id.addAthleteFloatingActionButton);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fabSpeedDial = (FabSpeedDial) findViewById(R.id.fabSpeedDial);
+        fabSpeedDial.setMenuListener(new FabSpeedDial.MenuListener() {
             @Override
-            public void onClick(View view) {
-                fabActionsClicked();
+            public boolean onPrepareMenu(NavigationMenu navigationMenu) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_register_athlete:
+                        showRegisterAthleteDialog();
+                        break;
+                    case R.id.action_add_athlete:
+                        showAddAthleteDialog();
+                        break;
+                }
+                return true;
+            }
+
+            @Override
+            public void onMenuClosed() {
+
             }
         });
 
@@ -127,31 +148,53 @@ public class MainCoachActivity extends AppCompatActivity
         return navigate;
     }
 
+    AthletesFragment athletesFragment;
+
     private Fragment getFragmentFor (int id) {
         if (id == R.id.nav_my_athletes) {
-            toolbar.setTitle("Mis Atletas");
-            updateFabImage(R.drawable.ic_add);
-            return new AthletesFragment();
-        } else if (id == R.id.nav_my_teams) {
-            toolbar.setTitle("Mis Equipos");
-            updateFabImage(R.drawable.ic_add);
-            return new TeamsFragment();
+            changeToolbarText("Mis Atletas");
+            updateFabDial(id);
+            athletesFragment = new AthletesFragment();
+            return athletesFragment;
         } else if (id == R.id.nav_assistance) {
-            toolbar.setTitle("Asistencia");
-            updateFabImage(R.drawable.ic_check);
-            return new AssistanceFragment();
+            changeToolbarText("Asistencia");
+            updateFabDial(id);
+            return getAssistanceFragment();
         } else if (id == R.id.nav_categories) {
-            toolbar.setTitle("Categorias");
-            fab.hide();
+            changeToolbarText("Categorias");
+            updateFabDial(id);
             return new CategoriesFragment();
         }
         return null;
     }
 
-    private void updateFabImage(int imageResourceId){
-        fab.hide();
-        fab.setImageResource(imageResourceId);
-        fab.show();
+    private void changeToolbarText(String text){
+        toolbar.setTitle(text);
+    }
+
+    private AssistanceFragment getAssistanceFragment(){
+        AssistanceFragment assistanceFragment = new AssistanceFragment();
+        assistanceFragment.setOnAssistanceButtonPressed(new AssistanceFragment.OnAssistanceButtonPressed() {
+            @Override
+            public void OnAssistanceSaved() {
+                assistanceSaved();
+            }
+        });
+
+        return assistanceFragment;
+    }
+
+    private void updateFabDial(int id){
+        if (id == R.id.nav_my_athletes){
+            fabSpeedDial.hide();
+            fabSpeedDial.show();
+        }
+        else if (id == R.id.nav_assistance){
+            fabSpeedDial.hide();
+        }
+        else if (id == R.id.nav_categories){
+            fabSpeedDial.hide();
+        }
     }
 
     private boolean navigateAccordingTo(int id) {
@@ -175,37 +218,62 @@ public class MainCoachActivity extends AppCompatActivity
         navigateAccordingTo(id);
     }
 
-    void fabActionsClicked(){
-        if (id == R.id.nav_my_athletes){
-            showAddAthleteDialog();
-        }
-        else if (id == R.id.nav_assistance) {
-            Snackbar.make(getCurrentFocus(), "Asistencia de la sesión guardada", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-            navigateAccordingTo(R.layout.fragment_athletes);
+    void assistanceSaved(){
+        if (id == R.id.nav_assistance) {
+
+            View view = getCurrentFocus();
+            if (view != null) {
+                Snackbar.make(view, "Asistencia de la sesión guardada", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show();
+            }
+
             navigateFirstFragment();
         }
     }
 
     void showAddAthleteDialog(){
-        final AddAthleteDialog couponDialog = new AddAthleteDialog(this);
-        couponDialog.show();
+        final AddAthleteDialog addAthleteDialog = new AddAthleteDialog(this);
+        addAthleteDialog.show();
 
-        couponDialog.setOnCancelButtonClickListener(new AddAthleteDialog.OnCancelButtonClickListener() {
+        addAthleteDialog.setOnCancelButtonClickListener(new AddAthleteDialog.OnCancelButtonClickListener() {
             @Override
             public void OnCancelButtonClicked() {
-                couponDialog.dismiss();
+                addAthleteDialog.dismiss();
             }
         });
 
-        couponDialog.setOnOkButtonClickListener(new AddAthleteDialog.OnOkButtonClickListener() {
+        addAthleteDialog.setOnOkButtonClickListener(new AddAthleteDialog.OnOkButtonClickListener() {
             @Override
             public void OnOkButtonClicked() {
-                couponDialog.dismiss();
-                Snackbar.make(getCurrentFocus(), "Atleta agregado", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (athletesFragment != null) {
+                    athletesFragment.updateData();
+                }
+                addAthleteDialog.dismiss();
             }
         });
+    }
+
+    void showRegisterAthleteDialog(){
+//        final RegisterAthleteDialog registerAthleteDialog = new RegisterAthleteDialog(this);
+//        registerAthleteDialog.show();
+//
+//        registerAthleteDialog.setOnCancelButtonClickListener(new RegisterAthleteDialog.OnCancelButtonClickListener() {
+//            @Override
+//            public void OnCancelButtonClicked() {
+//                registerAthleteDialog.dismiss();
+//            }
+//        });
+//
+//        registerAthleteDialog.setOnOkButtonClickListener(new RegisterAthleteDialog.OnOkButtonClickListener() {
+//            @Override
+//            public void OnOkButtonClicked() {
+//                registerAthleteDialog.dismiss();
+//                Snackbar.make(getCurrentFocus(), "Atleta registrado", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+        startActivity(new Intent(this,RegisterAthleteActivity.class));
     }
 }
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -96,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         switch (view.getId()){
             case R.id.signUpButton:
-                startActivity(new Intent(context, RegisterActivity.class));
+                Toast.makeText(context,"Desarrollado por Karique Vera",Toast.LENGTH_LONG).show();
                 break;
             case R.id.logInButton:
                 activateLoginMode();
@@ -137,6 +138,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             sessionManager.setcellPhone(response.getString("cellPhone"));
                             sessionManager.setaddress(response.getString("address"));
                             sessionManager.setemailAddress(response.getString("emailAddress"));
+                            sessionManager.setuserLoggedTypeId(response.getString("userLoggedTypeId"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

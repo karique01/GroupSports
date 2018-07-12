@@ -62,8 +62,15 @@ public class AthletesFragment extends Fragment {
         return view;
     }
 
-    private void updateData(){
-        AndroidNetworking.get(GroupSportsApiService.ATHLETES_URL)
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateData();
+    }
+
+    public void updateData(){
+        int coachId = Integer.parseInt(session.getuserLoggedTypeId());
+        AndroidNetworking.get(GroupSportsApiService.ATHELETES_BY_COACH_URL(coachId))
                 .addHeaders("Authorization", "bearer " + session.getaccess_token())
                 .addHeaders("Content-Type", "application/json")
                 .setPriority(Priority.HIGH)

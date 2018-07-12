@@ -24,6 +24,7 @@ public class SessionManager {
     public static final String CELL_PHONE = "cellPhone";
     public static final String ADDRESS = "address";
     public static final String EMAIL_ADDRESS = "emailAddress";
+    public static final String USER_LOGGED_TYPE_ID = "userLoggedTypeId";
 
     public SessionManager(Context context) {
         preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -72,6 +73,9 @@ public class SessionManager {
     public void setemailAddress(String emailAddress) { editor.putString(EMAIL_ADDRESS, emailAddress).commit(); }
     public String getemailAddress() { return preferences.getString(EMAIL_ADDRESS, ""); }
 
+    public void setuserLoggedTypeId(String userLoggedTypeId) { editor.putString(USER_LOGGED_TYPE_ID, userLoggedTypeId).commit(); }
+    public String getuserLoggedTypeId() { return preferences.getString(USER_LOGGED_TYPE_ID, ""); }
+
     public void deleteUserSession(){
         setUserLogin(false);
         editor.putBoolean(USER_LOGIN, false).commit();
@@ -86,5 +90,6 @@ public class SessionManager {
         editor.putString(CELL_PHONE, "").commit();
         editor.putString(ADDRESS, "").commit();
         editor.putString(EMAIL_ADDRESS, "").commit();
+        editor.putString(USER_LOGGED_TYPE_ID, "").commit();
     }
 }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pe.edu.upc.groupsports.activities.RegisterAthleteActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,8 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/big_margin"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:visibility="gone"/>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/disciplineConstraintLayout"
@@ -180,13 +177,10 @@
                 app:layout_constraintTop_toBottomOf="@id/emailTextInputLayout"
                 android:layout_margin="@dimen/big_margin"/>
 
-            <com.applandeo.materialcalendarview.CalendarView
+            <CalendarView
                 android:id="@+id/birthDateCalendarView"
                 android:layout_width="match_parent"
-                android:layout_height="325dp"
-                app:type="one_day_picker"
-                app:headerColor="@color/colorAccent"
-                app:selectionColor="@android:color/black"
+                android:layout_height="300dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/birthDateTextView"
@@ -201,8 +195,7 @@
                 app:layout_constraintTop_toBottomOf="@id/birthDateCalendarView"
                 android:layout_margin="@dimen/big_margin"
                 android:buttonTint="@color/colorAccent"
-                android:checked="true"
-                android:visibility="gone"/>
+                android:checked="true"/>
 
             <Button
                 android:id="@+id/okButton"

@@ -16,9 +16,9 @@ public class AthletesCategoriesRepository {
 
     private AthletesCategoriesRepository() {
         athleteCategories = new ArrayList<>();
-        athleteCategories.add(new AthleteCategory("Sub 18", "15", "17", R.drawable.atleta_menor));
-        athleteCategories.add(new AthleteCategory("Sub 20", "18", "19", R.drawable.atleta_junior));
-        athleteCategories.add(new AthleteCategory("Sub 23", "20", "22", R.drawable.atleta_profesional));
+        athleteCategories.add(new AthleteCategory("Sub18", "15", "17", R.drawable.atleta_menor));
+        athleteCategories.add(new AthleteCategory("Sub20", "18", "19", R.drawable.atleta_junior));
+        athleteCategories.add(new AthleteCategory("Sub23", "20", "22", R.drawable.atleta_profesional));
         athleteCategories.add(new AthleteCategory("Adultos", "23", "Mayores", R.drawable.atleta_experimentado));
     }
 

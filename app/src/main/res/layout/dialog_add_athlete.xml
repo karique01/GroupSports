@@ -19,7 +19,7 @@
         android:id="@+id/athleteNameTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="@dimen/big_margin"
         android:layout_marginStart="@dimen/big_margin"
         app:layout_constraintTop_toBottomOf="@id/addAthleteTittleTextView"
@@ -29,10 +29,23 @@
             android:id="@+id/athleteNameEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:textSize="@dimen/text_input_size"
             android:hint="@string/athlete_name"
             android:lines="1"
             android:inputType="textPersonName"/>
     </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/recoTextView"
+        android:text="*Use esta opción si el atleta ya fue registrado previamente por otro entrenador"
+        android:textSize="10sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/athleteNameTextInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/big_margin"/>
 
     <Button
         android:id="@+id/okButton"
@@ -44,7 +57,7 @@
         android:layout_marginTop="@dimen/big_margin"
         android:layout_marginEnd="@dimen/default_margin"
         android:layout_marginBottom="@dimen/default_margin"
-        app:layout_constraintTop_toBottomOf="@id/athleteNameTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/recoTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -56,7 +69,7 @@
         android:textColor="@color/colorAccent"
         style="?android:attr/borderlessButtonStyle"
         android:layout_marginTop="@dimen/big_margin"
-        app:layout_constraintTop_toBottomOf="@id/athleteNameTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/recoTextView"
         app:layout_constraintEnd_toStartOf="@id/okButton"/>
 
 </android.support.constraint.ConstraintLayout>
