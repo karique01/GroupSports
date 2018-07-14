@@ -1,11 +1,14 @@
 package pe.edu.upc.groupsports.adapters;
 
 import android.content.Intent;
+import android.graphics.Matrix;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,8 +49,13 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteV
         final Athlete athlete = athletes.get(position);
         // TODO: Assign value to ImageView
         holder.nameTextView.setText(athlete.getFullName());
-        holder.cellphoneTextView.setText(athlete.getCellPhone());
         holder.disciplineNameTextView.setText(athlete.getDisciplineName());
+
+        Picasso.with(holder.itemView.getContext())
+                .load(athlete.getPictureUrl())
+                .placeholder(R.drawable.athlete_banner)
+                .error(R.drawable.athlete_banner)
+                .into(holder.bigImageView);
 
         Picasso.with(holder.itemView.getContext())
                 .load(athlete.getPictureUrl())
@@ -55,10 +63,10 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteV
                 .error(R.drawable.athlete)
                 .into(holder.athleteImageView);
 
-        holder.cardConstraintLayout.setOnClickListener(new View.OnClickListener() {
+        holder.athleteCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.getContext().startActivity(new Intent(view.getContext(), AthleteDeatilActivity.class));
+                //view.getContext().startActivity(new Intent(view.getContext(), AthleteDeatilActivity.class));
             }
         });
     }
@@ -77,18 +85,18 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteV
     }
 
     class AthleteViewHolder extends RecyclerView.ViewHolder{
-        ConstraintLayout cardConstraintLayout;
         CircleImageView athleteImageView;
         TextView nameTextView;
-        TextView cellphoneTextView;
         TextView disciplineNameTextView;
+        CardView athleteCardView;
+        ImageView bigImageView;
         public AthleteViewHolder(View itemView) {
             super(itemView);
-            cardConstraintLayout = (ConstraintLayout) itemView.findViewById(R.id.cardConstraintLayout);
             athleteImageView = (CircleImageView) itemView.findViewById(R.id.athleteImageView);
             nameTextView = (TextView) itemView.findViewById(R.id.nameTextView);
-            cellphoneTextView = (TextView) itemView.findViewById(R.id.cellphoneTextView);
             disciplineNameTextView = (TextView) itemView.findViewById(R.id.disciplineNameTextView);
+            athleteCardView = (CardView) itemView.findViewById(R.id.athleteCardView);
+            bigImageView = (ImageView) itemView.findViewById(R.id.bigImageView);
         }
     }
 }

@@ -2,6 +2,7 @@ package pe.edu.upc.groupsports.adapters;
 
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +48,7 @@ public class AthletesCategoriesAdapter extends RecyclerView.Adapter<AthletesCate
         holder.startAgeTextView.setText(athlete.getEdadInicio());
         holder.endAgeTextView.setText(athlete.getEdadFin());
 
-        holder.cardConstraintLayout.setOnClickListener(new View.OnClickListener() {
+        holder.detailCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AthletesByCategoryActivity.categoria = athlete.getCategoryName();
@@ -72,14 +73,14 @@ public class AthletesCategoriesAdapter extends RecyclerView.Adapter<AthletesCate
         TextView categoryNameTextView;
         TextView startAgeTextView;
         TextView endAgeTextView;
-        ConstraintLayout cardConstraintLayout;
+        CardView detailCardView;
         public AthleteCategoryViewHolder(View itemView) {
             super(itemView);
             categoryImageView = (ImageView) itemView.findViewById(R.id.categoryImageView);
             categoryNameTextView = (TextView) itemView.findViewById(R.id.categoryNameTextView);
             startAgeTextView = (TextView) itemView.findViewById(R.id.startAgeTextView);
             endAgeTextView = (TextView) itemView.findViewById(R.id.endAgeTextView);
-            cardConstraintLayout = (ConstraintLayout) itemView.findViewById(R.id.cardConstraintLayout);
+            detailCardView = (CardView) itemView.findViewById(R.id.detailCardView);
         }
     }
 }

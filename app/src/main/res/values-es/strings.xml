@@ -44,6 +44,7 @@
     <string name="register_athlete">Registrar atleta</string>
     <string name="add_athlete_to_my_team">Agregar atleta a mi equipo</string>
     <string name="register_only">Registrar</string>
+    <string name="a"> a </string>
 
     <string-array name="Intensities">
         <item>1</item>

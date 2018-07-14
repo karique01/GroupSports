@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import pe.edu.upc.groupsports.util.Funciones;
+
 /**
  * Created by karique on 3/05/2018.
  */
@@ -167,8 +169,8 @@ public class Athlete {
         try {
 
             athlete.setId(jsonObject.getString("id"));
-            athlete.setFirstName(jsonObject.getString("firstName"));
-            athlete.setLastName(jsonObject.getString("lastName"));
+            athlete.setFirstName(Funciones.capitalize(jsonObject.getString("firstName")));
+            athlete.setLastName(Funciones.capitalize(jsonObject.getString("lastName")));
             athlete.setCellPhone(jsonObject.getString("cellPhone"));
             athlete.setDisciplineName(jsonObject.getString("disciplineName"));
             athlete.setPictureUrl(jsonObject.getString("pictureUrl"));

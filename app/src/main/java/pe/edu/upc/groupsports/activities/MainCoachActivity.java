@@ -194,6 +194,7 @@ public class MainCoachActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_categories){
             fabSpeedDial.hide();
+            fabSpeedDial.show();
         }
     }
 

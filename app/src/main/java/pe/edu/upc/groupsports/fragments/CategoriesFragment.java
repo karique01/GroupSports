@@ -3,6 +3,7 @@ package pe.edu.upc.groupsports.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,7 +45,7 @@ public class CategoriesFragment extends Fragment {
         categoriesRecyclerView = (RecyclerView) view.findViewById(R.id.categoriesRecyclerView);
         athleteCategories = AthletesCategoriesRepository.getInstance().getAthleteCategories();
         athletesCategoriesAdapter = new AthletesCategoriesAdapter(athleteCategories);
-        categoriesLayoutManager = new LinearLayoutManager(view.getContext());
+        categoriesLayoutManager = new GridLayoutManager(view.getContext(),2);
         categoriesRecyclerView.setAdapter(athletesCategoriesAdapter);
         categoriesRecyclerView.setLayoutManager(categoriesLayoutManager);
 
