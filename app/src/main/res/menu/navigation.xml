@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_athlete_statistics"
+        android:icon="@drawable/ic_new_mesocycle_white"
+        android:title="Estadísticas" />
+
+    <item
+        android:id="@+id/navigation_athlete_test"
+        android:icon="@drawable/ic_directions_run"
+        android:title="Test" />
+
+    <item
+        android:id="@+id/navigation_athlete_details"
+        android:icon="@drawable/ic_description_black_24dp"
+        android:title="Detalles" />
+
+</menu>

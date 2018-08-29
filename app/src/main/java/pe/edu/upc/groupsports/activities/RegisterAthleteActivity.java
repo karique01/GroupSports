@@ -138,7 +138,7 @@ public class RegisterAthleteActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONObject response) {
                             try {
-                                if (response.getString("respuesta").equals("Usuario ya existe")){
+                                if (response.getString("response").equals("Usuario ya existe")){
                                     Toast.makeText(mContext, "El nombre de usuario ya existe", Toast.LENGTH_LONG).show();
                                 }
                                 else {

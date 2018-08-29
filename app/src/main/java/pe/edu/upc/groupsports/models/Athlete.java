@@ -1,5 +1,7 @@
 package pe.edu.upc.groupsports.models;
 
+import android.os.Bundle;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +30,48 @@ public class Athlete {
     private String userId;
     private String pictureUrl;
     private Date   birthDate;
+    private boolean selected = false;
+
+    public Bundle toBundle(){
+        Bundle athleteBundle = new Bundle();
+        athleteBundle.putString("id",id);
+        athleteBundle.putString("username",username);
+        athleteBundle.putString("password",password);
+        athleteBundle.putString("userType",userType);
+        athleteBundle.putString("firstName",firstName);
+        athleteBundle.putString("lastName",lastName);
+        athleteBundle.putString("cellPhone",cellPhone);
+        athleteBundle.putString("address",address);
+        athleteBundle.putString("emailAddress",emailAddress);
+        athleteBundle.putString("disciplineName",disciplineName);
+        athleteBundle.putString("disciplineId",disciplineId);
+        athleteBundle.putString("userId",userId);
+        athleteBundle.putString("pictureUrl",pictureUrl);
+        athleteBundle.putSerializable("birthDate",birthDate);
+        athleteBundle.putBoolean("selected",selected);
+
+        return athleteBundle;
+    }
+
+    public static Athlete from(Bundle bundle){
+        Athlete athlete = new Athlete();
+        athlete.setId(bundle.getString("id"));
+        athlete.setUsername(bundle.getString("username"));
+        athlete.setPassword(bundle.getString("password"));
+        athlete.setUserType(bundle.getString("userType"));
+        athlete.setFirstName(bundle.getString("firstName"));
+        athlete.setLastName(bundle.getString("lastName"));
+        athlete.setCellPhone(bundle.getString("cellPhone"));
+        athlete.setAddress(bundle.getString("address"));
+        athlete.setEmailAddress(bundle.getString("emailAddress"));
+        athlete.setDisciplineName(bundle.getString("disciplineName"));
+        athlete.setDisciplineId(bundle.getString("disciplineId"));
+        athlete.setUserId(bundle.getString("userId"));
+        athlete.setPictureUrl(bundle.getString("pictureUrl"));
+        athlete.setBirthDate((Date)bundle.getSerializable("birthDate"));
+        athlete.setSelected(bundle.getBoolean("selected"));
+        return athlete;
+    }
 
     public Athlete() {
     }
@@ -45,6 +89,14 @@ public class Athlete {
         this.disciplineName = disciplineName;
         this.disciplineId = disciplineId;
         this.userId = userId;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public String getPictureUrl() {

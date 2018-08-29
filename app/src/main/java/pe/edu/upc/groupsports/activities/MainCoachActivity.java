@@ -1,13 +1,11 @@
 package pe.edu.upc.groupsports.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.internal.NavigationMenu;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,26 +18,23 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.List;
+import com.leinardi.android.speeddial.SpeedDialActionItem;
+import com.leinardi.android.speeddial.SpeedDialView;
 
-import io.github.yavski.fabspeeddial.FabSpeedDial;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
-import pe.edu.upc.groupsports.adapters.AthleteAdapter;
 import pe.edu.upc.groupsports.dialogs.AddAthleteDialog;
-import pe.edu.upc.groupsports.dialogs.RegisterAthleteDialog;
 import pe.edu.upc.groupsports.fragments.AssistanceFragment;
 import pe.edu.upc.groupsports.fragments.AthletesFragment;
 import pe.edu.upc.groupsports.fragments.CategoriesFragment;
-import pe.edu.upc.groupsports.fragments.TeamsFragment;
-import pe.edu.upc.groupsports.models.Athlete;
+import pe.edu.upc.groupsports.fragments.TrainingPlansFragment;
 
 public class MainCoachActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     SessionManager sessionManager;
     Context context;
-    FabSpeedDial fabSpeedDial;
+    SpeedDialView speedDialView;
     Toolbar toolbar;
     int id;
 
@@ -54,29 +49,23 @@ public class MainCoachActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fabSpeedDial = (FabSpeedDial) findViewById(R.id.fabSpeedDial);
-        fabSpeedDial.setMenuListener(new FabSpeedDial.MenuListener() {
+        speedDialView = findViewById(R.id.speedDial);
+        speedDialView.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
             @Override
-            public boolean onPrepareMenu(NavigationMenu navigationMenu) {
-                return true;
-            }
-
-            @Override
-            public boolean onMenuItemSelected(MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
+            public boolean onActionSelected(SpeedDialActionItem speedDialActionItem) {
+                switch (speedDialActionItem.getId()) {
                     case R.id.action_register_athlete:
                         showRegisterAthleteDialog();
-                        break;
+                        return false;
                     case R.id.action_add_athlete:
                         showAddAthleteDialog();
-                        break;
+                        return false;
+                    case R.id.action_add_training_plan:
+                        startActivityForResult(new Intent(context,AddTrainingPlanActivity.class),AddTrainingPlanActivity.REQUEST_FOR_ACTIVITY_CODE_ADD_TRAINING_PLAN);
+                        return false;
+                    default:
+                        return false;
                 }
-                return true;
-            }
-
-            @Override
-            public void onMenuClosed() {
-
             }
         });
 
@@ -148,6 +137,30 @@ public class MainCoachActivity extends AppCompatActivity
         return navigate;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == TrainingPlanDetailActivity.REQUEST_FOR_ACTIVITY_CODE_TRAINING_PLAN_DETAIL) {
+            if(resultCode == Activity.RESULT_OK){
+                View view = getCurrentFocus();
+                if (view != null) {
+                    Snackbar.make(view, "Plan eliminado correctamente", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null)
+                            .show();
+                }
+            }
+        }
+        else if (requestCode == AddTrainingPlanActivity.REQUEST_FOR_ACTIVITY_CODE_ADD_TRAINING_PLAN) {
+            if(resultCode == Activity.RESULT_OK){
+                View view = getCurrentFocus();
+                if (view != null) {
+                    Snackbar.make(view, "Se agregó el plan correctamente", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null)
+                            .show();
+                }
+            }
+        }
+    }
+
     AthletesFragment athletesFragment;
 
     private Fragment getFragmentFor (int id) {
@@ -164,7 +177,12 @@ public class MainCoachActivity extends AppCompatActivity
             changeToolbarText("Categorias");
             updateFabDial(id);
             return new CategoriesFragment();
+        } else if (id == R.id.nav_work_plan) {
+            changeToolbarText("Planes de trabajo");
+            updateFabDial(id);
+            return new TrainingPlansFragment();
         }
+
         return null;
     }
 
@@ -186,15 +204,22 @@ public class MainCoachActivity extends AppCompatActivity
 
     private void updateFabDial(int id){
         if (id == R.id.nav_my_athletes){
-            fabSpeedDial.hide();
-            fabSpeedDial.show();
+            speedDialView.inflate(R.menu.main_menu_coach);
+            speedDialView.hide();
+            speedDialView.show();
         }
         else if (id == R.id.nav_assistance){
-            fabSpeedDial.hide();
+            speedDialView.hide();
+        }
+        else if (id == R.id.nav_work_plan){
+            speedDialView.inflate(R.menu.main_menu_coach_training_plan);
+            speedDialView.hide();
+            speedDialView.show();
         }
         else if (id == R.id.nav_categories){
-            fabSpeedDial.hide();
-            fabSpeedDial.show();
+            speedDialView.inflate(R.menu.main_menu_coach);
+            speedDialView.hide();
+            speedDialView.show();
         }
     }
 
@@ -224,7 +249,7 @@ public class MainCoachActivity extends AppCompatActivity
 
             View view = getCurrentFocus();
             if (view != null) {
-                Snackbar.make(view, "Asistencia de la sesión guardada", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Asistencia de las sesiones guardada", Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
                         .show();
             }
@@ -256,24 +281,6 @@ public class MainCoachActivity extends AppCompatActivity
     }
 
     void showRegisterAthleteDialog(){
-//        final RegisterAthleteDialog registerAthleteDialog = new RegisterAthleteDialog(this);
-//        registerAthleteDialog.show();
-//
-//        registerAthleteDialog.setOnCancelButtonClickListener(new RegisterAthleteDialog.OnCancelButtonClickListener() {
-//            @Override
-//            public void OnCancelButtonClicked() {
-//                registerAthleteDialog.dismiss();
-//            }
-//        });
-//
-//        registerAthleteDialog.setOnOkButtonClickListener(new RegisterAthleteDialog.OnOkButtonClickListener() {
-//            @Override
-//            public void OnOkButtonClicked() {
-//                registerAthleteDialog.dismiss();
-//                Snackbar.make(getCurrentFocus(), "Atleta registrado", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
         startActivity(new Intent(this,RegisterAthleteActivity.class));
     }
 }

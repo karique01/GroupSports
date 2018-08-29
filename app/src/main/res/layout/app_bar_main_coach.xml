@@ -8,6 +8,7 @@
     tools:context="pe.edu.upc.groupsports.activities.MainCoachActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -23,14 +24,20 @@
 
     <include layout="@layout/content_main_coach" />
 
-    <io.github.yavski.fabspeeddial.FabSpeedDial
-        android:id="@+id/fabSpeedDial"
+    <com.leinardi.android.speeddial.SpeedDialOverlayLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"/>
+
+    <com.leinardi.android.speeddial.SpeedDialView
+        android:id="@+id/speedDial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:fabGravity="bottom_end"
-        android:layout_gravity="bottom|end"
-        app:fabMenu="@menu/main_menu_coach"
-        app:fabBackgroundTint="@android:color/black"
-        android:visibility="visible"/>
+        android:layout_gravity="end|bottom"
+        app:sdMainFabClosedBackgroundColor="@android:color/black"
+        app:sdMainFabOpenedBackgroundColor="@android:color/black"
+        app:sdMainFabClosedSrc="@drawable/ic_add"
+        app:sdOverlayLayout="@id/overlay"/>
 
 </android.support.design.widget.CoordinatorLayout>

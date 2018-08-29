@@ -2,12 +2,14 @@ package pe.edu.upc.groupsports.fragments;
 
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -33,11 +35,13 @@ public class AthletesFragment extends Fragment {
 
     SessionManager session;
 
-    //recycler things
     RecyclerView athletesRecyclerView;
     AthleteAdapter athletesAdapter;
     RecyclerView.LayoutManager athletesLayoutManager;
     List<Athlete> athletes;
+
+    ConstraintLayout noAthletesConstraintLayout;
+    TextView messageTextView;
 
     public AthletesFragment() {
         // Required empty public constructor
@@ -57,6 +61,9 @@ public class AthletesFragment extends Fragment {
         athletesLayoutManager = new LinearLayoutManager(view.getContext());
         athletesRecyclerView.setAdapter(athletesAdapter);
         athletesRecyclerView.setLayoutManager(athletesLayoutManager);
+
+        noAthletesConstraintLayout = (ConstraintLayout) view.findViewById(R.id.noAthletesConstraintLayout);
+        messageTextView = (TextView) view.findViewById(R.id.messageTextView);
 
         updateData();
         return view;
@@ -90,11 +97,15 @@ public class AthletesFragment extends Fragment {
                         }
 
                         athletesAdapter.notifyDataSetChanged();
+                        if (response.length() == 0) {
+                            noAthletesConstraintLayout.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-
+                        messageTextView.setText(getResources().getString(R.string.connection_error));
+                        noAthletesConstraintLayout.setVisibility(View.VISIBLE);
                     }
                 });
     }

@@ -3,11 +3,32 @@
     <color name="colorPrimary">#212121</color>
     <color name="colorPrimaryDark">#212121</color>
     <color name="colorAccent">#FF9800</color>
+    <color name="colorAccentLight">#ffdba5</color>
     <color name="colorPrimaryLight">#BDBDBD</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
 
+    <color name="colorMyGray">#aaa</color>
     <color name="colorTransparent">#00000000</color>
+
+    <string-array name="startColors">
+        <item>#ef6c00</item>
+        <item>#FF9800</item>
+        <item>#FF9800</item>
+        <item>#FF9800</item>
+    </string-array>
+    <string-array name="endColors">
+        <item>#ef6c00</item>
+        <item>#FF9800</item>
+        <item>#FF9800</item>
+        <item>#FF9800</item>
+    </string-array>
+    <string-array name="bgColors">
+        <item>#964400</item>
+        <item>#a96500</item>
+        <item>#ffdba5</item>
+        <item>#ffdba5</item>
+    </string-array>
 </resources>

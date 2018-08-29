@@ -89,5 +89,34 @@
     <string name="material_calendar_positive_button">OK</string>
     <string name="material_calendar_negative_button">Cancel</string>
     <string name="a"> to </string>
+    <string name="no_athletes">There are no athletes in this category</string>
+    <string name="connection_error">Connection error</string>
+    <string name="no_athletes_for_coach">There are no athletes for the coach</string>
+    <string name="no_training_plans">There are no training plans registered</string>
+    <string name="no_sessions_today">There are no sessions for this day</string>
+    <string name="add_training_plan">Add training plan</string>
+    <string name="training_plan_name">Training Plan Name</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="no_mesocycles_registered">No mesocycles registered</string>
+    <string name="choose_athlete">Choose athlete</string>
+    <string name="delete">Delete</string>
+    <string name="first_register_an_athlete">First register an athlete</string>
+    <string name="edit_training_plan">Edit training plan</string>
+    <string name="edit">Edit</string>
+    <string name="mesocycle_type">Mesocycle type</string>
+    <string name="add_mesocycle">Add Mesocycle</string>
+    <string name="no_weeks_registered">No weeks registered</string>
+    <string name="edit_mesocycle">Edit mesocycle</string>
+    <string name="week_type">Week type</string>
+    <string name="activity">Activity</string>
+    <string name="add_week">Add week</string>
+    <string name="new_session">Add session</string>
+    <string name="title_activity_athlete_detail">AthleteDetailActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="no_test_added">No test added</string>
+    <string name="speed_test">Speed test</string>
 
 </resources>

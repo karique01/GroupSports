@@ -32,8 +32,8 @@
         </activity>
         <activity
             android:name=".activities.RegisterAthleteActivity"
-            android:parentActivityName=".activities.LoginActivity"
-            android:label="@string/register_athlete"/>
+            android:label="@string/register_athlete"
+            android:parentActivityName=".activities.LoginActivity" />
         <activity android:name=".activities.SessionHistoryActivity" />
         <activity
             android:name=".activities.MainCoachActivity"
@@ -41,14 +41,37 @@
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.AthleteDeatilActivity"
-            android:label="Detalle"
-            android:parentActivityName=".activities.MainCoachActivity" />
-        <activity
             android:name=".activities.AthletesByCategoryActivity"
             android:label="Atletas por categoria"
             android:parentActivityName=".activities.MainCoachActivity" />
-        <activity android:name=".activities.AddAthleteActivity"></activity>
+        <activity android:name=".activities.AddAthleteActivity" />
+        <activity
+            android:name=".activities.AddTrainingPlanActivity"
+            android:label="@string/add_training_plan"
+            android:parentActivityName=".activities.MainCoachActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.TrainingPlanDetailActivity"
+            android:label="Training Plan"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".activities.MainCoachActivity" />
+        <activity
+            android:name=".activities.MesocycleDetailActivity"
+            android:label="Mesocycle"
+            android:launchMode="singleInstance"
+            android:parentActivityName=".activities.TrainingPlanDetailActivity" />
+        <activity
+            android:name=".activities.WeekDetailActivity"
+            android:label="Week"
+            android:parentActivityName=".activities.MesocycleDetailActivity" />
+        <activity
+            android:name=".activities.AthleteDetailActivity"
+            android:label="@string/title_activity_athlete_detail"
+            android:parentActivityName=".activities.MainCoachActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pe.edu.upc.groupsports.activities.MainCoachActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,25 +1,21 @@
 package pe.edu.upc.groupsports.adapters;
 
 import android.content.Intent;
-import android.graphics.Matrix;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidnetworking.widget.ANImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pe.edu.upc.groupsports.R;
-import pe.edu.upc.groupsports.activities.AthleteDeatilActivity;
+import pe.edu.upc.groupsports.activities.AthleteDetailActivity;
 import pe.edu.upc.groupsports.models.Athlete;
 
 /**
@@ -66,7 +62,9 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteV
         holder.athleteCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //view.getContext().startActivity(new Intent(view.getContext(), AthleteDeatilActivity.class));
+                Intent intent = new Intent(view.getContext(), AthleteDetailActivity.class);
+                intent.putExtras(athlete.toBundle());
+                view.getContext().startActivity(intent);
             }
         });
     }

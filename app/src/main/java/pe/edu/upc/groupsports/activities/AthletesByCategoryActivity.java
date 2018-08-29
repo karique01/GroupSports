@@ -1,9 +1,12 @@
 package pe.edu.upc.groupsports.activities;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -33,6 +36,9 @@ public class AthletesByCategoryActivity extends AppCompatActivity {
     List<Athlete> athletes;
     public static String categoria;
 
+    ConstraintLayout noAthletesConstraintLayout;
+    TextView messageTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +52,8 @@ public class AthletesByCategoryActivity extends AppCompatActivity {
         athletesRecyclerView.setAdapter(athletesAdapter);
         athletesRecyclerView.setLayoutManager(athletesLayoutManager);
 
+        noAthletesConstraintLayout = (ConstraintLayout) findViewById(R.id.noAthletesConstraintLayout);
+        messageTextView = (TextView) findViewById(R.id.messageTextView);
         updateData();
     }
 
@@ -71,11 +79,16 @@ public class AthletesByCategoryActivity extends AppCompatActivity {
                         }
 
                         athletesAdapter.notifyDataSetChanged();
+
+                        if (response.length() == 0) {
+                            noAthletesConstraintLayout.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-
+                        messageTextView.setText(getResources().getString(R.string.connection_error));
+                        noAthletesConstraintLayout.setVisibility(View.VISIBLE);
                     }
                 });
     }

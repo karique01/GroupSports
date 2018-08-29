@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.activities.AthletesByCategoryActivity;
 import pe.edu.upc.groupsports.models.AthleteCategory;
@@ -45,8 +46,7 @@ public class AthletesCategoriesAdapter extends RecyclerView.Adapter<AthletesCate
         // TODO: Assign value to ImageView
         holder.categoryImageView.setImageResource(athlete.getPictureId());
         holder.categoryNameTextView.setText(athlete.getCategoryName());
-        holder.startAgeTextView.setText(athlete.getEdadInicio());
-        holder.endAgeTextView.setText(athlete.getEdadFin());
+        holder.ageTextView.setText(String.format("%s - %s", athlete.getEdadInicio(), athlete.getEdadFin()));
 
         holder.detailCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,17 +69,15 @@ public class AthletesCategoriesAdapter extends RecyclerView.Adapter<AthletesCate
     }
 
     class AthleteCategoryViewHolder extends RecyclerView.ViewHolder{
-        ImageView categoryImageView;
+        CircleImageView categoryImageView;
         TextView categoryNameTextView;
-        TextView startAgeTextView;
-        TextView endAgeTextView;
+        TextView ageTextView;
         CardView detailCardView;
         public AthleteCategoryViewHolder(View itemView) {
             super(itemView);
-            categoryImageView = (ImageView) itemView.findViewById(R.id.categoryImageView);
+            categoryImageView = (CircleImageView) itemView.findViewById(R.id.categoryImageView);
             categoryNameTextView = (TextView) itemView.findViewById(R.id.categoryNameTextView);
-            startAgeTextView = (TextView) itemView.findViewById(R.id.startAgeTextView);
-            endAgeTextView = (TextView) itemView.findViewById(R.id.endAgeTextView);
+            ageTextView = (TextView) itemView.findViewById(R.id.ageTextView);
             detailCardView = (CardView) itemView.findViewById(R.id.detailCardView);
         }
     }

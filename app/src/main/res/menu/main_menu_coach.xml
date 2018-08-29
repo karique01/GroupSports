@@ -2,11 +2,11 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/action_add_athlete"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Agregar atleta"/>
+    <item
         android:id="@+id/action_register_athlete"
         android:icon="@drawable/ic_description_black_24dp"
         android:title="Registrar atleta" />
-    <item
-        android:id="@+id/action_add_athlete"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Agregar atleta ami grupo" />
 </menu>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_test_saltability"
+        android:icon="@drawable/ic_accessibility_black_24dp"
+        android:title="Test de saltabilidad" />
+    <item
+        android:id="@+id/action_test_fuerza"
+        android:icon="@drawable/ic_fitness_center_black_24dp"
+        android:title="Test de fuerza" />
+    <item
+        android:id="@+id/action_test_velocity"
+        android:icon="@drawable/ic_directions_run"
+        android:title="Test de velocidad"/>
+</menu>

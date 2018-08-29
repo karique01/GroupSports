@@ -51,6 +51,7 @@
         <TextView
             android:id="@+id/disciplineNameTextView"
             android:text="DisciplineName"
+            android:textStyle="italic"
             android:textSize="@dimen/sub_tittle_card_view_text_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
