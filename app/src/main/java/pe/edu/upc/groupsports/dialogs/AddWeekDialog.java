@@ -148,8 +148,8 @@ public class AddWeekDialog extends AlertDialog implements DatePickerDialog.OnDat
         endDateCarddView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //dateState = endDateState;
-                //showCalendar(endDateState);
+                dateState = endDateState;
+                showCalendar(endDateState);
             }
         });
 
@@ -183,20 +183,23 @@ public class AddWeekDialog extends AlertDialog implements DatePickerDialog.OnDat
 
     public void showCalendar(String estado){
         Calendar now = Calendar.getInstance();
+
+        int day = dateStateResult == null ? now.get(Calendar.DAY_OF_MONTH) :
+                  dateState.equals(startDateState) ? Funciones.getDayFromDate(Funciones.getDateFromString(startDateStateResult)) :
+                  Funciones.getDayFromDate(Funciones.getDateFromString(endDateStateResult));
+
+        int month = dateStateResult == null ? now.get(Calendar.MONTH) :
+                    dateState.equals(startDateState) ? Funciones.getMonthFromDate(Funciones.getDateFromString(startDateStateResult)) :
+                    Funciones.getMonthFromDate(Funciones.getDateFromString(endDateStateResult));
+
+        int year = dateStateResult == null ? now.get(Calendar.YEAR) :
+                   dateState.equals(startDateState) ? Funciones.getYearFromDate(Funciones.getDateFromString(startDateStateResult)) :
+                   Funciones.getYearFromDate(Funciones.getDateFromString(endDateStateResult));
+
         if (dpd == null) {
-            dpd = DatePickerDialog.newInstance(
-                    this,
-                    now.get(Calendar.YEAR),
-                    now.get(Calendar.MONTH),
-                    now.get(Calendar.DAY_OF_MONTH)
-            );
+            dpd = DatePickerDialog.newInstance(this,year,month,day);
         } else {
-            dpd.initialize(
-                    this,
-                    now.get(Calendar.YEAR),
-                    now.get(Calendar.MONTH),
-                    now.get(Calendar.DAY_OF_MONTH)
-            );
+            dpd.initialize(this,year,month,day);
         }
         dpd.setVersion(DatePickerDialog.Version.VERSION_1);
         dpd.setAccentColor(Color.parseColor("#FF9800"));
@@ -206,26 +209,25 @@ public class AddWeekDialog extends AlertDialog implements DatePickerDialog.OnDat
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        dateStateResult = year+"-"+(++monthOfYear)+"-"+dayOfMonth;
+        dateStateResult = year + "-" + (++monthOfYear) + "-" + dayOfMonth;
         Date dateResult = Funciones.getDateFromString(dateStateResult);
 
-        String dateFormated = dayOfMonth+"/"+String.format("%02d",monthOfYear)+"/"+year;
-        if (Funciones.isDateMonday(dateResult)) {
-            startDateStateResult = dateStateResult;
-            startDateTextView.setText(dateFormated);
+        String dateFormated = dayOfMonth + "/" + String.format("%02d", monthOfYear) + "/" + year;
 
-            Date weekEndFromDayChoosed = Funciones.operateDate(dateResult, 6);
-            endDateStateResult = Funciones.formatDateForAPI(weekEndFromDayChoosed);
-            endDateTextView.setText(Funciones.formatDate(weekEndFromDayChoosed));
-            endDateCarddView.setVisibility(View.VISIBLE);
-//            if (dateState.equals(endDateState)) {
-//                endDateStateResult = dateStateResult;
-//                endDateTextView.setText(dateFormated);
-//            }
-        }
-        else {
-            warningTextView.setVisibility(View.VISIBLE);
-            //Toast.makeText(context,"Escoja un dia lunes",Toast.LENGTH_LONG).show();
+        if (dateState.equals(startDateState)) {
+            if (Funciones.isDateMonday(dateResult)) {
+                startDateStateResult = dateStateResult;
+                startDateTextView.setText(dateFormated);
+
+                Date weekEndFromDayChoosed = Funciones.operateDate(dateResult, 6);
+                endDateStateResult = Funciones.formatDateForAPI(weekEndFromDayChoosed);
+                endDateTextView.setText(Funciones.formatDate(weekEndFromDayChoosed));
+            } else {
+                warningTextView.setVisibility(View.VISIBLE);
+            }
+        } else {
+            endDateStateResult = dateStateResult;
+            endDateTextView.setText(dateFormated);
         }
     }
 

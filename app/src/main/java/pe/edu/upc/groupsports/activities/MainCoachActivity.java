@@ -17,17 +17,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
+import pe.edu.upc.groupsports.dialogs.AddAnnouncementDialog;
 import pe.edu.upc.groupsports.dialogs.AddAthleteDialog;
 import pe.edu.upc.groupsports.fragments.AssistanceFragment;
 import pe.edu.upc.groupsports.fragments.AthletesFragment;
 import pe.edu.upc.groupsports.fragments.CategoriesFragment;
+import pe.edu.upc.groupsports.fragments.MyAnnouncementsFragment;
 import pe.edu.upc.groupsports.fragments.TrainingPlansFragment;
+import pe.edu.upc.groupsports.models.AnnouncementPost;
+import pe.edu.upc.groupsports.models.Assistance;
+import pe.edu.upc.groupsports.models.AssistanceShift;
+import pe.edu.upc.groupsports.network.GroupSportsApiService;
 
 public class MainCoachActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,7 +54,10 @@ public class MainCoachActivity extends AppCompatActivity
     Context context;
     SpeedDialView speedDialView;
     Toolbar toolbar;
+    AthletesFragment athletesFragment;
+    MyAnnouncementsFragment myAnnouncementsFragment;
     int id;
+    int nav_menu_selected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +71,19 @@ public class MainCoachActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         speedDialView = findViewById(R.id.speedDial);
+        speedDialView.setOnChangeListener(new SpeedDialView.OnChangeListener() {
+            @Override
+            public boolean onMainActionSelected() {
+                showAddAnnouncementDialog();
+                return false;
+            }
+
+            @Override
+            public void onToggleChanged(boolean isOpen) {
+
+            }
+        });
+
         speedDialView.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
             @Override
             public boolean onActionSelected(SpeedDialActionItem speedDialActionItem) {
@@ -87,6 +121,80 @@ public class MainCoachActivity extends AppCompatActivity
 
         //primer fragment que se ve
         navigateFirstFragment();
+    }
+
+    private void showAddAnnouncementDialog(){
+        if (nav_menu_selected == 3) {
+            final AddAnnouncementDialog addAnnouncementDialog = new AddAnnouncementDialog(context);
+            addAnnouncementDialog.show();
+            addAnnouncementDialog.setOnCancelButtonClickListener(new AddAnnouncementDialog.OnCancelButtonClickListener() {
+                @Override
+                public void OnCancelButtonClicked() {
+                    addAnnouncementDialog.dismiss();
+                }
+            });
+            addAnnouncementDialog.setOnOkButtonClickListener(new AddAnnouncementDialog.OnOkButtonClickListener() {
+                @Override
+                public void OnOkButtonClicked(AnnouncementPost announcementPost) {
+                    uploadAnnouncement(announcementPost);
+                    addAnnouncementDialog.dismiss();
+                }
+            });
+        }
+    }
+
+    private void uploadAnnouncement(AnnouncementPost announcementPost){
+        AndroidNetworking.post(GroupSportsApiService.ANNOUNCEMENT_URL)
+                .addHeaders("Authorization", "bearer " + sessionManager.getaccess_token())
+                .addHeaders("Content-Type", "application/json")
+                .addJSONObjectBody(getAnnouncementJson(announcementPost))
+                .setPriority(Priority.HIGH)
+                .setTag(getString(R.string.app_name))
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if (response.getString("response").equals("Ok")){
+                                myAnnouncementsFragment.updateData();
+                                showAnnouncementOkResponse();
+                            }
+                            else {
+                                Toast.makeText(context,"Error al enviar el anuncio",Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(context,"Error de conexión",Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    public JSONObject getAnnouncementJson(AnnouncementPost announcementPost){
+        JSONObject jsonObjectAnnouncement = new JSONObject();
+        try {
+            jsonObjectAnnouncement.put("announcementTitle",announcementPost.getAnnouncementTitle());
+            jsonObjectAnnouncement.put("announcementDetail",announcementPost.getAnnouncementDetail());
+            jsonObjectAnnouncement.put("coachId",sessionManager.getuserLoggedTypeId());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONArray athletesIdJSONArray = new JSONArray();
+        List<AnnouncementPost.athleteIdClass> athleteIdClasses = announcementPost.getAthletesId();
+        for (int i = 0; i < athleteIdClasses.size(); i++) {
+            athletesIdJSONArray.put(athleteIdClasses.get(i).toJSONObject());
+        }
+
+        try {
+            jsonObjectAnnouncement.put("athletesId", athletesIdJSONArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObjectAnnouncement;
     }
 
     @Override
@@ -161,8 +269,6 @@ public class MainCoachActivity extends AppCompatActivity
         }
     }
 
-    AthletesFragment athletesFragment;
-
     private Fragment getFragmentFor (int id) {
         if (id == R.id.nav_my_athletes) {
             changeToolbarText("Mis Atletas");
@@ -181,9 +287,42 @@ public class MainCoachActivity extends AppCompatActivity
             changeToolbarText("Planes de trabajo");
             updateFabDial(id);
             return new TrainingPlansFragment();
+        } else if (id == R.id.nav_announces) {
+            changeToolbarText("Mis anuncios");
+            updateFabDial(id);
+            return getMyAnnouncementsFragment();
         }
 
         return null;
+    }
+
+    private MyAnnouncementsFragment getMyAnnouncementsFragment() {
+        myAnnouncementsFragment = new MyAnnouncementsFragment();
+        myAnnouncementsFragment.setOnAnnouncementDeleted(new MyAnnouncementsFragment.OnAnnouncementDeleted() {
+            @Override
+            public void AnnouncementDeleted() {
+                showLastUpdateOkResponse();
+            }
+        });
+        return myAnnouncementsFragment;
+    }
+
+    private void showAnnouncementOkResponse(){
+        View view = getCurrentFocus();
+        if (view != null) {
+            Snackbar.make(view, "Se agregó el anuncio correctamente", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
+        }
+    }
+
+    private void showLastUpdateOkResponse(){
+        View view = getCurrentFocus();
+        if (view != null) {
+            Snackbar.make(view, "Se eliminó el anuncio correctamente", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
+        }
     }
 
     private void changeToolbarText(String text){
@@ -207,19 +346,28 @@ public class MainCoachActivity extends AppCompatActivity
             speedDialView.inflate(R.menu.main_menu_coach);
             speedDialView.hide();
             speedDialView.show();
+            nav_menu_selected = 0;
         }
         else if (id == R.id.nav_assistance){
             speedDialView.hide();
+            nav_menu_selected = 1;
         }
         else if (id == R.id.nav_work_plan){
             speedDialView.inflate(R.menu.main_menu_coach_training_plan);
             speedDialView.hide();
             speedDialView.show();
+            nav_menu_selected = 2;
         }
         else if (id == R.id.nav_categories){
             speedDialView.inflate(R.menu.main_menu_coach);
             speedDialView.hide();
             speedDialView.show();
+        }
+        else if (id == R.id.nav_announces){
+            speedDialView.clearActionItems();
+            speedDialView.hide();
+            speedDialView.show();
+            nav_menu_selected = 3;
         }
     }
 

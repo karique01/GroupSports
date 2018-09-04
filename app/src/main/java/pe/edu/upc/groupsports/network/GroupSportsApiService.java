@@ -7,10 +7,11 @@ import java.util.Date;
  */
 
 public class GroupSportsApiService {
-    //public static String BASE_URL = "http://52.15.243.101/";  //aws
+    public static String BASE_URL = "http://52.15.243.101:80/";  //aws
     //public static String BASE_URL = "http://192.168.1.8:8080/"; //casa
-    //public static String BASE_URL = "http://172.16.198.108:8080/"; //starbucks UPC San isidro
-    public static String BASE_URL = "http://192.168.43.79:8080/"; //Cel luis
+    //public static String BASE_URL = "http://172.16.198.178:8080/"; //starbucks UPC San isidro
+    //public static String BASE_URL = "http://172.16.249.244:8080/"; //starbucks UPC Villa
+    //public static String BASE_URL = "http://192.168.137.1:8080/"; //Cel luis
     //public static String BASE_URL = "http://10.21.130.44:8080/"; //UPC San isidro
     //public static String BASE_URL = "http://1d576257.ngrok.io"; //UPC San isidro tunel
     public static String LOGIN_URL = BASE_URL + "token";
@@ -24,6 +25,8 @@ public class GroupSportsApiService {
     public static String WEEKS_URL = BASE_URL + "api/weeks/";
     public static String WORK_SESSIONS_URL = BASE_URL + "api/workSessions/";
     public static String SPEED_TEST_URL = BASE_URL + "api/SpeedTest/";
+    public static String MOOD_TEST_URL = BASE_URL + "api/moods/";
+    public static String ANNOUNCEMENT_URL = BASE_URL + "api/announcement/";
 
     public static String ATHELETES_BY_COACH_URL(int id) {
         return COACHS_URL + id + "/atheletes/";
@@ -51,6 +54,18 @@ public class GroupSportsApiService {
     }
     public static String SPEED_TEST_BY_ATHLETE(String athleteId) {
         return ATHLETES_URL + athleteId + "/speedTest/";
+    }
+    public static String MOODS_BY_ATHLETE(String athleteId) {
+        return ATHLETES_URL + athleteId + "/moods/";
+    }
+    public static String MOOD_TEST_BY_ATHLETE_BY_DATE(String id, String day) {
+        return ATHLETES_URL + id + "/moods/" + day;
+    }
+    public static String ANNOUNCEMENTS_BY_ATHLETE(String athleteId) {
+        return ATHLETES_URL + athleteId + "/announcement/";
+    }
+    public static String ANNOUNCEMENTS_BY_COACH(String id) {
+        return COACHS_URL + id + "/announcement/";
     }
 }
 

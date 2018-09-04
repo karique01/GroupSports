@@ -1,24 +1,35 @@
 package pe.edu.upc.groupsports.models;
 
+import android.content.Intent;
+
 /**
  * Created by karique on 3/05/2018.
  */
 
 public class AthleteCategory {
     private String categoryName;
-    private String edadInicio;
     private String edadFin;
+    private String categoryApi;
     private int pictureId;
 
     public AthleteCategory() {
     }
 
-    public AthleteCategory(String categoryName, String edadInicio, String edadFin, int pictureId) {
+    public AthleteCategory(String categoryName, String edadFin, int pictureId,String categoryApi) {
         this.categoryName = categoryName;
-        this.edadInicio = edadInicio;
         this.edadFin = edadFin;
         this.pictureId = pictureId;
+        this.categoryApi = categoryApi;
     }
+
+    public String getCategoryApi() {
+        return categoryApi;
+    }
+
+    public void setCategoryApi(String categoryApi) {
+        this.categoryApi = categoryApi;
+    }
+    public String getUnderAge() {return String.valueOf(Integer.parseInt(edadFin) + 1);}
 
     public String getCategoryName() {
         return categoryName;
@@ -26,14 +37,6 @@ public class AthleteCategory {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
-    }
-
-    public String getEdadInicio() {
-        return edadInicio;
-    }
-
-    public void setEdadInicio(String edadInicio) {
-        this.edadInicio = edadInicio;
     }
 
     public String getEdadFin() {

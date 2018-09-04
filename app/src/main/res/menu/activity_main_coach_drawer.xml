@@ -30,10 +30,18 @@
             android:id="@+id/nav_binnacle"
             android:icon="@drawable/ic_binnacle"
             android:title="@string/binnacle" />
-        <item
-            android:id="@+id/nav_log_out_coach"
-            android:icon="@drawable/ic_exit"
-            android:title="@string/log_out" />
+        <item android:title="@string/communicate">
+            <menu>
+                <item
+                    android:id="@+id/nav_announces"
+                    android:icon="@drawable/ic_notifications"
+                    android:title="@string/my_announcements" />
+                <item
+                    android:id="@+id/nav_log_out_coach"
+                    android:icon="@drawable/ic_exit"
+                    android:title="@string/log_out" />
+            </menu>
+        </item>
     </group>
 
 </menu>

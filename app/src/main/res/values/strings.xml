@@ -118,5 +118,18 @@
     <string name="title_notifications">Notifications</string>
     <string name="no_test_added">No test added</string>
     <string name="speed_test">Speed test</string>
+    <string name="send">Send</string>
+    <string name="mood_test">Mood test</string>
+    <string name="mood">Mood</string>
+    <string name="last_moods">Last moods</string>
+    <string name="there_are_no_announces">No announces</string>
+    <string name="no_moods">No moods</string>
+    <string name="last_announcements">Last announcements</string>
+    <string name="my_announcements">My announcements</string>
+    <string name="social">Social</string>
+    <string name="atletasdata">atleta1\natleta2\natleta3\natleta4</string>
+    <string name="see_more">See more</string>
+    <string name="add_announcement">Add announcement</string>
+    <string name="title">Title</string>
 
 </resources>

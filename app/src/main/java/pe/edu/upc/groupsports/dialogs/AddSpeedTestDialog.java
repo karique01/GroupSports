@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.SystemClock;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -11,7 +12,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,9 +43,15 @@ public class AddSpeedTestDialog extends AlertDialog {
     private Spinner mesocycleTypeSpinner;
 
     private SessionManager session;
-    private Context context;
     int pos = 0;
-    private EditText activityEditText;
+
+    private Chronometer chronometer;
+    private long pauseOffset;
+    private boolean running;
+
+    private ImageButton restartImageButton;
+    private ImageButton playStopImageButton;
+    private Context context;
 
     public AddSpeedTestDialog(Context context) {
         super(context);
@@ -62,9 +71,28 @@ public class AddSpeedTestDialog extends AlertDialog {
 
     private void init() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        View view = inflater.inflate(R.layout.dialog_add_speed_test, null);
+        final View view = inflater.inflate(R.layout.dialog_add_speed_test, null);
 
         session = new SessionManager(view.getContext());
+
+        restartImageButton = view.findViewById(R.id.restartImageButton);
+        restartImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetChronometer();
+            }
+        });
+        playStopImageButton = view.findViewById(R.id.playStopImageButton);
+        playStopImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!running) startChronometer();
+                else pauseChronometer();
+            }
+        });
+
+        chronometer = view.findViewById(R.id.chronometer);
+        chronometer.setBase(SystemClock.elapsedRealtime());
 
         mesocycleTypeSpinner = view.findViewById(R.id.mesocycleTypeSpinner);
         mesocycleTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -80,8 +108,6 @@ public class AddSpeedTestDialog extends AlertDialog {
             }
         });
 
-        activityEditText = view.findViewById(R.id.activityEditText);
-
         cancelButton = view.findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,14 +120,14 @@ public class AddSpeedTestDialog extends AlertDialog {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (activityEditText.getText().length() > 0){
+                if (pauseOffset != 0){
                     onOkButtonClickListener.OnOkButtonClicked(
-                            activityEditText.getText().toString(),
+                            String.valueOf(pauseOffset*1.0/1000),
                             mesocycleTypeSpinner.getSelectedItem().toString()
                     );
                 }
                 else {
-                    Toast.makeText(view.getContext(),"Escriba resultado",Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(),"Primero haga una medida",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -109,8 +135,27 @@ public class AddSpeedTestDialog extends AlertDialog {
         setView(view);
     }
 
+    public void startChronometer() {
+        playStopImageButton.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_stop));
+        chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+        chronometer.start();
+        running = true;
+    }
+
+    public void pauseChronometer() {
+        playStopImageButton.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_play_arrow));
+        chronometer.stop();
+        pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+        running = false;
+    }
+
+    public void resetChronometer() {
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        pauseOffset = 0;
+    }
+
     private void setSpinnerData() {
-        String[] weekTypesArr = new String[]{"100","200","30","50"};
+        String[] weekTypesArr = new String[]{"30","50","100","200"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_dropdown_item,weekTypesArr

@@ -131,6 +131,12 @@ public class MesocycleDetailActivity extends AppCompatActivity {
         updateToolbarTitle(mesocycle.getMesocycleName());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateWeeksData();
+    }
+
     private void addWeek() {
         final AddWeekDialog addWeekDialog = new AddWeekDialog(context);
         addWeekDialog.show();

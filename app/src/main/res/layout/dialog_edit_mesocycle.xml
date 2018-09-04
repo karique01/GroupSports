@@ -55,7 +55,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/big_margin"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:visibility="gone">
         <android.support.v7.widget.CardView
             android:id="@+id/startDateCarddView"
             android:layout_width="0dp"

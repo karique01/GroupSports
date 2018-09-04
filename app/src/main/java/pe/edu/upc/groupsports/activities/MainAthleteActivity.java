@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -24,6 +25,7 @@ import java.io.File;
 import pe.edu.upc.groupsports.fragments.LastUpdateFragment;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
+import pe.edu.upc.groupsports.fragments.MoodTestFragment;
 import pe.edu.upc.groupsports.fragments.SessionQuestionFragment;
 
 public class MainAthleteActivity extends AppCompatActivity
@@ -115,30 +117,48 @@ public class MainAthleteActivity extends AppCompatActivity
             startActivity(new Intent(context, LoginActivity.class));
             finish();
         }
-        else if (id == R.id.nav_camera){
-            takePhoto();
-        }
-
+//        if (id == R.id.nav_camera){
+//            takePhoto();
+//        }
         return navigate;
     }
 
     private Fragment getFragmentFor (int id) {
         if (id == R.id.nav_last_updates) {
-            return new LastUpdateFragment();
+            return getLastUpdateFragment();
         } else if (id == R.id.nav_today_session) {
             return new SessionQuestionFragment();
         } else if (id == R.id.nav_gallery) {
             return null;
-        } else if (id == R.id.nav_manage) {
-            return null;
+        } else if (id == R.id.nav_mood_test) {
+            return new MoodTestFragment();
         } else if (id == R.id.nav_share) {
             return null;
         }
         return null;
     }
 
-    private boolean navigateAccordingTo(int id)
-    {
+    private LastUpdateFragment getLastUpdateFragment() {
+        LastUpdateFragment lastUpdateFragment = new LastUpdateFragment();
+        lastUpdateFragment.setOnAnnouncementDeleted(new LastUpdateFragment.OnAnnouncementDeleted() {
+            @Override
+            public void AnnouncementDeleted() {
+                showLastUpdateOkResponse();
+            }
+        });
+        return lastUpdateFragment;
+    }
+
+    private void showLastUpdateOkResponse(){
+        View view = getCurrentFocus();
+        if (view != null) {
+            Snackbar.make(view, "Se eliminó el anuncio correctamente", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null)
+                    .show();
+        }
+    }
+
+    private boolean navigateAccordingTo(int id) {
         try
         {
             getSupportFragmentManager()

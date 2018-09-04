@@ -13,4 +13,8 @@
         android:id="@+id/action_test_velocity"
         android:icon="@drawable/ic_directions_run"
         android:title="Test de velocidad"/>
+    <item
+        android:id="@+id/action_test_animo"
+        android:icon="@drawable/ic_mood_white"
+        android:title="Estado de animo"/>
 </menu>

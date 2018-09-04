@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -32,6 +35,7 @@ import java.util.List;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
 import pe.edu.upc.groupsports.adapters.SessionWorkAdapter;
+import pe.edu.upc.groupsports.dialogs.WarningDialog;
 import pe.edu.upc.groupsports.models.SessionWork;
 import pe.edu.upc.groupsports.models.Week;
 import pe.edu.upc.groupsports.network.GroupSportsApiService;
@@ -109,6 +113,77 @@ public class WeekDetailActivity extends AppCompatActivity {
         });
 
         updateWorkSessions();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_week, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.action_delete_week){
+            warningDeleteWeek();
+        }else{
+            finish();
+        }
+        return true;
+    }
+
+    private void warningDeleteWeek(){
+        final WarningDialog warningDialog = new WarningDialog(this,"Eliminar semana","¿Está seguro que desea eliminar esta semana?\n\nSe eliminarán todas sesiones ligadas es esta");
+        warningDialog.show();
+        warningDialog.setOnOkButtonClickListener(new WarningDialog.OnOkButtonClickListener() {
+            @Override
+            public void OnOkButtonClicked() {
+                deleteWeek();
+                warningDialog.dismiss();
+            }
+        });
+        warningDialog.setOnCancelButtonClickListener(new WarningDialog.OnCancelButtonClickListener() {
+            @Override
+            public void OnCancelButtonClicked() {
+                warningDialog.dismiss();
+            }
+        });
+    }
+
+    private void deleteWeek() {
+        AndroidNetworking.delete(GroupSportsApiService.WEEKS_URL + currentWeek.getId())
+                .addHeaders("Authorization", "bearer " + session.getaccess_token())
+                .addHeaders("Content-Type", "application/json")
+                .setPriority(Priority.HIGH)
+                .setTag(getString(R.string.app_name))
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if (response.getString("response").equals("Ok")){
+                                finish();
+                                View view = getCurrentFocus();
+                                if (view != null) {
+                                    Snackbar.make(view, "Se eliminó la semana correctamente", Snackbar.LENGTH_LONG)
+                                            .setAction("Action", null)
+                                            .show();
+                                }
+                            }
+                            else {
+                                Toast.makeText(context,"Error al eliminar la semana",Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(context, "Hubo un error en el sistema", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void deleteWorkSession(int workSessionId) {

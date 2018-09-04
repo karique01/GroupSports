@@ -34,11 +34,42 @@ public class WarningDialog extends AlertDialog {
     Context context;
     String tittleString;
     String descriptionString;
+    String okButtonText;
+    String cancelButtonText;
+    boolean onlyShowAcceptButton = false;
 
     public WarningDialog(Context context, String tittleString, String descriptionString) {
         super(context);
         this.tittleString = tittleString;
         this.descriptionString = descriptionString;
+        this.okButtonText = context.getString(R.string.delete);
+        this.cancelButtonText = context.getString(R.string.cancel);
+        init();
+    }
+
+    public WarningDialog(Context context, String tittleString, String descriptionString, String acceptButtonText) {
+        super(context);
+        this.tittleString = tittleString;
+        this.descriptionString = descriptionString;
+        this.okButtonText = acceptButtonText;
+        init();
+    }
+
+    public WarningDialog(Context context, String tittleString, String descriptionString, String acceptButtonText, boolean onlyShowAcceptButton) {
+        super(context);
+        this.tittleString = tittleString;
+        this.descriptionString = descriptionString;
+        this.okButtonText = acceptButtonText;
+        this.onlyShowAcceptButton = onlyShowAcceptButton;
+        init();
+    }
+
+    public WarningDialog(Context context, String tittleString, String descriptionString, String acceptButtonText, String cancelButtonText) {
+        super(context);
+        this.tittleString = tittleString;
+        this.descriptionString = descriptionString;
+        this.okButtonText = acceptButtonText;
+        this.cancelButtonText = cancelButtonText;
         init();
     }
 
@@ -65,6 +96,8 @@ public class WarningDialog extends AlertDialog {
         descriptionTextView.setText(descriptionString);
 
         cancelButton = view.findViewById(R.id.cancelButton);
+        cancelButton.setText(cancelButtonText);
+        cancelButton.setVisibility(onlyShowAcceptButton ? View.GONE : View.VISIBLE);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,6 +106,7 @@ public class WarningDialog extends AlertDialog {
         });
 
         okButton = view.findViewById(R.id.okButton);
+        okButton.setText(okButtonText);
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

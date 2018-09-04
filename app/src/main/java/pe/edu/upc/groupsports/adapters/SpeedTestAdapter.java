@@ -38,8 +38,8 @@ public class SpeedTestAdapter extends RecyclerView.Adapter<SpeedTestAdapter.Spee
     public void onBindViewHolder(SpeedTestViewHolder holder, int position) {
         final SpeedTest speedTest = speedTests.get(position);
         // TODO: Assign value to ImageView
-        holder.resultTextView.setText(speedTest.getResult());
-        holder.metersTextView.setText(speedTest.getMeters() + " metros");
+        holder.resultTextView.setText(String.format("%s segundos", speedTest.getResult()));
+        holder.metersTextView.setText(String.format("%s metros", speedTest.getMeters()));
     }
 
     @Override

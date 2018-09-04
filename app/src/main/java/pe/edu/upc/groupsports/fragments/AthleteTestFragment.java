@@ -3,7 +3,11 @@ package pe.edu.upc.groupsports.fragments;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,76 +37,101 @@ import pe.edu.upc.groupsports.network.GroupSportsApiService;
  * A simple {@link Fragment} subclass.
  */
 public class AthleteTestFragment extends Fragment {
-    SessionManager session;
 
-    RecyclerView speedTestRecyclerView;
-    SpeedTestAdapter speedTestAdapter;
-    RecyclerView.LayoutManager speedTestLayoutManager;
-    List<SpeedTest> speedTests;
+    private TabLayout _homeTabLayout;
+    private ViewPager _homeViewPager;
+    private ViewPagerAdapter adapter;
 
-    ConstraintLayout noAthletesConstraintLayout;
-    TextView messageTextView;
+    public AthleteSpeedTestFragment athleteSpeedTestFragment;
+    public AthleteSaltabilityTestFragment athleteSaltabilityTestFragment;
+    public AthleteStrengthTestFragment athleteStrengthTestFragment;
+    public AthleteMoodTestFragment athleteMoodTestFragment;
 
     Athlete currentAthlete;
+
+    private int CURRENT_TEST_FRAGMENT_SELECTED = 0;
+    public static final int SPEED_TEST_FRAGMENT_SELECTED = 0;
+    public static final int SALTABILITY_TEST_FRAGMENT_SELECTED = 1;
+    public static final int STRENGTH_TEST_FRAGMENT_SELECTED = 2;
+    public static final int MOOD_TEST_FRAGMENT_SELECTED = 3;
 
     public AthleteTestFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_athlete_test, container, false);
-
-        session = new SessionManager(view.getContext());
-        speedTestRecyclerView = (RecyclerView) view.findViewById(R.id.speedTestRecyclerView);
-        speedTests = new ArrayList<>();
-        speedTestAdapter = new SpeedTestAdapter(speedTests);
-        speedTestLayoutManager = new LinearLayoutManager(view.getContext());
-        speedTestRecyclerView.setAdapter(speedTestAdapter);
-        speedTestRecyclerView.setLayoutManager(speedTestLayoutManager);
-
-        noAthletesConstraintLayout = (ConstraintLayout) view.findViewById(R.id.noAthletesConstraintLayout);
-        messageTextView = (TextView) view.findViewById(R.id.messageTextView);
-        updateData();
-
+        initializaTab(view);
         return view;
     }
 
-    public void updateData(){
-        AndroidNetworking.get(GroupSportsApiService.SPEED_TEST_BY_ATHLETE(currentAthlete.getId()))
-                .addHeaders("Authorization", "bearer " + session.getaccess_token())
-                .addHeaders("Content-Type", "application/json")
-                .setPriority(Priority.HIGH)
-                .setTag(getString(R.string.app_name))
-                .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        speedTests.clear();
+    private void initializaTab(View view){
+        _homeTabLayout = (TabLayout) view.findViewById(R.id.home_tabs);
+        _homeViewPager = (ViewPager) view.findViewById(R.id.home_viewpager);
+        adapter = new ViewPagerAdapter(getChildFragmentManager());
 
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                speedTests.add(SpeedTest.toSpeedTest(response.getJSONObject(i)));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
+        athleteSpeedTestFragment = new AthleteSpeedTestFragment();
+        athleteSpeedTestFragment.setCurrentAthlete(currentAthlete);
 
-                        speedTestAdapter.notifyDataSetChanged();
-                        if (response.length() == 0) {
-                            noAthletesConstraintLayout.setVisibility(View.VISIBLE);
-                        }
-                    }
+        athleteSaltabilityTestFragment = new AthleteSaltabilityTestFragment();
+        athleteStrengthTestFragment = new AthleteStrengthTestFragment();
 
-                    @Override
-                    public void onError(ANError anError) {
-                        messageTextView.setText(getResources().getString(R.string.connection_error));
-                        noAthletesConstraintLayout.setVisibility(View.VISIBLE);
-                    }
-                });
+        athleteMoodTestFragment = new AthleteMoodTestFragment();
+        athleteMoodTestFragment.setCurrentAthlete(currentAthlete);
+
+        adapter.addFragment(athleteSpeedTestFragment, "Rapidez");
+        adapter.addFragment(athleteSaltabilityTestFragment, "Salto");
+        adapter.addFragment(athleteStrengthTestFragment, "Fuerza");
+        adapter.addFragment(athleteMoodTestFragment, "Animo");
+
+        _homeViewPager.setAdapter(adapter);
+        _homeTabLayout.setupWithViewPager(_homeViewPager);
+        _homeTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                CURRENT_TEST_FRAGMENT_SELECTED = tab.getPosition();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 
     public Athlete getCurrentAthlete() {
@@ -111,5 +140,9 @@ public class AthleteTestFragment extends Fragment {
 
     public void setCurrentAthlete(Athlete currentAthlete) {
         this.currentAthlete = currentAthlete;
+    }
+
+    public int getCurrentTestFragmentSelected() {
+        return CURRENT_TEST_FRAGMENT_SELECTED;
     }
 }

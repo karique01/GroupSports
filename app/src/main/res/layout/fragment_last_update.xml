@@ -6,106 +6,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="pe.edu.upc.groupsports.fragments.LastUpdateFragment">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/firstCardView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/announcementsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/noAthletesConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:layout_marginTop="@dimen/default_margin">
-        <android.support.constraint.ConstraintLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/errorImageView"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            app:layout_constraintBottom_toTopOf="@+id/messageTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_history" />
+
+        <TextView
+            android:id="@+id/messageTextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="@string/there_are_no_announces"
+            android:textAlignment="center"
+            android:textSize="42sp"
+            android:textStyle="italic"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/errorImageView" />
 
-            <TextView
-                android:id="@+id/tittleTextView"
-                android:text="Cancelado entrenamiento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_margin="@dimen/default_margin"/>
-            <TextView
-                android:id="@+id/descriptionTextView"
-                android:text="Se cancela el entrenamiento del dia de mañana por motivos personales. Entrenador Juan"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tittleTextView"
-                android:layout_margin="@dimen/default_margin"/>
-            <Button
-                android:id="@+id/deleteButton"
-                android:text="Delete"
-                android:textColor="@color/colorAccent"
-                android:background="@color/colorTransparent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
-                app:layout_constraintEnd_toStartOf="@id/seeMoreButton"
-                android:layout_margin="@dimen/default_margin"/>
-            <Button
-                android:id="@+id/seeMoreButton"
-                android:text="See more"
-                android:textColor="@color/colorAccent"
-                android:background="@color/colorTransparent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="@dimen/default_margin"/>
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/default_margin"
-        app:layout_constraintTop_toBottomOf="@id/firstCardView">
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tittleTextView2"
-                android:text="2 entrenamientos extra"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_margin="@dimen/default_margin"/>
-            <TextView
-                android:id="@+id/descriptionTextView2"
-                android:text="Se programaron 2 entrenamientos extras para esta semana debido a la baja asistencia de algunos"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tittleTextView2"
-                android:layout_margin="@dimen/default_margin"/>
-            <Button
-                android:id="@+id/deleteButton2"
-                android:text="Delete"
-                android:textColor="@color/colorAccent"
-                android:background="@color/colorTransparent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/descriptionTextView2"
-                app:layout_constraintEnd_toStartOf="@id/seeMoreButton2"
-                android:layout_margin="@dimen/default_margin"/>
-            <Button
-                android:id="@+id/seeMoreButton2"
-                android:text="See more"
-                android:textColor="@color/colorAccent"
-                android:background="@color/colorTransparent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/descriptionTextView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="@dimen/default_margin"/>
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

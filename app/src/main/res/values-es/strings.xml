@@ -70,6 +70,19 @@
     <string name="new_session">Agregar sesión</string>
     <string name="no_test_added">No hay test agregados</string>
     <string name="speed_test">Test de velocidad</string>
+    <string name="send">Enviar</string>
+    <string name="mood_test">Test de animo</string>
+    <string name="mood">Estado de animo</string>
+    <string name="last_moods">Últimos estados de animo</string>
+    <string name="there_are_no_announces">No hay anuncios</string>
+    <string name="no_moods">No hay estados de animo previos</string>
+    <string name="last_announcements">Ultimos anuncios</string>
+    <string name="my_announcements">Mis anuncios</string>
+    <string name="social">Social</string>
+    <string name="atletasdata">atleta1\natleta2</string>
+    <string name="see_more">Ver mas</string>
+    <string name="add_announcement">Agregar anuncio</string>
+    <string name="title">Titulo</string>
 
     <string-array name="Intensities">
         <item>1</item>

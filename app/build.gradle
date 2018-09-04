@@ -46,4 +46,5 @@ dependencies {
     implementation 'com.wdullaer:materialdatetimepicker:3.6.3'
     implementation 'devlight.io:arcprogressstackview:1.0.4'
     implementation 'com.github.prolificinteractive:material-calendarview:1.6.0'
+    implementation 'com.libizo:customedittext:1.0.3'
 }

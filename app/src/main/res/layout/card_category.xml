@@ -20,9 +20,9 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/categoryImageView"
             android:src="@mipmap/ic_launcher"
-            android:layout_width="103dp"
-            android:layout_height="103dp"
-            android:layout_marginTop="@dimen/big_big_margin"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginBottom="@dimen/default_margin"
@@ -35,13 +35,13 @@
             android:text="Name"
             android:textColor="@android:color/black"
             android:textStyle="bold"
-            android:textSize="@dimen/card_view_tittle_size"
+            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/categoryImageView"
-            android:layout_marginTop="@dimen/big_margin"/>
+            android:layout_marginTop="@dimen/default_margin"/>
         <TextView
             android:id="@+id/ageTextView"
             android:text="## - ##"
@@ -51,10 +51,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/categoryNameTextView"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="@dimen/default_margin"
             android:layout_marginStart="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
-            android:layout_marginBottom="@dimen/big_big_margin"
+            android:layout_marginBottom="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

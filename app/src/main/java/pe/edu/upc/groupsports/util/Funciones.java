@@ -39,8 +39,23 @@ public class Funciones {
         return simpleDateFormat.format(date);
     }
 
+    public static String formatDateToHour(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int hours = cal.get(Calendar.HOUR_OF_DAY);
+        int minutes = cal.get(Calendar.MINUTE);
+        return String.format("%02d", hours)+":"+String.format("%02d", minutes);
+    }
+
     public static String formatDateForAPI(Date date){
         String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        return simpleDateFormat.format(date);
+    }
+
+    public static String formatDateForAPIWithHour(Date date){
+        String pattern = "yyyy-MM-dd HH:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
         return simpleDateFormat.format(date);

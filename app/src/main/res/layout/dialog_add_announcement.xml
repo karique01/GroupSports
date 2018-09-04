@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/addAthleteTittleTextView"
+        android:text="@string/add_announcement"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/titleTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginStart="@dimen/big_margin"
+        app:layout_constraintTop_toBottomOf="@id/addAthleteTittleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <EditText
+            android:id="@+id/titleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="@dimen/text_input_size"
+            android:hint="@string/title"
+            android:lines="1"
+            android:inputType="textPersonName"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <com.libizo.CustomEditText
+        android:id="@+id/detailCustomEditText"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_margin="@dimen/big_margin"
+        android:hint="Detalle del anuncio"
+        android:textSize="14sp"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        app:libIZO_clearIconTint="@color/colorAccent"
+        app:libIZO_setBorderColor="@color/colorAccent"
+        app:libIZO_setBorderView="true"
+        app:libIZO_setClearIconVisible="true"
+        app:libIZO_setCornerRadius="6dp"
+        app:libIZO_setStrokeWidth="2dp"
+        app:layout_constraintTop_toBottomOf="@id/titleTextInputLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/countTextView"
+        android:text="0/800"
+        android:textColor="@color/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/detailCustomEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginTop="@dimen/default_margin"/>
+
+    <TextView
+        android:text="Seleccione los atletas"
+        android:textStyle="italic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailCustomEditText"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginStart="@dimen/big_margin"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/athletesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/big_margin"
+        app:layout_constraintTop_toBottomOf="@id/countTextView"
+        android:layout_marginTop="@dimen/default_margin"/>
+
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:textColor="@color/colorAccent"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/athletesRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"/>
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:textColor="@color/colorAccent"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintTop_toBottomOf="@id/athletesRecyclerView"
+        app:layout_constraintEnd_toStartOf="@id/okButton"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

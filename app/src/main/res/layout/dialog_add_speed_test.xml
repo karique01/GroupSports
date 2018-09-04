@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/big_margin">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/addAthleteTittleTextView"
@@ -13,25 +12,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/big_margin"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/activityTextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/addAthleteTittleTextView"
+    <ImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/circle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <EditText
-            android:id="@+id/activityEditText"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="@dimen/text_input_size"
-            android:hint="Resultado"
-            android:lines="1"
-            android:inputType="textPersonName"/>
-    </android.support.design.widget.TextInputLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addAthleteTittleTextView"
+        android:layout_marginTop="30dp"/>
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:textSize="30sp"
+        android:textColor="#757575"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/circleImageView"
+        app:layout_constraintEnd_toEndOf="@id/circleImageView"
+        app:layout_constraintTop_toTopOf="@id/circleImageView"
+        app:layout_constraintBottom_toBottomOf="@id/circleImageView" />
+
+    <ImageButton
+        android:id="@+id/restartImageButton"
+        app:srcCompat="@drawable/ic_refresh"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toTopOf="@id/circleImageView"
+        app:layout_constraintBottom_toBottomOf="@id/circleImageView"
+        app:layout_constraintEnd_toStartOf="@id/circleImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@android:color/transparent"/>
+
+    <ImageButton
+        android:id="@+id/playStopImageButton"
+        app:srcCompat="@drawable/ic_play_arrow"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintTop_toTopOf="@id/circleImageView"
+        app:layout_constraintBottom_toBottomOf="@id/circleImageView"
+        app:layout_constraintStart_toEndOf="@id/circleImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@android:color/transparent"/>
 
     <TextView
         android:id="@+id/mesocyleTypeTextview"
@@ -39,8 +64,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activityTextInputLayout"
-        android:layout_marginTop="@dimen/big_margin"/>
+        app:layout_constraintTop_toBottomOf="@id/circleImageView"
+        android:layout_marginStart="@dimen/big_margin"/>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/mesocycleTypeConstraintLayout"
@@ -51,7 +76,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mesocyleTypeTextview"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/big_margin">
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/mesocycleTypeSpinner"
             android:layout_width="match_parent"
@@ -69,7 +96,9 @@
         android:layout_marginTop="@dimen/big_margin"
         app:layout_constraintTop_toBottomOf="@id/mesocycleTypeConstraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginBottom="@dimen/big_margin"/>
 
     <Button
         android:id="@+id/cancelButton"
@@ -80,6 +109,6 @@
         style="?android:attr/borderlessButtonStyle"
         android:layout_marginTop="@dimen/big_margin"
         app:layout_constraintTop_toBottomOf="@id/mesocycleTypeConstraintLayout"
-        app:layout_constraintEnd_toStartOf="@id/okButton"/>
+        app:layout_constraintEnd_toStartOf="@id/okButton" />
 
 </android.support.constraint.ConstraintLayout>

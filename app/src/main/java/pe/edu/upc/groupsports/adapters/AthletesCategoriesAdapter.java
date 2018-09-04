@@ -46,12 +46,14 @@ public class AthletesCategoriesAdapter extends RecyclerView.Adapter<AthletesCate
         // TODO: Assign value to ImageView
         holder.categoryImageView.setImageResource(athlete.getPictureId());
         holder.categoryNameTextView.setText(athlete.getCategoryName());
-        holder.ageTextView.setText(String.format("%s - %s", athlete.getEdadInicio(), athlete.getEdadFin()));
+        holder.ageTextView.setText(
+                athlete.getEdadFin().equals("Mayores") ? ">= 30" : String.format("< %s", athlete.getEdadFin())
+        );
 
         holder.detailCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AthletesByCategoryActivity.categoria = athlete.getCategoryName();
+                AthletesByCategoryActivity.categoria = athlete.getCategoryApi();
                 view.getContext()
                         .startActivity(
                                 new Intent(

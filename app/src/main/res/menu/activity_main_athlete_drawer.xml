@@ -8,15 +8,20 @@
         <item
             android:id="@+id/nav_last_updates"
             android:icon="@drawable/ic_notifications"
-            android:title="@string/last_updates" />
+            android:title="@string/last_announcements" />
         <item
             android:id="@+id/nav_today_session"
             android:icon="@drawable/ic_directions_run"
             android:title="@string/today_session" />
         <item
+            android:id="@+id/nav_mood_test"
+            android:icon="@drawable/ic_mood_white"
+            android:title="@string/mood_test" />
+        <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/upload_training" />
+            android:title="@string/upload_training"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -24,10 +29,11 @@
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/tools" />
+            android:title="@string/tools"
+            android:visible="false"/>
     </group>
 
-    <item android:title="@string/communicate">
+    <item android:title="@string/social">
         <menu>
             <item
                 android:id="@+id/nav_share"
