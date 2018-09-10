@@ -5,8 +5,8 @@ package pe.edu.upc.groupsports.util;
  */
 
 public class Constantes {
-    public static int USER_TYPE_ATLETA = 2;
-    public static int USER_TYPE_COACH = 1;
+    public static String USER_TYPE_ATLETA = "2";
+    public static String USER_TYPE_COACH = "1";
 
     public static int DISCIPLINE_VELOCISTA = 1;
     public static int DISCIPLINE_SALTO_VALLA = 2;

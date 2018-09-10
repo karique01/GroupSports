@@ -15,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,30 +24,39 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
 import pe.edu.upc.groupsports.dialogs.AddAnnouncementDialog;
 import pe.edu.upc.groupsports.dialogs.AddAthleteDialog;
 import pe.edu.upc.groupsports.fragments.AssistanceFragment;
 import pe.edu.upc.groupsports.fragments.AthletesFragment;
+import pe.edu.upc.groupsports.fragments.BinnacleFragment;
 import pe.edu.upc.groupsports.fragments.CategoriesFragment;
+import pe.edu.upc.groupsports.fragments.CoachMyQuizzesFragment;
 import pe.edu.upc.groupsports.fragments.MyAnnouncementsFragment;
 import pe.edu.upc.groupsports.fragments.TrainingPlansFragment;
 import pe.edu.upc.groupsports.models.AnnouncementPost;
-import pe.edu.upc.groupsports.models.Assistance;
-import pe.edu.upc.groupsports.models.AssistanceShift;
 import pe.edu.upc.groupsports.network.GroupSportsApiService;
 
 public class MainCoachActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static int MY_ATHLETES_FRAGMENT_SELECTED = 0;
+    public static int MY_ASSISTANCE_FRAGMENT_SELECTED = 1;
+    public static int MY_WORKPLAN_FRAGMENT_SELECTED = 2;
+    public static int MY_CATEGORIES_FRAGMENT_SELECTED = 3;
+    public static int MY_ANNOUNCES_FRAGMENT_SELECTED = 4;
+    public static int MY_BINNACLES_FRAGMENT_SELECTED = 5;
+    public static int MY_QUIZ_FRAGMENT_SELECTED = 6;
 
     SessionManager sessionManager;
     Context context;
@@ -56,6 +64,8 @@ public class MainCoachActivity extends AppCompatActivity
     Toolbar toolbar;
     AthletesFragment athletesFragment;
     MyAnnouncementsFragment myAnnouncementsFragment;
+    BinnacleFragment binnacleFragment;
+    CoachMyQuizzesFragment coachMyQuizzesFragment;
     int id;
     int nav_menu_selected = 0;
 
@@ -74,7 +84,7 @@ public class MainCoachActivity extends AppCompatActivity
         speedDialView.setOnChangeListener(new SpeedDialView.OnChangeListener() {
             @Override
             public boolean onMainActionSelected() {
-                showAddAnnouncementDialog();
+                showAddActionDialog();
                 return false;
             }
 
@@ -113,7 +123,13 @@ public class MainCoachActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
-        ImageView photoImageView = (ImageView) headerView.findViewById(R.id.photoImageView);
+        CircleImageView photoImageView = (CircleImageView) headerView.findViewById(R.id.photoImageView);
+        Picasso.with(this)
+                .load(sessionManager.getPictureUrl())
+                .placeholder(R.drawable.coach)
+                .error(R.drawable.coach)
+                .into(photoImageView);
+
         TextView tittleNavViewTextView = (TextView) headerView.findViewById(R.id.tittleNavViewTextView);
         tittleNavViewTextView.setText(sessionManager.getfirstName());
         TextView descriptionNavViewTextView = (TextView) headerView.findViewById(R.id.descriptionNavViewTextView);
@@ -123,8 +139,8 @@ public class MainCoachActivity extends AppCompatActivity
         navigateFirstFragment();
     }
 
-    private void showAddAnnouncementDialog(){
-        if (nav_menu_selected == 3) {
+    private void showAddActionDialog(){
+        if (nav_menu_selected == MY_ANNOUNCES_FRAGMENT_SELECTED) {
             final AddAnnouncementDialog addAnnouncementDialog = new AddAnnouncementDialog(context);
             addAnnouncementDialog.show();
             addAnnouncementDialog.setOnCancelButtonClickListener(new AddAnnouncementDialog.OnCancelButtonClickListener() {
@@ -140,6 +156,13 @@ public class MainCoachActivity extends AppCompatActivity
                     addAnnouncementDialog.dismiss();
                 }
             });
+        }
+        else if(nav_menu_selected == MY_QUIZ_FRAGMENT_SELECTED){
+            Intent intent = new Intent(context,AddQuizActivity.class);
+            ((Activity)context).startActivityForResult(
+                    intent,
+                    AddQuizActivity.REQUEST_FOR_ACTIVITY_CODE_ADD_QUIZ
+            );
         }
     }
 
@@ -267,6 +290,37 @@ public class MainCoachActivity extends AppCompatActivity
                 }
             }
         }
+        else if (requestCode == BinnacleActivity.REQUEST_FOR_ACTIVITY_CODE_BINNACLE_DETAIL) {
+            if (binnacleFragment != null){
+                binnacleFragment.refreshTodaySessions();
+            }
+        }
+        else if (requestCode == CoachQuizQuestionsActivity.REQUEST_FOR_ACTIVITY_CODE_COACH_QUIZ_QUESTIONS) {
+            //vuelve del activity del Quiz y de eliminar el Quiz
+            if(resultCode == Activity.RESULT_OK){
+                coachMyQuizzesFragment.coachQuizAllFragment.refreshQuizzesSessions();
+                coachMyQuizzesFragment.coachQuizByDateFragment.refreshQuizzesSessions();
+                View view = getCurrentFocus();
+                if (view != null) {
+                    Snackbar.make(view, "Se eliminó la encuesta correctamente", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null)
+                            .show();
+                }
+            }
+        }
+        else if (requestCode == AddQuizActivity.REQUEST_FOR_ACTIVITY_CODE_ADD_QUIZ) {
+            //vuelve del activity de agregar Quiz y se agregó bien
+            if(resultCode == Activity.RESULT_OK){
+                coachMyQuizzesFragment.coachQuizAllFragment.refreshQuizzesSessions();
+                coachMyQuizzesFragment.coachQuizByDateFragment.refreshQuizzesSessions();
+                View view = getCurrentFocus();
+                if (view != null) {
+                    Snackbar.make(view, "Se agregó la encuesta correctamente", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null)
+                            .show();
+                }
+            }
+        }
     }
 
     private Fragment getFragmentFor (int id) {
@@ -292,8 +346,28 @@ public class MainCoachActivity extends AppCompatActivity
             updateFabDial(id);
             return getMyAnnouncementsFragment();
         }
+        else if (id == R.id.nav_binnacle) {
+            changeToolbarText("Bitacora");
+            updateFabDial(id);
+            return getBinnacleFragment();
+        }
+        else if (id == R.id.nav_quiz) {
+            changeToolbarText("Encuestas");
+            updateFabDial(id);
+            return getCoachMyQuizzesFragment();
+        }
 
         return null;
+    }
+
+    private CoachMyQuizzesFragment getCoachMyQuizzesFragment(){
+        coachMyQuizzesFragment = new CoachMyQuizzesFragment();
+        return coachMyQuizzesFragment;
+    }
+
+    private BinnacleFragment getBinnacleFragment() {
+        binnacleFragment = new BinnacleFragment();
+        return binnacleFragment;
     }
 
     private MyAnnouncementsFragment getMyAnnouncementsFragment() {
@@ -346,28 +420,39 @@ public class MainCoachActivity extends AppCompatActivity
             speedDialView.inflate(R.menu.main_menu_coach);
             speedDialView.hide();
             speedDialView.show();
-            nav_menu_selected = 0;
+            nav_menu_selected = MY_ATHLETES_FRAGMENT_SELECTED;
         }
         else if (id == R.id.nav_assistance){
             speedDialView.hide();
-            nav_menu_selected = 1;
+            nav_menu_selected = MY_ASSISTANCE_FRAGMENT_SELECTED;
         }
         else if (id == R.id.nav_work_plan){
             speedDialView.inflate(R.menu.main_menu_coach_training_plan);
             speedDialView.hide();
             speedDialView.show();
-            nav_menu_selected = 2;
+            nav_menu_selected = MY_WORKPLAN_FRAGMENT_SELECTED;
         }
         else if (id == R.id.nav_categories){
             speedDialView.inflate(R.menu.main_menu_coach);
             speedDialView.hide();
             speedDialView.show();
+            nav_menu_selected = MY_CATEGORIES_FRAGMENT_SELECTED;
         }
         else if (id == R.id.nav_announces){
             speedDialView.clearActionItems();
             speedDialView.hide();
             speedDialView.show();
-            nav_menu_selected = 3;
+            nav_menu_selected = MY_ANNOUNCES_FRAGMENT_SELECTED;
+        }
+        else if (id == R.id.nav_binnacle){
+            speedDialView.hide();
+            nav_menu_selected = MY_BINNACLES_FRAGMENT_SELECTED;
+        }
+        else if (id == R.id.nav_quiz){
+            speedDialView.clearActionItems();
+            speedDialView.hide();
+            speedDialView.show();
+            nav_menu_selected = MY_QUIZ_FRAGMENT_SELECTED;
         }
     }
 

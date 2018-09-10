@@ -89,8 +89,8 @@ public class AddAnnouncementDialog extends AlertDialog {
             @Override
             public void onClick(View view) {
                 List<AnnouncementPost.athleteIdClass> athletesIds = athletesAdapter.getSelectedAthletesIds();
-                if (detailCustomEditText.getText().length() > 0 ||
-                        titleEditText.getText().length() > 0 ||
+                if (detailCustomEditText.getText().length() > 0 &&
+                        titleEditText.getText().length() > 0 &&
                         athletesIds.size() > 0) {
 
                     AnnouncementPost announcementPost = new AnnouncementPost();

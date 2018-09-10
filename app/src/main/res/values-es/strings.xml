@@ -83,6 +83,24 @@
     <string name="see_more">Ver mas</string>
     <string name="add_announcement">Agregar anuncio</string>
     <string name="title">Titulo</string>
+    <string name="there_are_no_entries_for_this_session_s_binnacle">no hay entradas para la bitacora de esta sesión</string>
+    <string name="add_binnacle_entry">Agregar entrada</string>
+    <string name="detalle">Detalle</string>
+    <string name="quizzes">Encuestas</string>
+    <string name="add_quiz">Agregar encuesta</string>
+    <string name="quiz_title">Titulo de la encuesta</string>
+    <string name="choose_athletes">Escoger atletas</string>
+    <string name="question">Pregunta</string>
+    <string name="add_question">Agregar pregunta</string>
+    <string name="send_quiz">Enviar encuesta</string>
+    <string name="back_to_questions">Volver a las preguntas</string>
+    <string name="there_are_no_quizzes_for_this_day">No hay encuestas para este dia</string>
+    <string name="there_are_new_quizzes">Tiene nuevas encuestas</string>
+    <string name="replay">Responder</string>
+    <string name="last_quizzes">Ultimas encuestas</string>
+    <string name="reply_quiz">Responder encuesta</string>
+    <string name="reply">Responder</string>
+    <string name="answer">Respuesta</string>
 
     <string-array name="Intensities">
         <item>1</item>

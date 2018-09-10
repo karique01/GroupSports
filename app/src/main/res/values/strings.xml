@@ -131,5 +131,23 @@
     <string name="see_more">See more</string>
     <string name="add_announcement">Add announcement</string>
     <string name="title">Title</string>
+    <string name="there_are_no_entries_for_this_session_s_binnacle">there are no entries for this session\'s binnacle</string>
+    <string name="add_binnacle_entry">Add binnacle entry</string>
+    <string name="detalle">Detail</string>
+    <string name="quizzes">Quizzes</string>
+    <string name="add_quiz">Add Quiz</string>
+    <string name="quiz_title">Quiz title</string>
+    <string name="choose_athletes">Choose athletes</string>
+    <string name="question">Question</string>
+    <string name="add_question">Add Question</string>
+    <string name="send_quiz">Send Quiz</string>
+    <string name="back_to_questions">Back to questions</string>
+    <string name="there_are_no_quizzes_for_this_day">There are no quizzes for this day</string>
+    <string name="there_are_new_quizzes">You have new quizzes</string>
+    <string name="replay">Replay</string>
+    <string name="last_quizzes">Last quizzes</string>
+    <string name="reply_quiz">Reply quiz</string>
+    <string name="reply">Reply</string>
+    <string name="answer">Answer</string>
 
 </resources>

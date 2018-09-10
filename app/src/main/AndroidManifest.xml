@@ -72,6 +72,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pe.edu.upc.groupsports.activities.MainCoachActivity" />
         </activity>
+        <activity android:name=".activities.BinnacleActivity" />
+        <activity android:name=".activities.CoachQuizQuestionsActivity" />
+        <activity
+            android:name=".activities.AddQuizActivity"
+            android:label="@string/add_quiz"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.AthleteQuizQuestionsActivity" />
+        <activity
+            android:name=".activities.AthleteReplyQuizActivity"
+            android:label="@string/reply_quiz"/>
     </application>
 
 </manifest>

@@ -439,7 +439,7 @@ public class MesocycleDetailActivity extends AppCompatActivity {
 
                         for (int i = 0; i < response.length(); i++) {
                             try {
-                                currentSessionWorks.add(SessionWork.toSessionWork(response.getJSONObject(i)));
+                                currentSessionWorks.add(SessionWork.toSessionWorkForBinnacle(response.getJSONObject(i)));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

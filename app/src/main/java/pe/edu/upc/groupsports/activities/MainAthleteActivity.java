@@ -1,5 +1,6 @@
 package pe.edu.upc.groupsports.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,13 +21,16 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import pe.edu.upc.groupsports.fragments.LastUpdateFragment;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
 import pe.edu.upc.groupsports.fragments.MoodTestFragment;
-import pe.edu.upc.groupsports.fragments.SessionQuestionFragment;
+import pe.edu.upc.groupsports.fragments.AthleteQuizFragment;
 
 public class MainAthleteActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +39,8 @@ public class MainAthleteActivity extends AppCompatActivity
     Context context;
     private static final int TAKE_PICTURE = 1;
     private Uri imageUri;
+
+    AthleteQuizFragment athleteQuizFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +61,13 @@ public class MainAthleteActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
-        ImageView photoImageView = (ImageView) headerView.findViewById(R.id.photoImageView);
+        CircleImageView photoImageView = (CircleImageView) headerView.findViewById(R.id.photoImageView);
+        Picasso.with(this)
+                .load(sessionManager.getPictureUrl())
+                .placeholder(R.drawable.athlete)
+                .error(R.drawable.athlete)
+                .into(photoImageView);
+
         TextView tittleNavViewTextView = (TextView) headerView.findViewById(R.id.tittleNavViewTextView);
         tittleNavViewTextView.setText(sessionManager.getfirstName());
         TextView descriptionNavViewTextView = (TextView) headerView.findViewById(R.id.descriptionNavViewTextView);
@@ -104,6 +116,24 @@ public class MainAthleteActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == AthleteReplyQuizActivity.REQUEST_FOR_ACTIVITY_CODE_ATHLETE_REPLY_QUIZ) {
+            //vuelve del activity de responder un Quiz y se respondió bien
+            if(resultCode == Activity.RESULT_OK){
+                if (athleteQuizFragment != null)
+                    athleteQuizFragment.refreshQuizzesSessions();
+
+                View view = getCurrentFocus();
+                if (view != null) {
+                    Snackbar.make(view, "Se respondió la encuesta correctamente", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null)
+                            .show();
+                }
+            }
+        }
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -127,7 +157,7 @@ public class MainAthleteActivity extends AppCompatActivity
         if (id == R.id.nav_last_updates) {
             return getLastUpdateFragment();
         } else if (id == R.id.nav_today_session) {
-            return new SessionQuestionFragment();
+            return getAthleteQuizFragment();
         } else if (id == R.id.nav_gallery) {
             return null;
         } else if (id == R.id.nav_mood_test) {
@@ -136,6 +166,11 @@ public class MainAthleteActivity extends AppCompatActivity
             return null;
         }
         return null;
+    }
+
+    private AthleteQuizFragment getAthleteQuizFragment(){
+        athleteQuizFragment = new AthleteQuizFragment();
+        return athleteQuizFragment;
     }
 
     private LastUpdateFragment getLastUpdateFragment() {

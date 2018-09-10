@@ -40,7 +40,7 @@ public class MoodColorAdapter extends RecyclerView.Adapter<MoodColorAdapter.Mood
     }
 
     @Override
-    public void onBindViewHolder(final MoodColorViewHolder holder, int position) {
+    public void onBindViewHolder(final MoodColorViewHolder holder, final int position) {
         final MoodColor moodColor = moodColors.get(position);
         holder.cardImageView.setImageResource(moodColor.getCardDrawableResource());
 

@@ -27,6 +27,8 @@ public class Assistance {
     private String totalMesocycles;
     private String currentWeek;
     private String totalWeeks;
+    private String trainingPlanName;
+    private String mesocycleName;
     private Date dateTime;
     private int shiftTurn = 0;
     private List<AssistanceShift> assistanceShifts;
@@ -47,6 +49,21 @@ public class Assistance {
         this.dateTime = dateTime;
     }
 
+    public String getTrainingPlanName() {
+        return trainingPlanName;
+    }
+
+    public void setTrainingPlanName(String trainingPlanName) {
+        this.trainingPlanName = trainingPlanName;
+    }
+
+    public String getMesocycleName() {
+        return mesocycleName;
+    }
+
+    public void setMesocycleName(String mesocycleName) {
+        this.mesocycleName = mesocycleName;
+    }
 
     public void setAttendanceOfCurrentShift(boolean attendanceBoolean){
         AssistanceShift assistanceShift = assistanceShifts.get(getShiftTurn());
@@ -208,6 +225,8 @@ public class Assistance {
             assistance.setTotalMesocycles(jsonObject.getString("totalMesocycles"));
             assistance.setCurrentWeek(jsonObject.getString("currentWeek"));
             assistance.setTotalWeeks(jsonObject.getString("totalWeeks"));
+            assistance.setTrainingPlanName(jsonObject.getString("trainingPlanName"));
+            assistance.setMesocycleName(jsonObject.getString("mesocycleName"));
             Assistance.setDateTime(assistance,jsonObject);
 
             JSONArray jsonAssistanceShifts = jsonObject.getJSONArray("assistanceShifts");

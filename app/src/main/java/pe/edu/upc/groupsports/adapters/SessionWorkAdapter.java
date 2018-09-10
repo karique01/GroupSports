@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -15,7 +16,9 @@ import java.util.Date;
 import java.util.List;
 
 import pe.edu.upc.groupsports.R;
+import pe.edu.upc.groupsports.activities.BinnacleActivity;
 import pe.edu.upc.groupsports.activities.WeekDetailActivity;
+import pe.edu.upc.groupsports.models.BinnacleDetail;
 import pe.edu.upc.groupsports.models.SessionWork;
 import pe.edu.upc.groupsports.models.Week;
 import pe.edu.upc.groupsports.util.Funciones;
@@ -52,6 +55,9 @@ public class SessionWorkAdapter extends RecyclerView.Adapter<SessionWorkAdapter.
             holder.shiftSessionTextView.setText(sessionWork.getShiftName());
             holder.intensityPercentageTextView.setText(String.valueOf(sessionWork.getIntensityPercentage()));
             holder.attendanceTextView.setText(sessionWork.getAttendance() ? "Asistió" : "Sesion programada");
+            int size = sessionWork.getBinnacleDetails().size();
+            holder.seeBinnacleButton.setText(String.format("Ver Bitacora %s", (size > 0) ? ("(" + size + " entradas)") : ("")));
+
             if (sessionWork.getAttendance())
                 holder.intensityPercentageTextView.setVisibility(View.VISIBLE);
             else holder.intensityPercentageTextView.setVisibility(View.GONE);
@@ -76,7 +82,19 @@ public class SessionWorkAdapter extends RecyclerView.Adapter<SessionWorkAdapter.
             @Override
             public void onClick(View view) {
                 if (sessionWork != null) {
-                    onDeleteSessionListener.OnDeleteSessionClicked(Integer.parseInt(sessionWork.getId()));
+                    onDeleteSessionListener.OnDeleteSessionClicked(sessionWork);
+                }
+            }
+        });
+        holder.seeBinnacleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sessionWork != null) {
+                    Intent intent = new Intent(context,BinnacleActivity.class);
+                    intent.putExtras(sessionWork.toBundle());
+                    ((Activity)context).startActivityForResult(
+                            intent, BinnacleActivity.REQUEST_FOR_ACTIVITY_CODE_BINNACLE_DETAIL
+                    );
                 }
             }
         });
@@ -106,6 +124,8 @@ public class SessionWorkAdapter extends RecyclerView.Adapter<SessionWorkAdapter.
         TextView intensityPercentageTextView;
         TextView attendanceTextView;
         ImageButton deleteImageButton;
+
+        Button seeBinnacleButton;
         public SessionWorkViewHolder(View itemView) {
             super(itemView);
             addSessionCardView = (CardView) itemView.findViewById(R.id.addSessionCardView);
@@ -118,6 +138,8 @@ public class SessionWorkAdapter extends RecyclerView.Adapter<SessionWorkAdapter.
             intensityPercentageTextView = (TextView) itemView.findViewById(R.id.intensityPercentageTextView);
             attendanceTextView = (TextView) itemView.findViewById(R.id.attendanceTextView);
             deleteImageButton = (ImageButton) itemView.findViewById(R.id.deleteImageButton);
+
+            seeBinnacleButton = (Button) itemView.findViewById(R.id.seeBinnacleButton);
         }
     }
 
@@ -136,7 +158,7 @@ public class SessionWorkAdapter extends RecyclerView.Adapter<SessionWorkAdapter.
     }
 
     public interface OnDeleteSessionListener{
-        void OnDeleteSessionClicked(int workSessionId);
+        void OnDeleteSessionClicked(SessionWork sessionWork);
     }
 
     private OnDeleteSessionListener onDeleteSessionListener;

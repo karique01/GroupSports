@@ -52,6 +52,9 @@ public class AddAthleteDialog extends AlertDialog {
 
         session = new SessionManager(view.getContext());
         context = view.getContext();
+
+        athleteNameEditText = view.findViewById(R.id.athleteNameEditText);
+
         cancelButton = view.findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,10 +67,14 @@ public class AddAthleteDialog extends AlertDialog {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addAthleteToTeam();
+                if (athleteNameEditText.getText().length() > 0) {
+                    addAthleteToTeam();
+                }
+                else {
+                    Toast.makeText(context,"Nombre de usuario vacio",Toast.LENGTH_LONG).show();
+                }
             }
         });
-        athleteNameEditText = view.findViewById(R.id.athleteNameEditText);
 
         setView(view);
     }
@@ -89,7 +96,7 @@ public class AddAthleteDialog extends AlertDialog {
                                 onOkButtonClickListener.OnOkButtonClicked();
                             }
                             else {
-                                Toast.makeText(context, "Nombre invalido", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, "Nombre de usuario invalido", Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

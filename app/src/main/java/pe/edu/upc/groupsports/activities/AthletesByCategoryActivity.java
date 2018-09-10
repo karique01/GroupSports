@@ -83,6 +83,9 @@ public class AthletesByCategoryActivity extends AppCompatActivity {
                         if (response.length() == 0) {
                             noAthletesConstraintLayout.setVisibility(View.VISIBLE);
                         }
+                        else {
+                            noAthletesConstraintLayout.setVisibility(View.GONE);
+                        }
                     }
 
                     @Override

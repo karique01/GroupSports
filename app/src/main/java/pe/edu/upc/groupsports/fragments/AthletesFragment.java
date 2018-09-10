@@ -99,6 +99,8 @@ public class AthletesFragment extends Fragment {
                         athletesAdapter.notifyDataSetChanged();
                         if (response.length() == 0) {
                             noAthletesConstraintLayout.setVisibility(View.VISIBLE);
+                        } else {
+                            noAthletesConstraintLayout.setVisibility(View.GONE);
                         }
                     }
 

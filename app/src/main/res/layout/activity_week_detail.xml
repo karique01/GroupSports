@@ -30,8 +30,8 @@
         app:mcv_firstDayOfWeek="monday"
         app:mcv_calendarMode="week"
         app:mcv_weekDayLabels="@color/colorAccent"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="7dp"
         android:layout_marginStart="@dimen/default_margin"
         android:layout_marginEnd="@dimen/default_margin"
         app:layout_constraintTop_toTopOf="parent"/>

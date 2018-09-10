@@ -221,6 +221,8 @@ public class AddTrainingPlanActivity extends AppCompatActivity implements DatePi
                         athletesAdapter.notifyDataSetChanged();
                         if (response.length() == 0) {
                             noAthletesConstraintLayout.setVisibility(View.VISIBLE);
+                        } else {
+                            noAthletesConstraintLayout.setVisibility(View.GONE);
                         }
                     }
 

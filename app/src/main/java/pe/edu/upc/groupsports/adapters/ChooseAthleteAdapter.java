@@ -41,7 +41,7 @@ public class ChooseAthleteAdapter extends RecyclerView.Adapter<ChooseAthleteAdap
     }
 
     @Override
-    public void onBindViewHolder(final AthleteViewHolder holder, int position) {
+    public void onBindViewHolder(final AthleteViewHolder holder, final int position) {
         final Context c = holder.itemView.getContext();
         final Athlete athlete = athletes.get(position);
         holder.athleteNameTextView.setText(athlete.getFullName());

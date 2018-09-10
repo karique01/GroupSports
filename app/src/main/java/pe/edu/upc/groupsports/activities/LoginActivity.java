@@ -132,6 +132,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             sessionManager.setexpires_in(response.getString("expires_in"));
                             sessionManager.setid(response.getString("id"));
                             sessionManager.setusername(response.getString("username"));
+                            sessionManager.setPictureUrl(response.getString("pictureUrl"));
                             sessionManager.setuserType(response.getString("userType"));
                             sessionManager.setfirstName(response.getString("firstName"));
                             sessionManager.setlastName(response.getString("lastName"));

@@ -37,7 +37,7 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final MoodViewHolder holder, int position) {
+    public void onBindViewHolder(final MoodViewHolder holder, final int position) {
         final Mood mood = moods.get(position);
         holder.dateTextView.setText(Funciones.formatDate(mood.getDayOfMood()));
         holder.hourTextView.setText(Funciones.formatDateToHour(mood.getDayOfMood()));
@@ -50,7 +50,7 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
                 boolean pertenece = mood.isSelected();
                 holder.cardImageView.setImageResource(pertenece ? mood.getCardDrawableResource() : R.drawable.ic_eye_black);
                 mood.setSelected(!pertenece);
-                notifyDataSetChanged();
+                notifyItemChanged(position);
             }
         });
     }

@@ -1,6 +1,8 @@
 package pe.edu.upc.groupsports.activities;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -107,12 +109,19 @@ public class WeekDetailActivity extends AppCompatActivity {
         });
         sessionWorkAdapter.setOnDeleteSessionListener(new SessionWorkAdapter.OnDeleteSessionListener() {
             @Override
-            public void OnDeleteSessionClicked(int workSessionId) {
-                deleteWorkSession(workSessionId);
+            public void OnDeleteSessionClicked(SessionWork sessionWork) {
+                handleDeleteWorkSession(sessionWork);
             }
         });
 
         updateWorkSessions();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == BinnacleActivity.REQUEST_FOR_ACTIVITY_CODE_BINNACLE_DETAIL) {
+            updateWorkSessions();
+        }
     }
 
     @Override
@@ -131,6 +140,37 @@ public class WeekDetailActivity extends AppCompatActivity {
             finish();
         }
         return true;
+    }
+
+    private void handleDeleteWorkSession(SessionWork sessionWork){
+        if (sessionWork.getBinnacleDetails().size() == 0) {
+            deleteWorkSession(sessionWork.getId());
+        }
+        else {
+            warningDeleteSession(sessionWork.getId());
+        }
+    }
+
+    private void warningDeleteSession(final String workSessionId){
+        final WarningDialog warningDialog = new WarningDialog(
+                this,
+                "Eliminar sesión",
+                "¿Está seguro que desea eliminar esta sesión?\n\nSe eliminarán todas las entradas de la bitacora ligadas es esta sesión"
+        );
+        warningDialog.show();
+        warningDialog.setOnOkButtonClickListener(new WarningDialog.OnOkButtonClickListener() {
+            @Override
+            public void OnOkButtonClicked() {
+                deleteWorkSession(workSessionId);
+                warningDialog.dismiss();
+            }
+        });
+        warningDialog.setOnCancelButtonClickListener(new WarningDialog.OnCancelButtonClickListener() {
+            @Override
+            public void OnCancelButtonClicked() {
+                warningDialog.dismiss();
+            }
+        });
     }
 
     private void warningDeleteWeek(){
@@ -186,7 +226,7 @@ public class WeekDetailActivity extends AppCompatActivity {
                 });
     }
 
-    private void deleteWorkSession(int workSessionId) {
+    private void deleteWorkSession(String workSessionId) {
         AndroidNetworking.delete(GroupSportsApiService.WORK_SESSIONS_URL + workSessionId)
                 .addHeaders("Authorization", "bearer " + session.getaccess_token())
                 .addHeaders("Content-Type", "application/json")
@@ -284,7 +324,7 @@ public class WeekDetailActivity extends AppCompatActivity {
 
                         for (int i = 0; i < response.length(); i++) {
                             try {
-                                currentSessionWorksCurrentWeek.add(SessionWork.toSessionWork(response.getJSONObject(i)));
+                                currentSessionWorksCurrentWeek.add(SessionWork.toSessionWorkForBinnacle(response.getJSONObject(i)));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

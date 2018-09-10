@@ -11,8 +11,8 @@
             android:title="@string/last_announcements" />
         <item
             android:id="@+id/nav_today_session"
-            android:icon="@drawable/ic_directions_run"
-            android:title="@string/today_session" />
+            android:icon="@drawable/ic_work_plan"
+            android:title="@string/quizzes" />
         <item
             android:id="@+id/nav_mood_test"
             android:icon="@drawable/ic_mood_white"
@@ -24,7 +24,7 @@
             android:visible="false"/>
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_new_mesocycle_white"
             android:title="@string/my_highlights" />
         <item
             android:id="@+id/nav_manage"

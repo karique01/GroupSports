@@ -24,7 +24,7 @@
             android:title="@string/assistance" />
         <item
             android:id="@+id/nav_work_plan"
-            android:icon="@drawable/ic_work_plan"
+            android:icon="@drawable/ic_training_plan"
             android:title="@string/workplan" />
         <item
             android:id="@+id/nav_binnacle"
@@ -32,6 +32,10 @@
             android:title="@string/binnacle" />
         <item android:title="@string/communicate">
             <menu>
+                <item
+                    android:id="@+id/nav_quiz"
+                    android:icon="@drawable/ic_work_plan"
+                    android:title="@string/quizzes" />
                 <item
                     android:id="@+id/nav_announces"
                     android:icon="@drawable/ic_notifications"
