@@ -14,4 +14,7 @@
     <dimen name="card_view_tittle_size">20sp</dimen>
     <dimen name="card_view_corner_radius">6dp</dimen>
     <dimen name="sub_tittle_card_view_text_size">15sp</dimen>
+    <dimen name="antropometric_test_width">100dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

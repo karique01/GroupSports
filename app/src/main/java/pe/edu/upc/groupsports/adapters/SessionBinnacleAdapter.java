@@ -17,6 +17,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.activities.BinnacleActivity;
+import pe.edu.upc.groupsports.activities.WeightTestBySessionActivity;
 import pe.edu.upc.groupsports.models.SessionWork;
 
 /**
@@ -61,6 +62,16 @@ public class SessionBinnacleAdapter extends RecyclerView.Adapter<SessionBinnacle
                 );
             }
         });
+        holder.weightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,WeightTestBySessionActivity.class);
+                intent.putExtras(sessionWork.toBundle());
+                ((Activity)context).startActivityForResult(
+                        intent, WeightTestBySessionActivity.REQUEST_FOR_ACTIVITY_CODE_WEIGHT_TEST_BY_SESSSION
+                );
+            }
+        });
         Picasso.with(context)
                 .load(sessionWork.getPictureUrl())
                 .placeholder(R.drawable.athlete)
@@ -76,14 +87,6 @@ public class SessionBinnacleAdapter extends RecyclerView.Adapter<SessionBinnacle
         return sessionWorks.size();
     }
 
-    public List<SessionWork> getSessionWorks() {
-        return sessionWorks;
-    }
-
-    public void setSessionWorks(List<SessionWork> sessionWorks) {
-        this.sessionWorks = sessionWorks;
-    }
-
     class BinnacleDetailViewHolder extends RecyclerView.ViewHolder{
         CircleImageView athleteCircleImageView;
         TextView trainingPlanNameTextView;
@@ -91,6 +94,7 @@ public class SessionBinnacleAdapter extends RecyclerView.Adapter<SessionBinnacle
         TextView shiftTextView;
         TextView athleteNameTextView;
         Button seeBinnacleButton;
+        Button weightButton;
         public BinnacleDetailViewHolder(View itemView) {
             super(itemView);
             athleteCircleImageView = (CircleImageView) itemView.findViewById(R.id.athleteCircleImageView);
@@ -99,6 +103,7 @@ public class SessionBinnacleAdapter extends RecyclerView.Adapter<SessionBinnacle
             shiftTextView = (TextView) itemView.findViewById(R.id.shiftTextView);
             athleteNameTextView = (TextView) itemView.findViewById(R.id.athleteNameTextView);
             seeBinnacleButton = (Button) itemView.findViewById(R.id.seeBinnacleButton);
+            weightButton = (Button) itemView.findViewById(R.id.weightButton);
         }
     }
 }

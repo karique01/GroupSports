@@ -46,6 +46,9 @@ public class AthleteTestFragment extends Fragment {
     public AthleteSaltabilityTestFragment athleteSaltabilityTestFragment;
     public AthleteStrengthTestFragment athleteStrengthTestFragment;
     public AthleteMoodTestFragment athleteMoodTestFragment;
+    public ShotPutTestFragment shotPutTestFragment;
+    public WeightTestBySessionFragment weightTestBySessionFragment;
+    public AntropometricTestFragment antropometricTestFragment;
 
     Athlete currentAthlete;
 
@@ -54,6 +57,9 @@ public class AthleteTestFragment extends Fragment {
     public static final int SALTABILITY_TEST_FRAGMENT_SELECTED = 1;
     public static final int STRENGTH_TEST_FRAGMENT_SELECTED = 2;
     public static final int MOOD_TEST_FRAGMENT_SELECTED = 3;
+    public static final int SHOT_PUT_TEST_FRAGMENT_SELECTED = 4;
+    public static final int WEIGHT_TEST_BY_SESSION_FRAGMENT_SELECTED = 5;
+    public static final int ANTROPOMETRIC_TEST_FRAGMENT_SELECTED = 6;
 
     public AthleteTestFragment() {
         // Required empty public constructor
@@ -75,15 +81,30 @@ public class AthleteTestFragment extends Fragment {
         athleteSpeedTestFragment.setCurrentAthlete(currentAthlete);
 
         athleteSaltabilityTestFragment = new AthleteSaltabilityTestFragment();
+        athleteSaltabilityTestFragment.setCurrentAthlete(currentAthlete);
+
         athleteStrengthTestFragment = new AthleteStrengthTestFragment();
+        athleteStrengthTestFragment.setCurrentAthlete(currentAthlete);
+
+        shotPutTestFragment = new ShotPutTestFragment();
+        shotPutTestFragment.setCurrentAthlete(currentAthlete);
 
         athleteMoodTestFragment = new AthleteMoodTestFragment();
         athleteMoodTestFragment.setCurrentAthlete(currentAthlete);
 
-        adapter.addFragment(athleteSpeedTestFragment, "Rapidez");
+        weightTestBySessionFragment = new WeightTestBySessionFragment();
+        weightTestBySessionFragment.setCurrentAthlete(currentAthlete);
+
+        antropometricTestFragment = new AntropometricTestFragment();
+        antropometricTestFragment.setCurrentAthlete(currentAthlete);
+
+        adapter.addFragment(athleteSpeedTestFragment, "Velocidad");
         adapter.addFragment(athleteSaltabilityTestFragment, "Salto");
         adapter.addFragment(athleteStrengthTestFragment, "Fuerza");
         adapter.addFragment(athleteMoodTestFragment, "Animo");
+        adapter.addFragment(shotPutTestFragment, "Lanzamiento");
+        adapter.addFragment(weightTestBySessionFragment, "Test Peso Corporal");
+        adapter.addFragment(antropometricTestFragment, "Test Antropometrico");
 
         _homeViewPager.setAdapter(adapter);
         _homeTabLayout.setupWithViewPager(_homeViewPager);

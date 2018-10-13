@@ -25,13 +25,13 @@
 
     <ImageView
         android:id="@+id/upcLogoImageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:srcCompat="@drawable/upc_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:visibility="visible"/>
 
     <ImageButton
@@ -81,7 +81,7 @@
         android:id="@+id/loginConfirmedButton"
         android:text="@string/log_in"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="55dp"
         android:layout_marginStart="@dimen/fab_margin"
         android:layout_marginEnd="@dimen/fab_margin"
         app:layout_constraintTop_toBottomOf="@id/passwordTextInputLayout"
@@ -89,6 +89,17 @@
         android:backgroundTint="@color/colorAccent"
         android:textColor="@android:color/white"
         android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/loginWaitProgressBar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:theme="@style/ProgressBarAccent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/loginConfirmedButton"
+        app:layout_constraintBottom_toBottomOf="@id/loginConfirmedButton"
+        app:layout_constraintEnd_toEndOf="@id/loginConfirmedButton"
+        app:layout_constraintStart_toStartOf="@id/loginConfirmedButton" />
 
     <LinearLayout
         android:id="@+id/buttonsLinearLayout"

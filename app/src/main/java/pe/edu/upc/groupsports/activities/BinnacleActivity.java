@@ -285,7 +285,7 @@ public class BinnacleActivity extends AppCompatActivity {
     private void setupToolBar() {
         ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle(Funciones.formatDate(currentSessionWork.getSessionDay()));
+            actionBar.setTitle("Bitacora: "+Funciones.formatDate(currentSessionWork.getSessionDay()));
             actionBar.setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_white);
         }

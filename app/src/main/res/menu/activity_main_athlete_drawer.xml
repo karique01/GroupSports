@@ -10,7 +10,15 @@
             android:icon="@drawable/ic_notifications"
             android:title="@string/last_announcements" />
         <item
-            android:id="@+id/nav_today_session"
+            android:id="@+id/nav_sessions"
+            android:icon="@drawable/ic_event_note_black_24dp"
+            android:title="@string/my_schedule" />
+        <item
+            android:id="@+id/nav_statistics"
+            android:icon="@drawable/ic_new_mesocycle_white"
+            android:title="@string/statistics" />
+        <item
+            android:id="@+id/nav_quizzes"
             android:icon="@drawable/ic_work_plan"
             android:title="@string/quizzes" />
         <item
@@ -18,14 +26,14 @@
             android:icon="@drawable/ic_mood_white"
             android:title="@string/mood_test" />
         <item
+            android:id="@+id/nav_foda_test"
+            android:icon="@drawable/ic_foda"
+            android:title="Foda" />
+        <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/upload_training"
             android:visible="false"/>
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_new_mesocycle_white"
-            android:title="@string/my_highlights" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
@@ -38,7 +46,12 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="@string/share_highlights" />
+                android:title="@string/share_highlights"
+                android:visible="false"/>
+            <item
+                android:id="@+id/nav_my_coachs"
+                android:icon="@drawable/ic_group"
+                android:title="@string/my_coachs" />
             <item
                 android:id="@+id/nav_log_out"
                 android:icon="@drawable/ic_exit"

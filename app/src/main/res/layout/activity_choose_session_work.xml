@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pe.edu.upc.groupsports.activities.ChooseSessionWorkActivity">
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:mcv_selectionColor="@color/colorAccent"
+        app:mcv_weekDayLabels="@color/colorAccent"
+        app:mcv_tileWidth="match_parent"
+        app:mcv_tileHeight="24dp"
+        app:mcv_calendarMode="month"
+        app:mcv_firstDayOfWeek="monday"
+        android:paddingTop="@dimen/big_margin"
+        android:paddingBottom="@dimen/default_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sesionesTextView"
+        app:layout_constraintTop_toTopOf="@id/sesionesTextView"
+        app:layout_constraintBottom_toBottomOf="@id/sesionesTextView"
+        android:layout_marginEnd="14dp"
+        android:layout_marginStart="14dp"/>
+
+    <TextView
+        android:id="@+id/sesionesTextView"
+        android:text="Sesiones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/sessionWorksRecyclerView"
+        android:layout_marginBottom="@dimen/default_margin"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sesionesTextView"
+        app:layout_constraintTop_toTopOf="@id/sesionesTextView"
+        app:layout_constraintBottom_toBottomOf="@id/sesionesTextView"
+        android:layout_marginEnd="14dp"
+        android:layout_marginStart="14dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sessionWorksRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="@dimen/default_margin"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/noAthletesConstraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        app:layout_constraintStart_toStartOf="@id/sessionWorksRecyclerView"
+        app:layout_constraintEnd_toEndOf="@id/sessionWorksRecyclerView"
+        app:layout_constraintTop_toTopOf="@id/sessionWorksRecyclerView"
+        app:layout_constraintBottom_toBottomOf="@id/sessionWorksRecyclerView"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/errorImageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/messageTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_history" />
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_sessions_today"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/errorImageView" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

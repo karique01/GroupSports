@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/athleteAchievementCardView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="@dimen/default_margin"
+    android:layout_marginEnd="@dimen/default_margin"
+    android:layout_marginBottom="@dimen/default_margin"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@android:color/white"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/disciplineImageButton"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/delete"
+            android:tint="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_directions_run_accent" />
+
+        <TextView
+            android:id="@+id/achievementTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:textStyle="bold"
+            android:text="Panamericanos 100 metros"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@id/deleteImageButton"
+            app:layout_constraintStart_toEndOf="@id/disciplineImageButton"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/medalImageButton"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/delete"
+            android:tint="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/achievementTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:srcCompat="@drawable/ic_medal" />
+
+        <TextView
+            android:id="@+id/placeTimesTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin"
+            android:text="1er puesto - 3 veces"
+            app:layout_constraintEnd_toStartOf="@id/deleteImageButton"
+            app:layout_constraintStart_toEndOf="@id/medalImageButton"
+            app:layout_constraintTop_toTopOf="@id/medalImageButton"
+            app:layout_constraintBottom_toBottomOf="@id/medalImageButton"
+            android:paddingBottom="@dimen/default_margin"
+            android:paddingTop="@dimen/default_margin"/>
+
+        <ImageButton
+            android:id="@+id/deleteImageButton"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/delete"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@+id/editImageButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_delete_gray"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:id="@+id/editImageButton"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="@string/delete"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deleteImageButton"
+            app:srcCompat="@drawable/ic_edit_accent"
+            android:visibility="gone"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

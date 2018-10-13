@@ -53,6 +53,15 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
                 notifyItemChanged(position);
             }
         });
+        holder.moodCardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (onLongClickListener != null) {
+                    onLongClickListener.OnLongClicked(mood);
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -80,5 +89,15 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.MoodViewHolder
             dateTextView = (TextView) itemView.findViewById(R.id.dateTextView);
             hourTextView = (TextView) itemView.findViewById(R.id.hourTextView);
         }
+    }
+
+    public interface OnLongClickListener {
+        void OnLongClicked(Mood mood);
+    }
+
+    private OnLongClickListener onLongClickListener;
+
+    public void setLongClickListener(OnLongClickListener onLongClickListener) {
+        this.onLongClickListener = onLongClickListener;
     }
 }

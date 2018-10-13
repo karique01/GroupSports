@@ -67,22 +67,28 @@
         <activity
             android:name=".activities.AthleteDetailActivity"
             android:label="@string/title_activity_athlete_detail"
-            android:parentActivityName=".activities.MainCoachActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="pe.edu.upc.groupsports.activities.MainCoachActivity" />
-        </activity>
+            android:launchMode="singleInstance"
+            android:parentActivityName=".activities.MainCoachActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait" />
         <activity android:name=".activities.BinnacleActivity" />
         <activity android:name=".activities.CoachQuizQuestionsActivity" />
         <activity
             android:name=".activities.AddQuizActivity"
             android:label="@string/add_quiz"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".activities.AthleteQuizQuestionsActivity" />
+        <activity android:name=".activities.AthleteQuizQuestionsActivity" />
         <activity
             android:name=".activities.AthleteReplyQuizActivity"
-            android:label="@string/reply_quiz"/>
+            android:label="@string/reply_quiz" />
+        <activity android:name=".activities.WeightTestBySessionActivity" />
+        <activity android:name=".activities.ChooseSessionWorkActivity" />
+        <activity
+            android:name=".activities.CoachDetailActivity"
+            android:label="@string/title_activity_coach_detail"
+            android:parentActivityName=".activities.MainCoachActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activities.CoachCVActivity"/>
     </application>
 
 </manifest>

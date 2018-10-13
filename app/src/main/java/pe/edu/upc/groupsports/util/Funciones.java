@@ -1,5 +1,10 @@
 package pe.edu.upc.groupsports.util;
 
+import android.app.Activity;
+import android.content.Context;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -110,6 +115,11 @@ public class Funciones {
         cal.setTime(date);
         return cal.get(Calendar.DAY_OF_MONTH);
     }
+    public static int getDayOfYearFromDate(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.DAY_OF_YEAR);
+    }
 
     public static Date getDateFromString(String dateStr){
         try {
@@ -118,5 +128,42 @@ public class Funciones {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String toOrdinal(int number){
+        String Unidad[]={"", "Primer", "Segundo", "Tercero",
+                "Cuarto", "Quinto", "Sexto", "Septimo", "Octavo", "Noveno"};
+        String Decena[]={"", "Decimo", "Vigesimo", "Trigesimo",
+                "Cuadragesimo","Quincuagesimo", "Sexagesimo", "Septuagesimo",
+                "Octogesimo", "Nonagesimo"};
+        String Centena[]={"", "Centesimo", "Ducentesimo", "Tricentesimo",
+                "Cuadringentesimo", "Quingentesimo", "Sexcentesimo",
+                "Septingentesimo","Octingentesimo", "Noningentesimo"};
+
+        int u=number%10;
+        int d=(number/10)%10;
+        int c=number/100;
+
+        return number>=100 ? Centena[c]+" "+Decena[d]+" "+Unidad[u] : number>=10 ? Decena[d]+" "+Unidad[u] : Unidad[number];
+    }
+
+    public static void hideKeyboardFromActivity(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    public static void hideKeyboardFromContext(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

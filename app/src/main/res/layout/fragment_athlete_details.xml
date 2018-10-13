@@ -1,4 +1,5 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +12,7 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/weightTextInputLayout"
@@ -21,10 +22,13 @@
                 android:layout_margin="@dimen/default_margin">
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/weightTextInputEditText"
-                    android:hint="Peso"
-                    android:text="75 kg"
+                    android:hint="@string/weight"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -35,94 +39,115 @@
                 android:layout_margin="@dimen/default_margin">
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/heightTextInputEditText"
-                    android:hint="Altura"
-                    android:text="1.75 m"
+                    android:hint="@string/height"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/strenghtTextInputLayout"
+                android:id="@+id/bodySpanTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/heightTextInputLayout"
                 android:layout_margin="@dimen/default_margin">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/strenghtTextInputEditText"
-                    android:hint="Fuerza activa"
-                    android:text="50 N"
+                    android:id="@+id/bodySpanTextInputEditText"
+                    android:hint="@string/body_span"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/velocityTextInputLayout"
+                android:id="@+id/legLengthTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/strenghtTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@id/bodySpanTextInputLayout"
                 android:layout_margin="@dimen/default_margin">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/velocityTextInputEditText"
-                    android:hint="Velocidad"
-                    android:text="21 m/s"
+                    android:id="@+id/legLengthTextInputEditText"
+                    android:hint="@string/leg_length"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/bestVelocityTextInputLayout"
+                android:id="@+id/halfSquatToFloorTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/velocityTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@id/legLengthTextInputLayout"
                 android:layout_margin="@dimen/default_margin">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/bestVelocityTextInputEditText"
-                    android:hint="Mejor tiempo"
-                    android:text="14.5 m/s"
+                    android:id="@+id/halfSquatToFloorTextInputEditText"
+                    android:hint="@string/half_squat_to_floor"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/largoPiernaTextInputLayout"
+                android:id="@+id/shirtSizeTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/bestVelocityTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@id/halfSquatToFloorTextInputLayout"
                 android:layout_margin="@dimen/default_margin">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/largoPiernaTextInputEditText"
-                    android:hint="Largo pierna"
-                    android:text="45 cm"
+                    android:id="@+id/shirtSizeTextInputEditText"
+                    android:hint="@string/shirt_size"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/pulsoDespertarTextInputLayout"
+                android:id="@+id/pantsSizeTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/largoPiernaTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@id/shirtSizeTextInputLayout"
                 android:layout_margin="@dimen/default_margin">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/pulsoDespertarTextInputEditText"
-                    android:hint="Pulso al despertar"
-                    android:text="80"
+                    android:id="@+id/pantsSizeTextInputEditText"
+                    android:hint="@string/pants_size"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/pulsoDespuesEntrenarTextInputLayout"
+                android:id="@+id/footwearSizeTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/pulsoDespertarTextInputLayout"
+                app:layout_constraintTop_toBottomOf="@id/pantsSizeTextInputLayout"
                 android:layout_margin="@dimen/default_margin">
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/pulsoDespuesEntrenarTextInputEditText"
-                    android:hint="Pulso al terminar de entrenar"
-                    android:text="80"
+                    android:id="@+id/footwearSizeTextInputEditText"
+                    android:hint="@string/footwear_size"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"/>
             </android.support.design.widget.TextInputLayout>
 
         </android.support.constraint.ConstraintLayout>

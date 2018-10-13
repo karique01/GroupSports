@@ -130,6 +130,14 @@ public class MainCoachActivity extends AppCompatActivity
                 .error(R.drawable.coach)
                 .into(photoImageView);
 
+        photoImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,CoachDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
         TextView tittleNavViewTextView = (TextView) headerView.findViewById(R.id.tittleNavViewTextView);
         tittleNavViewTextView.setText(sessionManager.getfirstName());
         TextView descriptionNavViewTextView = (TextView) headerView.findViewById(R.id.descriptionNavViewTextView);

@@ -18,19 +18,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import pe.edu.upc.groupsports.fragments.AthleteSessionsFragment;
+import pe.edu.upc.groupsports.fragments.AthletesStatisticsFragment;
+import pe.edu.upc.groupsports.fragments.FodaFragment;
 import pe.edu.upc.groupsports.fragments.LastUpdateFragment;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
 import pe.edu.upc.groupsports.fragments.MoodTestFragment;
 import pe.edu.upc.groupsports.fragments.AthleteQuizFragment;
+import pe.edu.upc.groupsports.fragments.MyCoachsFragment;
+import pe.edu.upc.groupsports.models.Athlete;
+import pe.edu.upc.groupsports.models.AthleteFodaItem;
+import pe.edu.upc.groupsports.network.GroupSportsApiService;
 
 public class MainAthleteActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,6 +56,7 @@ public class MainAthleteActivity extends AppCompatActivity
     private Uri imageUri;
 
     AthleteQuizFragment athleteQuizFragment;
+    Athlete currentAthlete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,17 +91,25 @@ public class MainAthleteActivity extends AppCompatActivity
 
         //primer fragment que se ve
         navigateAccordingTo(R.id.nav_last_updates);
+        getCurrentAthlete();
     }
 
-    public void takePhoto() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File photo = new File(Environment.getExternalStorageDirectory(),  "Pic.jpg");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                Uri.fromFile(photo));
-        imageUri = Uri.fromFile(photo);
-        startActivityForResult(intent, TAKE_PICTURE);
+    public void getCurrentAthlete(){
+        AndroidNetworking.get(GroupSportsApiService.ATHLETES_URL+sessionManager.getuserLoggedTypeId())
+                .addHeaders("Authorization", "bearer " + sessionManager.getaccess_token())
+                .addHeaders("Content-Type", "application/json")
+                .setPriority(Priority.HIGH)
+                .setTag(getString(R.string.app_name))
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        currentAthlete = Athlete.toAthlete(response);
+                    }
+                    @Override
+                    public void onError(ANError anError) {}
+                });
     }
-
 
     @Override
     public void onBackPressed() {
@@ -147,25 +171,38 @@ public class MainAthleteActivity extends AppCompatActivity
             startActivity(new Intent(context, LoginActivity.class));
             finish();
         }
-//        if (id == R.id.nav_camera){
-//            takePhoto();
-//        }
         return navigate;
     }
 
     private Fragment getFragmentFor (int id) {
         if (id == R.id.nav_last_updates) {
             return getLastUpdateFragment();
-        } else if (id == R.id.nav_today_session) {
+        } else if (id == R.id.nav_quizzes) {
             return getAthleteQuizFragment();
-        } else if (id == R.id.nav_gallery) {
-            return null;
         } else if (id == R.id.nav_mood_test) {
             return new MoodTestFragment();
-        } else if (id == R.id.nav_share) {
-            return null;
+        } else if (id == R.id.nav_sessions) {
+            return new AthleteSessionsFragment();
+        } else if (id == R.id.nav_foda_test) {
+            return getFodaFragment();
+        } else if (id == R.id.nav_statistics) {
+            return getAthletesStatisticsFragment();
+        } else if (id == R.id.nav_my_coachs) {
+            return new MyCoachsFragment();
         }
         return null;
+    }
+
+    private FodaFragment getFodaFragment(){
+        FodaFragment fodaFragment = new FodaFragment();
+        fodaFragment.setCurrentAthlete(currentAthlete);
+        return fodaFragment;
+    }
+
+    private AthletesStatisticsFragment getAthletesStatisticsFragment(){
+        AthletesStatisticsFragment athletesStatisticsFragment = new AthletesStatisticsFragment();
+        athletesStatisticsFragment.setCurrentAthlete(currentAthlete);
+        return athletesStatisticsFragment;
     }
 
     private AthleteQuizFragment getAthleteQuizFragment(){

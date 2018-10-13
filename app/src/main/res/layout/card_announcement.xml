@@ -38,7 +38,7 @@
             android:layout_margin="@dimen/default_margin"/>
         <Button
             android:id="@+id/deleteButton"
-            android:text="Delete"
+            android:text="@string/delete"
             android:textColor="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:layout_constraintEnd_toStartOf="@id/seeMoreButton"/>
         <Button
             android:id="@+id/seeMoreButton"
-            android:text="See more"
+            android:text="@string/see_more"
             android:textColor="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

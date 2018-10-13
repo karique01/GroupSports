@@ -1,0 +1,259 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pe.edu.upc.groupsports.fragments.FodaFragment">
+
+    <android.support.v7.widget.CardView
+        app:layout_constraintStart_toStartOf="@id/weaknessRecyclerView"
+        app:layout_constraintEnd_toEndOf="@id/weaknessRecyclerView"
+        app:layout_constraintTop_toTopOf="@id/weaknessTextView"
+        app:layout_constraintBottom_toBottomOf="@id/weaknessRecyclerView"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/weaknessTextView"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingTop="@dimen/default_margin"
+        android:text="@string/weakness"
+        app:layout_constraintBottom_toTopOf="@+id/weaknessRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageButton
+        android:id="@+id/addWeaknessImageButton"
+        app:srcCompat="@drawable/ic_add_accent"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:paddingTop="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingBottom="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="@id/weaknessRecyclerView"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/weaknessRecyclerView"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/weaknessRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/default_margin"
+        app:layout_constraintBottom_toTopOf="@+id/strengthsTextView"
+        app:layout_constraintEnd_toStartOf="@+id/threatRecyclerView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weaknessTextView"
+        android:paddingBottom="@dimen/default_margin"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/weaknessConstraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        app:layout_constraintStart_toStartOf="@id/weaknessRecyclerView"
+        app:layout_constraintEnd_toEndOf="@id/weaknessRecyclerView"
+        app:layout_constraintTop_toTopOf="@id/weaknessRecyclerView"
+        app:layout_constraintBottom_toBottomOf="@id/weaknessRecyclerView"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/errorImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/weaknessmessageTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_history" />
+
+        <TextView
+            android:id="@+id/weaknessmessageTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_foda_items"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/errorImageView" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.CardView
+        app:layout_constraintStart_toStartOf="@id/threatRecyclerView"
+        app:layout_constraintEnd_toEndOf="@id/threatRecyclerView"
+        app:layout_constraintTop_toTopOf="@id/threatsTextView"
+        app:layout_constraintBottom_toBottomOf="@id/threatRecyclerView"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/threatsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingTop="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="@string/threats"
+        app:layout_constraintBottom_toTopOf="@+id/threatRecyclerView"
+        app:layout_constraintStart_toStartOf="@id/threatRecyclerView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageButton
+        android:id="@+id/addThreatImageButton"
+        app:srcCompat="@drawable/ic_add_accent"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:paddingTop="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingBottom="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="@id/threatRecyclerView"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/weaknessRecyclerView"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/threatRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintBottom_toTopOf="@+id/opportunitiesTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/weaknessRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/threatsTextView"
+        android:paddingBottom="@dimen/default_margin"/>
+
+    <android.support.v7.widget.CardView
+        app:layout_constraintStart_toStartOf="@id/strengthRecyclerView"
+        app:layout_constraintEnd_toEndOf="@id/strengthRecyclerView"
+        app:layout_constraintTop_toTopOf="@id/strengthsTextView"
+        app:layout_constraintBottom_toBottomOf="@id/strengthRecyclerView"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/strengthsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingTop="@dimen/default_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="@string/strengths"
+        app:layout_constraintBottom_toTopOf="@+id/strengthRecyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weaknessRecyclerView" />
+
+    <ImageButton
+        android:id="@+id/addStrengthImageButton"
+        app:srcCompat="@drawable/ic_add_accent"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:paddingTop="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingBottom="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="@id/strengthRecyclerView"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/weaknessRecyclerView"
+        app:layout_constraintBottom_toTopOf="@id/strengthRecyclerView"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/strengthRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/opportunitiesRecyclerView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/strengthsTextView"
+        android:paddingBottom="@dimen/default_margin"/>
+
+    <android.support.v7.widget.CardView
+        app:layout_constraintStart_toStartOf="@id/opportunitiesRecyclerView"
+        app:layout_constraintEnd_toEndOf="@id/opportunitiesRecyclerView"
+        app:layout_constraintTop_toTopOf="@id/opportunitiesTextView"
+        app:layout_constraintBottom_toBottomOf="@id/opportunitiesRecyclerView"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <TextView
+        android:id="@+id/opportunitiesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingTop="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="@string/opportunities"
+        app:layout_constraintBottom_toTopOf="@+id/opportunitiesRecyclerView"
+        app:layout_constraintStart_toStartOf="@id/threatRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/threatRecyclerView" />
+
+    <ImageButton
+        android:id="@+id/addOportunityImageButton"
+        app:srcCompat="@drawable/ic_add_accent"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:paddingTop="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingBottom="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="@id/opportunitiesRecyclerView"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/weaknessRecyclerView"
+        app:layout_constraintBottom_toTopOf="@id/strengthRecyclerView"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/opportunitiesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/strengthRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/opportunitiesTextView"
+        android:paddingBottom="@dimen/default_margin"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -192,7 +192,7 @@ public class AddQuizActivity extends AppCompatActivity {
         Quiz quiz = new Quiz();
         quiz.setCoachId(session.getuserLoggedTypeId());
         quiz.setQuizTitle(titleEditText.getText().toString());
-        quiz.setDate(Funciones.formatDate(Funciones.getCurrentDate()));
+        quiz.setDate(Funciones.formatDateForAPI(Funciones.getCurrentDate()));
         quiz.setAvailable(true);
 
         JSONObject jsonObjectQuizDTO = new JSONObject();

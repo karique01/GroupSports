@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -25,6 +27,7 @@ import org.json.JSONObject;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
 import pe.edu.upc.groupsports.network.GroupSportsApiService;
+import pe.edu.upc.groupsports.util.Funciones;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private Context context;
@@ -40,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ImageView backImageButton;
     private Button loginConfirmedButton;
     private SessionManager sessionManager;
+    private ProgressBar loginWaitProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startLoginBackgroundView = findViewById(R.id.startLoginBackgroundView);
         backImageButton = findViewById(R.id.backImageButton);
         loginConfirmedButton = findViewById(R.id.loginConfirmedButton);
+        loginWaitProgressBar = findViewById(R.id.loginWaitProgressBar);
+        loginWaitProgressBar.setVisibility(View.GONE);
     }
 
     private void initializeVideoView(){
@@ -106,14 +112,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 deactivateLoginMode();
                 break;
             case R.id.loginConfirmedButton:
-                login();
+                login(view);
                 break;
             default:
                     break;
         }
     }
 
-    private void login() {
+    private void login(final View view) {
+        if (usernameEditText.getText().length() == 0 || passwordEditText.getText().length() == 0){
+            Funciones.hideKeyboardFromActivity(this);
+            enableLoginButton(view,"No deje los campos vacios");
+            return;
+        }
+
+        Funciones.hideKeyboardFromActivity(this);
+        loginConfirmedButton.setEnabled(false);
+        loginConfirmedButton.setText("");
+        loginWaitProgressBar.setVisibility(View.VISIBLE);
+        loginWaitProgressBar.bringToFront();
+
         AndroidNetworking.post(GroupSportsApiService.LOGIN_URL)
                 .setContentType("application/x-www-form-urlencoded")
                 .addBodyParameter("grant_type","password")
@@ -148,9 +166,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onError(ANError anError) {
-
+                        if (anError.getErrorCode() == 400) {
+                            enableLoginButton(view, "Credenciales invalidas");
+                        }
+                        else {
+                            enableLoginButton(view,"Error de conexión");
+                        }
                     }
                 });
+    }
+
+    void enableLoginButton(View view, String mensaje){
+        Snackbar.make(view, mensaje,Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .show();
+
+        loginConfirmedButton.setEnabled(true);
+        loginConfirmedButton.setText(R.string.log_in);
+        loginWaitProgressBar.setVisibility(View.GONE);
     }
 
     private void startMainActivity(String userType){
@@ -187,6 +220,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void deactivateLoginMode(){
+        Funciones.hideKeyboardFromActivity(this);
         logInModeActivatedFlag = false;
         startLoginBackgroundView.setVisibility(View.GONE);
         usernameTextInputLayout.setVisibility(View.GONE);

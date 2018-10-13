@@ -75,7 +75,7 @@ public class LastUpdateFragment extends Fragment {
         announcementAdapter.setOnDeleteAnnouncementListener(new AnnouncementAdapter.OnDeleteAnnouncementListener() {
             @Override
             public void deleteAnnouncement(String announcementId) {
-                deleteAnnouncementFromAthlete(announcementId);
+                showDeleteAnnouncementWarningDialog(announcementId);
             }
         });
         announcementAdapter.setOnShowDetailsAnnouncementListener(new AnnouncementAdapter.OnShowDetailsAnnouncementListener() {
@@ -128,6 +128,28 @@ public class LastUpdateFragment extends Fragment {
                         noAthletesConstraintLayout.setVisibility(View.VISIBLE);
                     }
                 });
+    }
+
+    private void showDeleteAnnouncementWarningDialog(final String announcementId){
+        final WarningDialog warningDialog = new WarningDialog(
+                context,
+                "Eliminar anuncio",
+                "¿Está seguro que desea eliminar este anuncio?\n\nSe eliminará el anuncio de forma permanente para su visualización"
+        );
+        warningDialog.show();
+        warningDialog.setOnOkButtonClickListener(new WarningDialog.OnOkButtonClickListener() {
+            @Override
+            public void OnOkButtonClicked() {
+                warningDialog.dismiss();
+                deleteAnnouncementFromAthlete(announcementId);
+            }
+        });
+        warningDialog.setOnCancelButtonClickListener(new WarningDialog.OnCancelButtonClickListener() {
+            @Override
+            public void OnCancelButtonClicked() {
+                warningDialog.dismiss();
+            }
+        });
     }
 
     private void deleteAnnouncementFromAthlete(String announcementId) {

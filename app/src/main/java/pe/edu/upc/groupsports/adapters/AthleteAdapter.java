@@ -1,5 +1,7 @@
 package pe.edu.upc.groupsports.adapters;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -62,9 +64,10 @@ public class AthleteAdapter extends RecyclerView.Adapter<AthleteAdapter.AthleteV
         holder.athleteCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AthleteDetailActivity.class);
+                Context context = view.getContext();
+                Intent intent = new Intent(context, AthleteDetailActivity.class);
                 intent.putExtras(athlete.toBundle());
-                view.getContext().startActivity(intent);
+                ((Activity)context).startActivityForResult(intent,Activity.RESULT_OK);
             }
         });
     }

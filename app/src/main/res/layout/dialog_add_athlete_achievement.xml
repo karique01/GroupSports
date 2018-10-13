@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/addAthleteTittleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_margin"
+        android:text="@string/add_achievement"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/descriptionTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginTop="30dp"
+        android:hint="@string/competition_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addAthleteTittleTextView">
+
+        <EditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text"
+            android:lines="1"
+            android:textSize="@dimen/text_input_size" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/achievementTypeConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_gradient_primary_accent_reverse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginStart="@dimen/big_margin"
+        app:layout_constraintTop_toBottomOf="@id/descriptionTextInputLayout"
+        android:visibility="visible">
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/achievementTypeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:spinnerMode="dropdown"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/placeTextInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:hint="@string/place"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/big_margin"
+        app:layout_constraintEnd_toStartOf="@+id/resultDistanceTextInputLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/achievementTypeConstraintLayout">
+
+        <EditText
+            android:id="@+id/placeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="3"
+            android:textSize="@dimen/text_input_size" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/resultDistanceTextInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:hint="@string/distance_in_meters"
+        android:layout_marginEnd="@dimen/big_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/placeTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/achievementTypeConstraintLayout"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/resultDistanceEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:maxLength="7"
+            android:textSize="@dimen/text_input_size" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/chronometerConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/placeTextInputLayout">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/hourTextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/big_margin"
+            android:hint="@string/hours"
+            app:layout_constraintEnd_toStartOf="@+id/minuteTextInputLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/hourEditText"
+                android:text="0"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="number"
+                android:lines="1"
+                android:textSize="@dimen/text_input_size"
+                android:nextFocusForward="@id/minuteEditText"
+                android:imeOptions="actionNext"
+                android:maxLength="3"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/minuteTextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/minutes"
+            app:layout_constraintEnd_toStartOf="@+id/secondsTextInputLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/hourTextInputLayout">
+
+            <EditText
+                android:id="@+id/minuteEditText"
+                android:text="0"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="number"
+                android:lines="1"
+                android:textSize="@dimen/text_input_size"
+                android:nextFocusForward="@id/secondsEditText"
+                android:imeOptions="actionNext"
+                android:maxLength="3"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/secondsTextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/seconds"
+            app:layout_constraintEnd_toStartOf="@+id/millisecondsTextInputLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/minuteTextInputLayout">
+
+            <EditText
+                android:id="@+id/secondsEditText"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="number"
+                android:lines="1"
+                android:textSize="@dimen/text_input_size"
+                android:nextFocusForward="@id/millisecondsEditText"
+                android:imeOptions="actionNext"
+                android:maxLength="3"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/millisecondsTextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/milliseconds"
+            android:layout_marginEnd="@dimen/big_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/secondsTextInputLayout">
+
+            <EditText
+                android:id="@+id/millisecondsEditText"
+                android:text="0"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="number"
+                android:lines="1"
+                android:textSize="@dimen/text_input_size"
+                android:nextFocusForward="@id/metersAutoCompleteTextView"
+                android:imeOptions="actionNext"
+                android:maxLength="3"/>
+        </android.support.design.widget.TextInputLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/okButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginTop="@dimen/big_margin"
+        android:text="@string/add"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chronometerConstraintLayout" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
+        android:text="@string/cancel"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@id/okButton"
+        app:layout_constraintTop_toBottomOf="@id/chronometerConstraintLayout" />
+
+</android.support.constraint.ConstraintLayout>

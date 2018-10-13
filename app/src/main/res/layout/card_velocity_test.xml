@@ -8,7 +8,7 @@
     android:layout_marginEnd="6dp">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/mesocycleCardView"
+        android:id="@+id/speedCardView"
         android:layout_width="0dp"
         android:layout_height="70dp"
         app:cardCornerRadius="6dp"
@@ -24,6 +24,14 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/timerImageView"
+                app:srcCompat="@drawable/ic_timer_accent"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="@dimen/default_margin"/>
             <TextView
                 android:id="@+id/resultTextView"
                 android:text="14.3"
@@ -33,6 +41,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/timerImageView"
+                android:layout_margin="@dimen/default_margin"/>
+            <ImageView
+                android:id="@+id/distanceImageView"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                app:srcCompat="@drawable/ic_directions_run_accent"
+                app:layout_constraintTop_toBottomOf="@id/timerImageView"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_margin="@dimen/default_margin"/>
             <TextView
@@ -41,11 +57,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/resultTextView"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/distanceImageView"
                 android:layout_margin="@dimen/default_margin"/>
             <TextView
-                android:id="@+id/typeTextView"
-                android:text="Velocidad"
+                android:id="@+id/dateTextView"
+                android:text="2018/08/12"
                 android:textStyle="italic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
