@@ -37,6 +37,7 @@ import pe.edu.upc.groupsports.models.Athlete;
 import pe.edu.upc.groupsports.models.AthleteFodaItem;
 import pe.edu.upc.groupsports.models.BinnacleDetail;
 import pe.edu.upc.groupsports.network.GroupSportsApiService;
+import pe.edu.upc.groupsports.util.Funciones;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -233,6 +234,7 @@ public class FodaFragment extends Fragment {
             jsonObjectFodaItem.put("fodaItemValue", value);
             jsonObjectFodaItem.put("fodaItemTypeId", fodaItemType);
             jsonObjectFodaItem.put("athleteId", currentAthlete.getId());
+            jsonObjectFodaItem.put("date", Funciones.formatDateForAPI(Funciones.getCurrentDate()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -294,6 +296,7 @@ public class FodaFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("fodaItemValue",value);
+            jsonObject.put("date",Funciones.formatDateForAPI(athleteFodaItem.getDate()));
         } catch (JSONException e) {
             e.printStackTrace();
         }

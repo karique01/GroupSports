@@ -170,7 +170,7 @@ public class AthleteStrengthTestFragment extends Fragment {
                 .addHeaders("Authorization", "bearer " + session.getaccess_token())
                 .addHeaders("Content-Type", "application/json")
                 .setPriority(Priority.HIGH)
-                .setTag(getString(R.string.app_name))
+                //.setTag(getString(R.string.app_name))
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override

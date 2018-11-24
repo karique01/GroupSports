@@ -389,8 +389,8 @@ public class AthleteDetailActivity extends AppCompatActivity {
         addShotPutTestDialog.show();
         addShotPutTestDialog.setOnOkButtonClickListener(new AddShotPutTestDialog.OnOkButtonClickListener() {
             @Override
-            public void OnOkButtonClicked(String resultMeters, String weightBall, String shotPutType) {
-                uploadShotPutTest(resultMeters, weightBall, shotPutType);
+            public void OnOkButtonClicked(String resultMeters, String weightBall, String shotPutType, String testDate) {
+                uploadShotPutTest(resultMeters, weightBall, shotPutType, testDate);
                 addShotPutTestDialog.dismiss();
             }
         });
@@ -402,7 +402,7 @@ public class AthleteDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadShotPutTest(String resultMeters, String weightBall, String shotPutType){
+    private void uploadShotPutTest(String resultMeters, String weightBall, String shotPutType, String testDate){
         JSONObject jsonObjectShotPutTest = new JSONObject();
 
         try {
@@ -411,7 +411,7 @@ public class AthleteDetailActivity extends AppCompatActivity {
             jsonObjectShotPutTest.put("shotPutTypeId", shotPutType);
             jsonObjectShotPutTest.put("coachId", session.getuserLoggedTypeId());
             jsonObjectShotPutTest.put("athleteId", currentAthlete.getId());
-            jsonObjectShotPutTest.put("date", Funciones.formatDateForAPIWithHour(Funciones.getCurrentDate()));
+            jsonObjectShotPutTest.put("date", testDate);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -517,14 +517,14 @@ public class AthleteDetailActivity extends AppCompatActivity {
         });
         addSpeedTestDialog.setOnOkButtonClickListener(new AddSpeedTestDialog.OnOkButtonClickListener() {
             @Override
-            public void OnOkButtonClicked(String hours, String minutes, String seconds, String milliseconds, String meters) {
-                uploadSpedTest(hours, minutes, seconds, milliseconds, meters);
+            public void OnOkButtonClicked(String hours, String minutes, String seconds, String milliseconds, String meters, String testDate) {
+                uploadSpedTest(hours, minutes, seconds, milliseconds, meters, testDate);
                 addSpeedTestDialog.dismiss();
             }
         });
     }
 
-    private void uploadSpedTest(String hours, String minutes, String seconds, String milliseconds, String meters) {
+    private void uploadSpedTest(String hours, String minutes, String seconds, String milliseconds, String meters, String testDate) {
 
         JSONObject jsonObjectSpeedTest = new JSONObject();
 
@@ -536,7 +536,7 @@ public class AthleteDetailActivity extends AppCompatActivity {
             jsonObjectSpeedTest.put("meters", meters);
             jsonObjectSpeedTest.put("coachId", session.getuserLoggedTypeId());
             jsonObjectSpeedTest.put("athleteId", currentAthlete.getId());
-            jsonObjectSpeedTest.put("date", Funciones.formatDateForAPI(Funciones.getCurrentDate()));
+            jsonObjectSpeedTest.put("date", testDate);
         } catch (JSONException e) {
             e.printStackTrace();
         }

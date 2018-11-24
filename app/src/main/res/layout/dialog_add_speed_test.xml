@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/addAthleteTittleTextView"
-        android:text="@string/speed_test"
-        android:textSize="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_margin"
+        android:text="@string/speed_test"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="@dimen/big_margin"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <android.support.constraint.ConstraintLayout
@@ -38,14 +37,14 @@
 
             <EditText
                 android:id="@+id/hourEditText"
-                android:text="0"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:lines="1"
-                android:textSize="@dimen/text_input_size"
                 android:nextFocusForward="@id/minuteEditText"
-                android:imeOptions="actionNext"/>
+                android:text="0"
+                android:textSize="@dimen/text_input_size" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -59,14 +58,14 @@
 
             <EditText
                 android:id="@+id/minuteEditText"
-                android:text="0"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:lines="1"
-                android:textSize="@dimen/text_input_size"
                 android:nextFocusForward="@id/secondsEditText"
-                android:imeOptions="actionNext"/>
+                android:text="0"
+                android:textSize="@dimen/text_input_size" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -80,85 +79,113 @@
 
             <EditText
                 android:id="@+id/secondsEditText"
-                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:lines="1"
-                android:textSize="@dimen/text_input_size"
                 android:nextFocusForward="@id/millisecondsEditText"
-                android:imeOptions="actionNext"/>
+                android:text=""
+                android:textSize="@dimen/text_input_size" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/millisecondsTextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/milliseconds"
             android:layout_marginEnd="@dimen/big_margin"
+            android:hint="@string/milliseconds"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/secondsTextInputLayout">
 
             <EditText
                 android:id="@+id/millisecondsEditText"
-                android:text="0"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:lines="1"
-                android:textSize="@dimen/text_input_size"
                 android:nextFocusForward="@id/metersAutoCompleteTextView"
-                android:imeOptions="actionNext"/>
+                android:text="0"
+                android:textSize="@dimen/text_input_size" />
         </android.support.design.widget.TextInputLayout>
 
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/metersTextInputLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/big_margin"
         android:layout_marginStart="@dimen/big_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chronometerConstraintLayout"
+        android:layout_marginTop="@dimen/default_margin"
         android:hint="@string/meters"
-        android:layout_marginTop="@dimen/default_margin">
+        app:layout_constraintEnd_toStartOf="@+id/startDateCarddView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chronometerConstraintLayout">
+
         <AutoCompleteTextView
             android:id="@+id/metersAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:textSize="@dimen/text_input_size"
+            android:dropDownHeight="120dp"
+            android:inputType="number"
             android:lines="1"
             android:text="100"
-            android:dropDownHeight="120dp"
-            android:inputType="number"/>
+            android:textSize="@dimen/text_input_size" />
     </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/startDateCarddView"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:hint="@string/meters"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/metersTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/chronometerConstraintLayout">
+
+        <TextView
+            android:id="@+id/startDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="@string/date_today"
+            android:textColor="@android:color/white" />
+    </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/okButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/big_margin"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginTop="@dimen/big_margin"
         android:text="@string/add"
         android:textColor="@color/colorAccent"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_marginTop="@dimen/big_margin"
-        app:layout_constraintTop_toBottomOf="@id/metersTextInputLayout"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="@dimen/big_margin"
-        android:layout_marginBottom="@dimen/big_margin"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/metersTextInputLayout" />
 
     <Button
         android:id="@+id/cancelButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
         android:text="@string/cancel"
         android:textColor="@color/colorAccent"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_marginTop="@dimen/big_margin"
-        app:layout_constraintTop_toBottomOf="@id/metersTextInputLayout"
-        app:layout_constraintEnd_toStartOf="@id/okButton" />
+        app:layout_constraintEnd_toStartOf="@id/okButton"
+        app:layout_constraintTop_toBottomOf="@id/metersTextInputLayout" />
 
 </android.support.constraint.ConstraintLayout>

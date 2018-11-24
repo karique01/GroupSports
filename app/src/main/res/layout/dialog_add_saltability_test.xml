@@ -1,93 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/addAthleteTittleTextView"
-        android:text="@string/add_saltability_test"
-        android:textSize="25sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/big_margin"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/add_saltability_test"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/distanceTextInputLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="@dimen/big_margin"
         android:layout_marginStart="@dimen/big_margin"
-        app:layout_constraintTop_toBottomOf="@id/addAthleteTittleTextView"
+        android:layout_marginTop="30dp"
+        android:hint="@string/distance_in_meters"
+        app:layout_constraintEnd_toStartOf="@+id/startDateCarddView"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="@string/distance_in_meters">
+        app:layout_constraintTop_toBottomOf="@id/addAthleteTittleTextView">
+
         <EditText
             android:id="@+id/distanceEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:textSize="@dimen/text_input_size"
+            android:inputType="numberDecimal"
             android:lines="1"
-            android:inputType="numberDecimal"/>
+            android:textSize="@dimen/text_input_size" />
     </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/startDateCarddView"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:hint="@string/meters"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/distanceTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/addAthleteTittleTextView">
+
+        <TextView
+            android:id="@+id/startDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="@string/date_today"
+            android:textColor="@android:color/white" />
+    </android.support.v7.widget.CardView>
 
     <TextView
         android:id="@+id/mesocyleTypeTextview"
-        android:text="@string/saltability_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/distanceTextInputLayout"
+        android:layout_marginStart="@dimen/big_margin"
         android:layout_marginTop="@dimen/big_margin"
-        android:layout_marginStart="@dimen/big_margin"/>
+        android:text="@string/saltability_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/distanceTextInputLayout" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/mesocycleTypeConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_gradient_primary_accent_reverse"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginStart="@dimen/big_margin"
         android:layout_marginEnd="@dimen/big_margin"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:background="@drawable/selector_gradient_primary_accent_reverse"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mesocyleTypeTextview"
-        android:visibility="visible">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mesocyleTypeTextview">
+
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/saltabilityTypeSpinner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:spinnerMode="dropdown"/>
+            android:spinnerMode="dropdown" />
     </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/okButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginTop="@dimen/big_margin"
         android:text="@string/add"
         android:textColor="@color/colorAccent"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_marginTop="@dimen/big_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:layout_marginBottom="@dimen/default_margin"
-        app:layout_constraintTop_toBottomOf="@id/mesocycleTypeConstraintLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/mesocycleTypeConstraintLayout" />
 
     <Button
         android:id="@+id/cancelButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/big_margin"
         android:text="@string/cancel"
         android:textColor="@color/colorAccent"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_marginTop="@dimen/big_margin"
-        app:layout_constraintTop_toBottomOf="@id/mesocycleTypeConstraintLayout"
-        app:layout_constraintEnd_toStartOf="@id/okButton"/>
+        app:layout_constraintEnd_toStartOf="@id/okButton"
+        app:layout_constraintTop_toBottomOf="@id/mesocycleTypeConstraintLayout" />
 
 </android.support.constraint.ConstraintLayout>

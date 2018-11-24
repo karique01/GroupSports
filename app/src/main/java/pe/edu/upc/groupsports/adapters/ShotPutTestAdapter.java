@@ -11,6 +11,7 @@ import java.util.List;
 
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.models.ShotPutTest;
+import pe.edu.upc.groupsports.util.Funciones;
 
 /**
  * Created by karique on 3/05/2018.
@@ -50,6 +51,7 @@ public class ShotPutTestAdapter extends RecyclerView.Adapter<ShotPutTestAdapter.
                 return true;
             }
         });
+        holder.dateTextView.setText(Funciones.formatDate(shotPutTest.getDate()));
     }
 
     @Override
@@ -62,12 +64,14 @@ public class ShotPutTestAdapter extends RecyclerView.Adapter<ShotPutTestAdapter.
         TextView ballWeightTextView;
         TextView shotPutTypeTextView;
         CardView shotPutCardView;
+        TextView dateTextView;
         public ShotPutTestViewHolder(View itemView) {
             super(itemView);
             resultTextView = (TextView) itemView.findViewById(R.id.resultTextView);
             ballWeightTextView = (TextView) itemView.findViewById(R.id.ballWeightTextView);
             shotPutTypeTextView = (TextView) itemView.findViewById(R.id.shotPutTypeTextView);
             shotPutCardView = (CardView) itemView.findViewById(R.id.shotPutCardView);
+            dateTextView = (TextView) itemView.findViewById(R.id.dateTextView);
         }
     }
 

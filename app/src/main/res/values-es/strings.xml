@@ -120,12 +120,12 @@
     <string name="weight_after_session">Peso después (kg)</string>
     <string name="there_are_no_weight_test_for_this_session">No hay ningún test de peso para esta sesión</string>
     <string name="add_weight_test">Agregar test de peso</string>
-    <string name="wingspan">Envergadura (m)</string>
+    <string name="wingspan">Envergadura (metros)</string>
     <string name="body_fat">% Grasa corporal</string>
     <string name="size">Talla</string>
     <string name="date">Fecha de test</string>
     <string name="body_lean">% Magra corporal</string>
-    <string name="add_anthropometric_test">Agregar test antropometrico</string>
+    <string name="add_anthropometric_test">Test antropometrico</string>
     <string name="size_s_m_l">Talla (S, M, L)</string>
     <string name="wingspan_2">Envergadura</string>
     <string name="add_saltability_test">Agregar test de saltabilidad</string>
@@ -152,6 +152,10 @@
     <string name="add_cv_detail">Agregar entrada al CV</string>
     <string name="specialty_title">Titulo de la especialidad</string>
     <string name="no_achievements_added">No hay logros agregados</string>
+    <string name="performance">Rendimiento</string>
+    <string name="date_today">Fecha (Hoy)</string>
+    <string name="no_athletes_for_this">No hay atletas para este caso</string>
+    <string name="my_partners">Mis compañeros</string>
 
     <string-array name="Intensities">
         <item>1</item>

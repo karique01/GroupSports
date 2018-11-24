@@ -12,6 +12,7 @@ import java.util.List;
 
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.models.AthleteFodaItem;
+import pe.edu.upc.groupsports.util.Funciones;
 
 /**
  * Created by karique on 3/05/2018.
@@ -59,6 +60,7 @@ public class AthleteFodaAdapter extends RecyclerView.Adapter<AthleteFodaAdapter.
                 }
             }
         });
+        holder.dateTextView.setText(Funciones.formatDate(athleteFodaItem.getDate()));
     }
 
     @Override
@@ -70,12 +72,14 @@ public class AthleteFodaAdapter extends RecyclerView.Adapter<AthleteFodaAdapter.
         TextView fodaItemTextView;
         ImageButton deleteImageButton;
         ImageButton editImageButton;
+        TextView dateTextView;
 
         public AthleteFodaViewHolder(View itemView) {
             super(itemView);
             fodaItemTextView = (TextView) itemView.findViewById(R.id.fodaItemTextView);
             deleteImageButton = (ImageButton) itemView.findViewById(R.id.deleteImageButton);
             editImageButton = (ImageButton) itemView.findViewById(R.id.editImageButton);
+            dateTextView = (TextView) itemView.findViewById(R.id.dateTextView);
         }
     }
 

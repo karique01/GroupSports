@@ -266,7 +266,7 @@ public class WeekDetailActivity extends AppCompatActivity {
         JSONObject jsonObjectWeekSession = new JSONObject();
 
         try {
-            jsonObjectWeekSession.put("sessionDay", Funciones.formatDateForAPI(currentDate));
+            jsonObjectWeekSession.put("sessionDay", Funciones.formatDateForAPI(currentDate));//2018-05-06
             jsonObjectWeekSession.put("shiftId", shiftId);
             jsonObjectWeekSession.put("weekId", currentWeek.getId());
             jsonObjectWeekSession.put("coachId", session.getuserLoggedTypeId());
@@ -342,9 +342,9 @@ public class WeekDetailActivity extends AppCompatActivity {
 
     private void refreshTodaySessions(){
         currentSessionWorksToday.clear();
-        currentSessionWorksToday.add(null);//mañana
-        currentSessionWorksToday.add(null);//tarde
-        currentSessionWorksToday.add(null);//noche
+        currentSessionWorksToday.add(null);//mañana = 0
+        currentSessionWorksToday.add(null);//tarde = 1
+        currentSessionWorksToday.add(null);//noche = 2
 
         //lleno las sesiones si no hay sesion registrada para un turno
         for (int i = 0; i < currentSessionWorksCurrentWeek.size(); i++) {

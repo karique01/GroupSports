@@ -86,12 +86,12 @@ public class RegisterAthleteActivity extends AppCompatActivity {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerAthlete();
+                validateRegisterAthlete();
             }
         });
     }
 
-    private void registerAthlete(){
+    private void validateRegisterAthlete(){
         if (userNameEditText.getText().length() == 0 ||
                 passwordEditText.getText().length() == 0 ||
                 firstNameEditText.getText().length() == 0 ||
@@ -102,59 +102,75 @@ public class RegisterAthleteActivity extends AppCompatActivity {
             Toast.makeText(this,"No deje campos vacios",Toast.LENGTH_LONG).show();
         }
         else {
-            JSONObject jsonObjectAthlete = new JSONObject();
-
-            try {
-
-                jsonObjectAthlete.put("username", userNameEditText.getText().toString());
-                jsonObjectAthlete.put("password", passwordEditText.getText().toString());
-                jsonObjectAthlete.put("userType", Constantes.USER_TYPE_ATLETA);
-                jsonObjectAthlete.put("firstName", firstNameEditText.getText().toString());
-                jsonObjectAthlete.put("lastName", lastNameEditText.getText().toString());
-                jsonObjectAthlete.put("cellPhone", cellPhoneEditText.getText().toString());
-                jsonObjectAthlete.put("address", addressEditText.getText().toString());
-                jsonObjectAthlete.put("emailAddress", emailEditText.getText().toString());
-                jsonObjectAthlete.put("birthDate", new java.sql.Date(birthDateCalendarView.getFirstSelectedDate().getTimeInMillis()));
-                int disciplineId = disciplineSpinner.getSelectedItemPosition() + 1;
-                jsonObjectAthlete.put("disciplineId", disciplineId);
-                jsonObjectAthlete.put(
-                        "disciplineName", disciplineId == Constantes.DISCIPLINE_VELOCISTA ?
-                                Constantes.DISCIPLINE_VELOCISTA_STR :
-                                Constantes.DISCIPLINE_SALTO_VALLA_STR
-                );
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+            String em = emailEditText.getText().toString();
+            if (em.contains("@")) {
+                if (em.substring(0, 1).equals("@") || em.substring(em.length() - 1, em.length()).equals("@")) {
+                    Toast.makeText(this, "El correo no debe comenzar o terminar con @", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    registerAthlete();
+                }
             }
-
-            AndroidNetworking.post(GroupSportsApiService.ATHLETES_URL)
-                    .addHeaders("Authorization", "bearer " + session.getaccess_token())
-                    .addHeaders("Content-Type", "application/json")
-                    .addJSONObjectBody(jsonObjectAthlete)
-                    .setPriority(Priority.HIGH)
-                    .setTag(getString(R.string.app_name))
-                    .build()
-                    .getAsJSONObject(new JSONObjectRequestListener() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                if (response.getString("response").equals("Usuario ya existe")){
-                                    Toast.makeText(mContext, "El nombre de usuario ya existe", Toast.LENGTH_LONG).show();
-                                }
-                                else {
-                                    alertaRegistroYAgraAEquipo(response);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void onError(ANError anError) {
-                            Toast.makeText(mContext, "Hubo un error al registrar al atleta", Toast.LENGTH_LONG).show();
-                        }
-                    });
+            else {
+                Toast.makeText(this, "El correo no contiene una arroba", Toast.LENGTH_LONG).show();
+            }
         }
+    }
+
+    private void registerAthlete(){
+
+        JSONObject jsonObjectAthlete = new JSONObject();
+
+        try {
+
+            jsonObjectAthlete.put("username", userNameEditText.getText().toString());
+            jsonObjectAthlete.put("password", passwordEditText.getText().toString());
+            jsonObjectAthlete.put("userType", Constantes.USER_TYPE_ATLETA);
+            jsonObjectAthlete.put("firstName", firstNameEditText.getText().toString());
+            jsonObjectAthlete.put("lastName", lastNameEditText.getText().toString());
+            jsonObjectAthlete.put("cellPhone", cellPhoneEditText.getText().toString());
+            jsonObjectAthlete.put("address", addressEditText.getText().toString());
+            jsonObjectAthlete.put("emailAddress", emailEditText.getText().toString());
+            jsonObjectAthlete.put("birthDate", new java.sql.Date(birthDateCalendarView.getFirstSelectedDate().getTimeInMillis()));
+            int disciplineId = disciplineSpinner.getSelectedItemPosition() + 1;
+            jsonObjectAthlete.put("disciplineId", disciplineId);
+            jsonObjectAthlete.put(
+                    "disciplineName", disciplineId == Constantes.DISCIPLINE_VELOCISTA ?
+                            Constantes.DISCIPLINE_VELOCISTA_STR :
+                            Constantes.DISCIPLINE_SALTO_VALLA_STR
+            );
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.post(GroupSportsApiService.ATHLETES_URL)
+                .addHeaders("Authorization", "bearer " + session.getaccess_token())
+                .addHeaders("Content-Type", "application/json")
+                .addJSONObjectBody(jsonObjectAthlete)
+                .setPriority(Priority.HIGH)
+                .setTag(getString(R.string.app_name))
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if (response.getString("response").equals("Usuario ya existe")){
+                                Toast.makeText(mContext, "El nombre de usuario ya existe", Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                alertaRegistroYAgraAEquipo(response);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(mContext, "Hubo un error al registrar al atleta", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void alertaRegistroYAgraAEquipo(JSONObject response){

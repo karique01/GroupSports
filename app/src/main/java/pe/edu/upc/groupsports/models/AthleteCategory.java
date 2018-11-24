@@ -11,6 +11,7 @@ public class AthleteCategory {
     private String edadFin;
     private String categoryApi;
     private int pictureId;
+    private boolean selected;
 
     public AthleteCategory() {
     }
@@ -20,6 +21,7 @@ public class AthleteCategory {
         this.edadFin = edadFin;
         this.pictureId = pictureId;
         this.categoryApi = categoryApi;
+        selected = false;
     }
 
     public String getCategoryApi() {
@@ -56,4 +58,11 @@ public class AthleteCategory {
         this.pictureId = pictureId;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 }

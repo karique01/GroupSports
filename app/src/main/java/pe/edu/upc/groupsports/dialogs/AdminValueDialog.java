@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
 import pe.edu.upc.groupsports.network.GroupSportsApiService;
+import pe.edu.upc.groupsports.util.Funciones;
 
 /**
  * Created by karique on 4/05/2018.
@@ -110,6 +111,7 @@ public class AdminValueDialog extends AlertDialog {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Funciones.hideKeyboardFromContext(context,view);
                 onCancelButtonClickListener.OnCancelButtonClicked();
             }
         });
@@ -120,6 +122,7 @@ public class AdminValueDialog extends AlertDialog {
             @Override
             public void onClick(View view) {
                 if (valueEditText.getText().length() > 0) {
+                    Funciones.hideKeyboardFromContext(context,view);
                     onOkButtonClickListener.OnOkButtonClicked(valueEditText.getText().toString());
                 }
                 else {

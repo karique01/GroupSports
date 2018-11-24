@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import pe.edu.upc.groupsports.R;
+import pe.edu.upc.groupsports.util.Funciones;
 
 /**
  * Created by karique on 4/05/2018.
@@ -101,6 +102,7 @@ public class AddAthleteAchievementDialog extends AlertDialog {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Funciones.hideKeyboardFromContext(context,view);
                 onCancelButtonClickListener.OnCancelButtonClicked();
             }
         });
@@ -133,6 +135,7 @@ public class AddAthleteAchievementDialog extends AlertDialog {
                             if (Integer.valueOf(minuteEditText.getText().toString()) <= 59) {
                                 if (Integer.valueOf(secondsEditText.getText().toString()) <= 59) {
                                     if (Integer.valueOf(millisecondsEditText.getText().toString()) <= 999) {
+                                        Funciones.hideKeyboardFromContext(context,view);
                                         onOkButtonClickListener.OnOkButtonClicked(
                                                 placeEditText.getText().toString(),
                                                 descriptionEditText.getText().toString(),

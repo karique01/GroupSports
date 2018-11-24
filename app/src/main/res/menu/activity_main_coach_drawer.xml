@@ -30,6 +30,10 @@
             android:id="@+id/nav_binnacle"
             android:icon="@drawable/ic_binnacle"
             android:title="@string/binnacle" />
+        <item
+            android:id="@+id/nav_performance"
+            android:icon="@drawable/ic_multiline_chart"
+            android:title="@string/performance" />
         <item android:title="@string/communicate">
             <menu>
                 <item

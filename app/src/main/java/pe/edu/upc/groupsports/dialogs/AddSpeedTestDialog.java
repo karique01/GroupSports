@@ -1,20 +1,24 @@
 package pe.edu.upc.groupsports.dialogs;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.os.SystemClock;
-import android.support.design.widget.TextInputLayout;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
@@ -24,7 +28,7 @@ import pe.edu.upc.groupsports.util.Funciones;
  * Created by karique on 4/05/2018.
  */
 
-public class AddSpeedTestDialog extends AlertDialog {
+public class AddSpeedTestDialog extends AlertDialog implements DatePickerDialog.OnDateSetListener{
     private Button cancelButton;
     private Button okButton;
 
@@ -38,6 +42,11 @@ public class AddSpeedTestDialog extends AlertDialog {
     EditText minuteEditText;
     EditText secondsEditText;
     EditText millisecondsEditText;
+
+    private CardView startDateCarddView;
+    String testDate;
+    private DatePickerDialog dpd;
+    private TextView startDateTextView;
 
     public AddSpeedTestDialog(Context context) {
         super(context);
@@ -73,7 +82,18 @@ public class AddSpeedTestDialog extends AlertDialog {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Funciones.hideKeyboardFromContext(context,view);
                 onCancelButtonClickListener.OnCancelButtonClicked();
+            }
+        });
+
+        startDateTextView = view.findViewById(R.id.startDateTextView);
+        testDate = Funciones.formatDateForAPI(Funciones.getCurrentDate());
+        startDateCarddView = view.findViewById(R.id.startDateCarddView);
+        startDateCarddView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCalendar(Funciones.getCurrentDate());
             }
         });
 
@@ -86,6 +106,29 @@ public class AddSpeedTestDialog extends AlertDialog {
         });
         setSpinnerData(view);
         setView(view);
+    }
+
+    public void showCalendar(Date date){
+        Calendar now = Calendar.getInstance();
+        if (dpd == null) {
+            dpd = DatePickerDialog.newInstance(
+                    this,
+                    date != null ? Funciones.getYearFromDate(date) : now.get(Calendar.YEAR),
+                    date != null ? Funciones.getMonthFromDate(date) : now.get(Calendar.MONTH),
+                    date != null ? Funciones.getDayFromDate(date) : now.get(Calendar.DAY_OF_MONTH)
+            );
+        } else {
+            dpd.initialize(
+                    this,
+                    date != null ? Funciones.getYearFromDate(date) : now.get(Calendar.YEAR),
+                    date != null ? Funciones.getMonthFromDate(date) : now.get(Calendar.MONTH),
+                    date != null ? Funciones.getDayFromDate(date) : now.get(Calendar.DAY_OF_MONTH)
+            );
+        }
+        dpd.setVersion(DatePickerDialog.Version.VERSION_1);
+        dpd.setAccentColor(Color.parseColor("#FF9800"));
+        dpd.setTitle("Dia del test");
+        dpd.show(((Activity) context).getFragmentManager(), "Datepickerdialog");
     }
 
     private void setSpinnerData(final View mView) {
@@ -134,12 +177,14 @@ public class AddSpeedTestDialog extends AlertDialog {
                         if (Integer.valueOf(minuteEditText.getText().toString()) <= 59) {
                             if (Integer.valueOf(secondsEditText.getText().toString()) <= 59) {
                                 if (Integer.valueOf(millisecondsEditText.getText().toString()) <= 999) {
+                                    Funciones.hideKeyboardFromContext(context,view);
                                     onOkButtonClickListener.OnOkButtonClicked(
                                             hourEditText.getText().toString(),
                                             minuteEditText.getText().toString(),
                                             secondsEditText.getText().toString(),
                                             millisecondsEditText.getText().toString(),
-                                            metersAutoCompleteTextView.getText().toString()
+                                            metersAutoCompleteTextView.getText().toString(),
+                                            testDate
                                     );
                                 }
                                 else {
@@ -168,11 +213,18 @@ public class AddSpeedTestDialog extends AlertDialog {
         }
     }
 
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        testDate = year+"-"+(++monthOfYear)+"-"+dayOfMonth;
+        String dateFormated = dayOfMonth+"/"+String.format("%02d",monthOfYear)+"/"+year;
+        startDateTextView.setText(dateFormated);
+    }
+
     public interface OnCancelButtonClickListener {
         void OnCancelButtonClicked();
     }
     public interface OnOkButtonClickListener {
-        void OnOkButtonClicked(String hours, String minutes, String seconds, String milliseconds, String meters);
+        void OnOkButtonClicked(String hours, String minutes, String seconds, String milliseconds, String meters, String testDate);
     }
 
     public OnCancelButtonClickListener onCancelButtonClickListener;

@@ -38,6 +38,7 @@ import pe.edu.upc.groupsports.Session.SessionManager;
 import pe.edu.upc.groupsports.dialogs.AddAnnouncementDialog;
 import pe.edu.upc.groupsports.dialogs.AddAthleteDialog;
 import pe.edu.upc.groupsports.fragments.AssistanceFragment;
+import pe.edu.upc.groupsports.fragments.AthletePerformancesFragment;
 import pe.edu.upc.groupsports.fragments.AthletesFragment;
 import pe.edu.upc.groupsports.fragments.BinnacleFragment;
 import pe.edu.upc.groupsports.fragments.CategoriesFragment;
@@ -57,6 +58,7 @@ public class MainCoachActivity extends AppCompatActivity
     public static int MY_ANNOUNCES_FRAGMENT_SELECTED = 4;
     public static int MY_BINNACLES_FRAGMENT_SELECTED = 5;
     public static int MY_QUIZ_FRAGMENT_SELECTED = 6;
+    public static int MY_PERFORMANCES_FRAGMENT_SELECTED = 7;
 
     SessionManager sessionManager;
     Context context;
@@ -364,6 +366,11 @@ public class MainCoachActivity extends AppCompatActivity
             updateFabDial(id);
             return getCoachMyQuizzesFragment();
         }
+        else if (id == R.id.nav_performance) {
+            changeToolbarText("Rendimiento");
+            updateFabDial(id);
+            return new AthletePerformancesFragment();
+        }
 
         return null;
     }
@@ -461,6 +468,11 @@ public class MainCoachActivity extends AppCompatActivity
             speedDialView.hide();
             speedDialView.show();
             nav_menu_selected = MY_QUIZ_FRAGMENT_SELECTED;
+        }
+        else if (id == R.id.nav_performance){
+            speedDialView.clearActionItems();
+            speedDialView.hide();
+            nav_menu_selected = MY_PERFORMANCES_FRAGMENT_SELECTED;
         }
     }
 

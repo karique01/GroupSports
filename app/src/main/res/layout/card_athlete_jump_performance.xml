@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:id="@+id/athleteSpeedPerformanceCardView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="6dp"
+    android:layout_marginBottom="@dimen/default_margin"
+    app:cardElevation="0dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/athleteCircleImageView"
+            android:src="@drawable/athlete"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="10.5dp"
+            android:layout_marginBottom="10.5dp"/>
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:text="Pablo Perez"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/athleteCircleImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="11dp"/>
+
+        <TextView
+            android:id="@+id/usernameTextView"
+            android:text="PabloAtleta"
+            android:textSize="11sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/athleteCircleImageView"
+            app:layout_constraintTop_toBottomOf="@id/nameTextView"
+            android:layout_margin="@dimen/default_margin"/>
+
+        <TextView
+            android:id="@+id/mediaTextView"
+            android:text="00:00:15,142"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/mediaImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="@dimen/default_margin"/>
+
+        <ImageView
+            android:id="@+id/mediaImageView"
+            app:srcCompat="@drawable/ic_average_accent"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="@dimen/default_margin"/>
+
+        <TextView
+            android:id="@+id/bestMarkTextView"
+            android:text="00:00:16,302"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/starImageView"
+            app:layout_constraintTop_toBottomOf="@id/mediaTextView"
+            android:layout_margin="@dimen/default_margin"/>
+
+        <ImageView
+            android:id="@+id/starImageView"
+            app:srcCompat="@drawable/ic_star_accent"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mediaTextView"
+            android:layout_margin="@dimen/default_margin"/>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

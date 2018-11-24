@@ -290,5 +290,9 @@
     <string name="add_cv_detail">Add CV detail</string>
     <string name="specialty_title">Specialty title</string>
     <string name="no_achievements_added">No achievements added</string>
+    <string name="performance">Performance</string>
+    <string name="date_today">Date (Today)</string>
+    <string name="no_athletes_for_this">No athletes for this</string>
+    <string name="my_partners">My partners</string>
 
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -26,12 +25,15 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/mesocycleTypeConstraintLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/big_margin"
         android:background="@drawable/selector_gradient_primary_accent_reverse"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/startDateCarddView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mesocyleTypeTextview">
 
@@ -42,6 +44,30 @@
             android:spinnerMode="dropdown" />
     </android.support.constraint.ConstraintLayout>
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/startDateCarddView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:hint="@string/meters"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mesocycleTypeConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@id/mesocyleTypeTextview">
+
+        <TextView
+            android:id="@+id/startDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="@string/date_today"
+            android:textColor="@android:color/white" />
+    </android.support.v7.widget.CardView>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/weightTextInputLayout"
@@ -58,10 +84,10 @@
         <EditText
             android:id="@+id/weightEditText"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
             android:lines="1"
-            android:textSize="@dimen/text_input_size"
-            android:inputType="numberDecimal"/>
+            android:textSize="@dimen/text_input_size" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -78,19 +104,19 @@
         <EditText
             android:id="@+id/wingspanEditText"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
             android:lines="1"
-            android:textSize="@dimen/text_input_size"
-            android:inputType="numberDecimal"/>
+            android:textSize="@dimen/text_input_size" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/bodyFatPercentageTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/big_margin"
         android:layout_marginTop="@dimen/default_margin"
         android:hint="@string/body_fat"
-        android:layout_marginEnd="@dimen/big_margin"
         app:layout_constraintEnd_toStartOf="@+id/leanBodyPercentageTextInputLayout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,11 +125,11 @@
         <EditText
             android:id="@+id/bodyFatPercentageEditText"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
             android:lines="1"
-            android:maxLength="3"
-            android:textSize="@dimen/text_input_size"
-            android:inputType="numberDecimal"/>
+            android:maxLength="4"
+            android:textSize="@dimen/text_input_size" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -120,11 +146,11 @@
         <EditText
             android:id="@+id/leanBodyPercentageEditText"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
             android:lines="1"
-            android:maxLength="2"
-            android:textSize="@dimen/text_input_size"
-            android:inputType="numberDecimal"/>
+            android:maxLength="4"
+            android:textSize="@dimen/text_input_size" />
     </android.support.design.widget.TextInputLayout>
 
     <Button

@@ -148,6 +148,12 @@ public class GroupSportsApiService {
     public static String CURRICULUM_DETAILS_BY_COACH(String coachId) {
         return COACHS_URL + coachId + "/CoachCurriculumDetails/";
     }
+    public static String SPEED_PERFORMANCES_BY_COACH_BY_METERS(String coachId, String meters) {
+        return COACHS_URL + coachId + "/AthletesSpeedPerformance/" + meters;
+    }
+    public static String JUMP_PERFORMANCES_BY_COACH_BY_JUMPTESTTYPEID(String coachId, String jumpTestTypeId) {
+        return COACHS_URL + coachId + "/AthletesSaltabilityPerformance/" + jumpTestTypeId;
+    }
 }
 
 

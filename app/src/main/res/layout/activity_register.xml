@@ -60,7 +60,9 @@
                     android:textSize="@dimen/text_input_size"
                     android:hint="@string/username_desc"
                     android:lines="1"
-                    android:inputType="textPersonName"/>
+                    android:digits="abcdefghijklmnñopqrstuvwxysABCDEFGHIJKLMNÑOPQRSTUVWXYZ123456789"
+                    android:inputType="textPersonName|textCapWords"
+                    android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -70,15 +72,18 @@
                 android:layout_margin="@dimen/big_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/userNameTextInputLayout">
+                app:layout_constraintTop_toBottomOf="@id/userNameTextInputLayout"
+                android:hint="@string/password"
+                app:passwordToggleEnabled="true">
                 <EditText
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="@dimen/text_input_size"
-                    android:hint="@string/password"
                     android:lines="1"
-                    android:inputType="textPassword"/>
+                    android:digits="abcdefghijklmnñopqrstuvwxysABCDEFGHIJKLMNÑOPQRSTUVWXYZ123456789"
+                    android:inputType="textPersonName|textCapWords|textPassword"
+                    android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -96,7 +101,9 @@
                     android:textSize="@dimen/text_input_size"
                     android:hint="@string/first_name"
                     android:lines="1"
-                    android:inputType="textPersonName"/>
+                    android:digits="abcdefghijklmnñopqrstuvwxysABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
+                    android:inputType="textCapWords"
+                    android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -114,7 +121,9 @@
                     android:textSize="@dimen/text_input_size"
                     android:hint="@string/last_name"
                     android:lines="1"
-                    android:inputType="textPersonName"/>
+                    android:digits="abcdefghijklmnñopqrstuvwxysABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
+                    android:inputType="textCapWords"
+                    android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -132,7 +141,8 @@
                     android:textSize="@dimen/text_input_size"
                     android:hint="@string/cellphone_number"
                     android:lines="1"
-                    android:inputType="phone"/>
+                    android:inputType="number"
+                    android:maxLength="30"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -150,7 +160,8 @@
                     android:textSize="@dimen/text_input_size"
                     android:hint="@string/address"
                     android:lines="1"
-                    android:inputType="textPostalAddress"/>
+                    android:inputType="textPostalAddress"
+                    android:maxLength="500"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -168,7 +179,9 @@
                     android:textSize="@dimen/text_input_size"
                     android:hint="@string/email"
                     android:lines="1"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress"
+                    android:digits="abcdefghijklmnñopqrstuvwxysABCDEFGHIJKLMNÑOPQRSTUVWXYZ@."
+                    android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
 
             <TextView
