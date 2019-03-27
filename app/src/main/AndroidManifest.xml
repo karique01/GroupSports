@@ -69,8 +69,8 @@
             android:label="@string/title_activity_athlete_detail"
             android:launchMode="singleInstance"
             android:parentActivityName=".activities.MainCoachActivity"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activities.BinnacleActivity" />
         <activity android:name=".activities.CoachQuizQuestionsActivity" />
         <activity
@@ -87,8 +87,9 @@
             android:name=".activities.CoachDetailActivity"
             android:label="@string/title_activity_coach_detail"
             android:parentActivityName=".activities.MainCoachActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".activities.CoachCVActivity"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.CoachCVActivity" />
+        <activity android:name=".activities.AthleteWearableActivity"></activity>
     </application>
 
 </manifest>

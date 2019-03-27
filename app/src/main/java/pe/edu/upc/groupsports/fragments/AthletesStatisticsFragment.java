@@ -2,6 +2,7 @@ package pe.edu.upc.groupsports.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.androidnetworking.AndroidNetworking;
@@ -40,6 +42,7 @@ import java.util.List;
 
 import pe.edu.upc.groupsports.R;
 import pe.edu.upc.groupsports.Session.SessionManager;
+import pe.edu.upc.groupsports.activities.AthleteWearableActivity;
 import pe.edu.upc.groupsports.custom.DayAxisValueFormatter;
 import pe.edu.upc.groupsports.custom.KilosAxisValueFormatter;
 import pe.edu.upc.groupsports.custom.MetersAxisValueFormatter;
@@ -104,6 +107,8 @@ public class AthletesStatisticsFragment extends Fragment implements OnChartValue
 
     List<StrengthTestType> strengthTestTypes;
     int currentStrengthTestDataTypePos = 0;
+
+    Button wearableButton;
 
     public AthletesStatisticsFragment() {
         // Required empty public constructor
@@ -225,6 +230,16 @@ public class AthletesStatisticsFragment extends Fragment implements OnChartValue
 
         speedTimingTabLayout.requestFocus();
         Funciones.hideKeyboardFromContext(context,mView);
+
+        wearableButton = (Button) view.findViewById(R.id.wearableButton);
+        wearableButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, AthleteWearableActivity.class);
+                intent.putExtra("athleteId",currentAthlete.getId());
+                context.startActivity(intent);
+            }
+        });
 
         return view;
     }

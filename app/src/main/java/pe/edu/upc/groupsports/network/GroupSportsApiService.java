@@ -42,6 +42,9 @@ public class GroupSportsApiService {
     public static String ATHLETE_FODA_URL = BASE_URL + "api/AthleteFodas/";
     public static String ATHLETE_ACHIEVEMENT_URL = BASE_URL + "api/AthleteAchievements/";
     public static String COACH_CURRICULUM_DETAILS_URL = BASE_URL + "api/CoachCurriculumDetails/";
+    public static String ACTIVE_CALORIES_URL = BASE_URL + "api/ActiveCaloriesWearable/";
+    public static String STEPS_COUNT_URL = BASE_URL + "api/StepsCountWearable/";
+    public static String HEART_RATE_URL = BASE_URL + "api/HeartRateWearable/";
 
     public static String ATHELETES_BY_COACH_URL(int id) {
         return COACHS_URL + id + "/atheletes/";
@@ -153,6 +156,15 @@ public class GroupSportsApiService {
     }
     public static String JUMP_PERFORMANCES_BY_COACH_BY_JUMPTESTTYPEID(String coachId, String jumpTestTypeId) {
         return COACHS_URL + coachId + "/AthletesSaltabilityPerformance/" + jumpTestTypeId;
+    }
+    public static String ACTIVE_CALORIES_BY_DATE_BY_ATHLETEID(String date, String athleteId) {
+        return ACTIVE_CALORIES_URL + date + "/athleteId/" + athleteId;
+    }
+    public static String STEPS_COUNT_BY_DATE_BY_ATHLETEID(String date, String athleteId) {
+        return STEPS_COUNT_URL + date + "/athleteId/" + athleteId;
+    }
+    public static String HEART_RATE_BY_DATE_BY_ATHLETEID(String date, String athleteId) {
+        return HEART_RATE_URL + date + "/athleteId/" + athleteId;
     }
 }
 
