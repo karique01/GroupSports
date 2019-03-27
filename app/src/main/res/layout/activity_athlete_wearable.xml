@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pe.edu.upc.groupsports.activities.AthleteWearableActivity">
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:mcv_selectionColor="@color/colorAccent"
+        app:mcv_weekDayLabels="@color/colorAccent"
+        app:mcv_tileWidth="match_parent"
+        app:mcv_tileHeight="24dp"
+        app:mcv_calendarMode="month"
+        app:mcv_firstDayOfWeek="monday"
+        android:paddingTop="@dimen/big_margin"
+        android:paddingBottom="@dimen/default_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/sesionesTextView"
+        app:layout_constraintTop_toTopOf="@id/sesionesTextView"
+        app:layout_constraintBottom_toBottomOf="@id/sesionesTextView"
+        android:layout_marginEnd="14dp"
+        android:layout_marginStart="14dp"/>
+
+    <TextView
+        android:id="@+id/sesionesTextView"
+        android:text="Sesiones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/calendarView"
+        android:layout_marginBottom="@dimen/default_margin"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sesionesTextView"
+        app:layout_constraintTop_toTopOf="@id/sesionesTextView"
+        app:layout_constraintBottom_toBottomOf="@id/sesionesTextView"
+        android:layout_marginEnd="14dp"
+        android:layout_marginStart="14dp"/>
+
+    <Button
+        android:id="@+id/caloriesButton"
+        android:text="Calorías"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:drawableStart="@drawable/ic_whatshot"
+        android:padding="24dp"
+        android:backgroundTint="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/sesionesTextView"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"/>
+    <Button
+        android:id="@+id/stepsButton"
+        android:text="Pasos dados"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:drawableStart="@drawable/ic_steps"
+        android:padding="24dp"
+        android:backgroundTint="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/caloriesButton"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"/>
+    <Button
+        android:id="@+id/frecuenciaButton"
+        android:text="Frecuencia cardiaca"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:drawableStart="@drawable/ic_heart"
+        android:padding="24dp"
+        android:backgroundTint="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/stepsButton"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"/>
+</android.support.constraint.ConstraintLayout>
