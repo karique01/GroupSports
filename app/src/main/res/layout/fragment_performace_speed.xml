@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="pe.edu.upc.groupsports.fragments.PerformaceSpeedFragment">
+    tools:context="pe.edu.karique.groupsports.fragments.PerformaceSpeedFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/categoriesRecyclerView"
@@ -121,6 +121,7 @@
                 android:visibility="visible">
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/categorySpinner"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:spinnerMode="dropdown"/>

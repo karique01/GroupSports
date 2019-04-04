@@ -18,8 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <pe.edu.upc.groupsports.widget.PercentageCropImageView
+        <pe.edu.karique.groupsports.widget.PercentageCropImageView
             android:id="@+id/bigImageView"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="103.2dp"
             android:src="@drawable/athlete_banner"

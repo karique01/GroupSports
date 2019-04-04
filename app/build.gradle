@@ -7,7 +7,7 @@ repositories {
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "pe.edu.upc.groupsports"
+        applicationId "pe.edu.karique.groupsports"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1

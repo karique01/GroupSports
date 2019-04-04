@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pe.edu.upc.groupsports.activities.WeekDetailActivity">
+    tools:context="pe.edu.karique.groupsports.activities.WeekDetailActivity">
 
-    <pe.edu.upc.groupsports.widget.PercentageCropImageView
+    <pe.edu.karique.groupsports.widget.PercentageCropImageView
         android:id="@+id/athleteImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"

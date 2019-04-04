@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pe.edu.upc.groupsports.activities.BinnacleActivity">
+    tools:context="pe.edu.karique.groupsports.activities.BinnacleActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

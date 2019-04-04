@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pe.edu.upc.groupsports">
+    package="pe.edu.karique.groupsports">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,17 +12,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_white"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_white"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainAthleteActivity"
+            android:name="pe.edu.karique.groupsports.activities.MainAthleteActivity"
             android:label="@string/athlete"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name="pe.edu.karique.groupsports.activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,65 +31,65 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.RegisterAthleteActivity"
+            android:name="pe.edu.karique.groupsports.activities.RegisterAthleteActivity"
             android:label="@string/register_athlete"
-            android:parentActivityName=".activities.LoginActivity" />
-        <activity android:name=".activities.SessionHistoryActivity" />
+            android:parentActivityName="pe.edu.karique.groupsports.activities.LoginActivity" />
+        <activity android:name="pe.edu.karique.groupsports.activities.SessionHistoryActivity" />
         <activity
-            android:name=".activities.MainCoachActivity"
+            android:name="pe.edu.karique.groupsports.activities.MainCoachActivity"
             android:label="@string/coach"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.AthletesByCategoryActivity"
+            android:name="pe.edu.karique.groupsports.activities.AthletesByCategoryActivity"
             android:label="Atletas por categoria"
-            android:parentActivityName=".activities.MainCoachActivity" />
-        <activity android:name=".activities.AddAthleteActivity" />
+            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity" />
+        <activity android:name="pe.edu.karique.groupsports.activities.AddAthleteActivity" />
         <activity
-            android:name=".activities.AddTrainingPlanActivity"
+            android:name="pe.edu.karique.groupsports.activities.AddTrainingPlanActivity"
             android:label="@string/add_training_plan"
-            android:parentActivityName=".activities.MainCoachActivity"
+            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".activities.TrainingPlanDetailActivity"
+            android:name="pe.edu.karique.groupsports.activities.TrainingPlanDetailActivity"
             android:label="Training Plan"
             android:launchMode="singleInstance"
-            android:parentActivityName=".activities.MainCoachActivity" />
+            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity" />
         <activity
-            android:name=".activities.MesocycleDetailActivity"
+            android:name="pe.edu.karique.groupsports.activities.MesocycleDetailActivity"
             android:label="Mesocycle"
             android:launchMode="singleInstance"
-            android:parentActivityName=".activities.TrainingPlanDetailActivity" />
+            android:parentActivityName="pe.edu.karique.groupsports.activities.TrainingPlanDetailActivity" />
         <activity
-            android:name=".activities.WeekDetailActivity"
+            android:name="pe.edu.karique.groupsports.activities.WeekDetailActivity"
             android:label="Week"
-            android:parentActivityName=".activities.MesocycleDetailActivity" />
+            android:parentActivityName="pe.edu.karique.groupsports.activities.MesocycleDetailActivity" />
         <activity
-            android:name=".activities.AthleteDetailActivity"
+            android:name="pe.edu.karique.groupsports.activities.AthleteDetailActivity"
             android:label="@string/title_activity_athlete_detail"
             android:launchMode="singleInstance"
-            android:parentActivityName=".activities.MainCoachActivity"
+            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".activities.BinnacleActivity" />
-        <activity android:name=".activities.CoachQuizQuestionsActivity" />
+        <activity android:name="pe.edu.karique.groupsports.activities.BinnacleActivity" />
+        <activity android:name="pe.edu.karique.groupsports.activities.CoachQuizQuestionsActivity" />
         <activity
-            android:name=".activities.AddQuizActivity"
+            android:name="pe.edu.karique.groupsports.activities.AddQuizActivity"
             android:label="@string/add_quiz"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activities.AthleteQuizQuestionsActivity" />
+        <activity android:name="pe.edu.karique.groupsports.activities.AthleteQuizQuestionsActivity" />
         <activity
-            android:name=".activities.AthleteReplyQuizActivity"
+            android:name="pe.edu.karique.groupsports.activities.AthleteReplyQuizActivity"
             android:label="@string/reply_quiz" />
-        <activity android:name=".activities.WeightTestBySessionActivity" />
-        <activity android:name=".activities.ChooseSessionWorkActivity" />
+        <activity android:name="pe.edu.karique.groupsports.activities.WeightTestBySessionActivity" />
+        <activity android:name="pe.edu.karique.groupsports.activities.ChooseSessionWorkActivity" />
         <activity
-            android:name=".activities.CoachDetailActivity"
+            android:name="pe.edu.karique.groupsports.activities.CoachDetailActivity"
             android:label="@string/title_activity_coach_detail"
-            android:parentActivityName=".activities.MainCoachActivity"
+            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.CoachCVActivity" />
-        <activity android:name=".activities.AthleteWearableActivity"></activity>
+        <activity android:name="pe.edu.karique.groupsports.activities.CoachCVActivity" />
+        <activity android:name="pe.edu.karique.groupsports.activities.AthleteWearableActivity"></activity>
     </application>
 
 </manifest>

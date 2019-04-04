@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="pe.edu.upc.groupsports.fragments.PerformanceSaltabilityFragment">
+    tools:context="pe.edu.karique.groupsports.fragments.PerformanceSaltabilityFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/categoriesRecyclerView"
@@ -95,6 +95,7 @@
                 android:visibility="visible">
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/jumpTestTypeSpinner"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:spinnerMode="dropdown"/>
@@ -112,6 +113,7 @@
                 android:visibility="visible">
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/categorySpinner"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:spinnerMode="dropdown"/>
