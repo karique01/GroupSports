@@ -7,7 +7,7 @@ import java.util.Date;
  */
 
 public class GroupSportsApiService {
-    public static String BASE_URL = "http://52.15.243.101:80/";  //aws
+    public static String BASE_URL = "http://13.59.172.169:80/";  //aws
     //public static String BASE_URL = "http://192.168.1.8:27425/"; //casa
     //public static String BASE_URL = "http://192.168.43.79:27425/"; //cel viejo
     //public static String BASE_URL = "http://172.16.198.7:27425/"; //starbucks UPC San isidro
