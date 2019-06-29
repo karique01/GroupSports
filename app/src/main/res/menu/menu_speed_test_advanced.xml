@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_10m"
+        android:icon="@drawable/run_fast_sta"
+        android:title="10 m"/>
+    <item
+        android:id="@+id/action_20m"
+        android:icon="@drawable/run_fast_sta"
+        android:title="20 m" />
+    <item
+        android:id="@+id/action_30m"
+        android:icon="@drawable/run_fast_sta"
+        android:title="30 m" />
+    <item
+        android:id="@+id/action_40m"
+        android:icon="@drawable/run_fast_sta"
+        android:title="40 m" />
+    <item
+        android:id="@+id/action_50m"
+        android:icon="@drawable/run_fast_sta"
+        android:title="50 m" />
+    <item
+        android:id="@+id/action_60m"
+        android:icon="@drawable/run_fast_sta"
+        android:title="60 m" />
+    <item
+        android:id="@+id/action_100m"
+        android:icon="@drawable/run_fast_sta"
+        android:title="100 m" />
+</menu>

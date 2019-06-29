@@ -156,6 +156,7 @@
     <string name="date_today">Fecha (Hoy)</string>
     <string name="no_athletes_for_this">No hay atletas para este caso</string>
     <string name="my_partners">Mis compañeros</string>
+    <string name="there_are_not_any_speed_test_registered_yet">Todavía no hay ninguna prueba de velocidad registrada.</string>
 
     <string-array name="Intensities">
         <item>1</item>

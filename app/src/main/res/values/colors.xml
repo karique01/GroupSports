@@ -12,6 +12,7 @@
 
     <color name="colorMyGray">#aaa</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="colorWhite">#ffffff</color>
 
     <string-array name="startColors">
         <item>#ef6c00</item>

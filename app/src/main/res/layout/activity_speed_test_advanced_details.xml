@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SpeedTestAdvancedDetailsActivity">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/timerSTAAppCompatImageView"
+        app:srcCompat="@drawable/timer_sta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/colorAccent"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/big_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tiempoTotalTextView"
+        android:text="Tiempo total mm:ss:ms "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/timerSTAAppCompatImageView"
+        app:layout_constraintTop_toTopOf="@id/timerSTAAppCompatImageView"
+        app:layout_constraintBottom_toBottomOf="@id/timerSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/tiempoTotalValueTextView"
+        android:text="##"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/tiempoPromedioTextView"
+        app:layout_constraintTop_toTopOf="@id/tiempoTotalTextView"
+        app:layout_constraintBottom_toBottomOf="@id/tiempoTotalTextView"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/pisadaIzquierdaSTAAppCompatImageView"
+        app:srcCompat="@drawable/shoe_print_sta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/colorAccent"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timerSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/pisadasIzquierdasTextView"
+        android:text="Pisadas izquierdas: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/pisadaIzquierdaSTAAppCompatImageView"
+        app:layout_constraintTop_toTopOf="@id/pisadaIzquierdaSTAAppCompatImageView"
+        app:layout_constraintBottom_toBottomOf="@id/pisadaIzquierdaSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/pisadasIzquierdasValueTextView"
+        android:text="##"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/tiempoPromedioTextView"
+        app:layout_constraintTop_toTopOf="@id/pisadasIzquierdasTextView"
+        app:layout_constraintBottom_toBottomOf="@id/pisadasIzquierdasTextView"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/pisadaDerechaSTAAppCompatImageView"
+        app:srcCompat="@drawable/shoe_print_sta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/colorAccent"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pisadaIzquierdaSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/pisadasDerechasTextView"
+        android:text="Pisadas derechas: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/pisadaDerechaSTAAppCompatImageView"
+        app:layout_constraintTop_toTopOf="@id/pisadaDerechaSTAAppCompatImageView"
+        app:layout_constraintBottom_toBottomOf="@id/pisadaDerechaSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/pisadasDerechasValueTextView"
+        android:text="##"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/tiempoPromedioTextView"
+        app:layout_constraintTop_toTopOf="@id/pisadasDerechasTextView"
+        app:layout_constraintBottom_toBottomOf="@id/pisadasDerechasTextView"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/cantidadZancadasSTAAppCompatImageView"
+        app:srcCompat="@drawable/counter_sta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/colorAccent"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pisadaDerechaSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/cantidadZancadasTextView"
+        android:text="Cantidad zancadas: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/cantidadZancadasSTAAppCompatImageView"
+        app:layout_constraintTop_toTopOf="@id/cantidadZancadasSTAAppCompatImageView"
+        app:layout_constraintBottom_toBottomOf="@id/cantidadZancadasSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/cantidadZancadasValueTextView"
+        android:text="##"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/tiempoPromedioTextView"
+        app:layout_constraintTop_toTopOf="@id/cantidadZancadasTextView"
+        app:layout_constraintBottom_toBottomOf="@id/cantidadZancadasTextView"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/tiempoMedioZancadasSTAAppCompatImageView"
+        app:srcCompat="@drawable/chart_timeline_variant_sta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/colorAccent"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cantidadZancadasSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/tiempoPromedioTextView"
+        android:text="Tiempo medio entre zancadas (s): "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/tiempoMedioZancadasSTAAppCompatImageView"
+        app:layout_constraintTop_toTopOf="@id/tiempoMedioZancadasSTAAppCompatImageView"
+        app:layout_constraintBottom_toBottomOf="@id/tiempoMedioZancadasSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/tiempoPromedioValueTextView"
+        android:text="##"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/tiempoPromedioTextView"
+        app:layout_constraintTop_toTopOf="@id/tiempoPromedioTextView"
+        app:layout_constraintBottom_toBottomOf="@id/tiempoPromedioTextView"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/velocidadPromedioSTAAppCompatImageView"
+        app:srcCompat="@drawable/run_fast_sta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/colorAccent"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tiempoMedioZancadasSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/velocidadPromedioTextView"
+        android:text="Velocidad promedio (m/s): "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/velocidadPromedioSTAAppCompatImageView"
+        app:layout_constraintTop_toTopOf="@id/velocidadPromedioSTAAppCompatImageView"
+        app:layout_constraintBottom_toBottomOf="@id/velocidadPromedioSTAAppCompatImageView"/>
+
+    <TextView
+        android:id="@+id/velocidadPromedioValueTextView"
+        android:text="##"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintStart_toEndOf="@id/tiempoPromedioTextView"
+        app:layout_constraintTop_toTopOf="@id/velocidadPromedioTextView"
+        app:layout_constraintBottom_toBottomOf="@id/velocidadPromedioTextView"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/velocidadPromedioValueTextView"
+        app:layout_constraintBottom_toTopOf="@id/finalizarCardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/barChartIzquierdo"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                app:layout_constraintEnd_toStartOf="@+id/barChartDerecho"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/salidaTextView"/>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/barChartDerecho"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/barChartIzquierdo"
+                app:layout_constraintTop_toBottomOf="@id/salidaTextView"/>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/pieIzquierdoCarview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                app:cardCornerRadius="6dp"
+                app:layout_constraintEnd_toStartOf="@+id/pieDerechoCardView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barChartIzquierdo"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/pieIzquierdoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="@dimen/default_margin"
+                    android:text="Pie izquierdo ↓"
+                    android:textSize="12sp" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/pieDerechoCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                app:cardCornerRadius="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pieIzquierdoCarview"
+                app:layout_constraintTop_toBottomOf="@id/barChartDerecho"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <TextView
+                    android:id="@+id/pieDerechoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="@dimen/default_margin"
+                    android:text="Pie derecho ↓"
+                    android:textSize="12sp" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/pieIzquierdoPisadasRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/pieDerechoPisadasRecyclerView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pieIzquierdoCarview" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/pieDerechoPisadasRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/pieIzquierdoPisadasRecyclerView"
+                app:layout_constraintTop_toBottomOf="@id/pieDerechoCardView" />
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/finalizarCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/colorAccent"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+        <TextView
+            android:text="Finalizar"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/big_margin"
+            android:layout_gravity="center_horizontal|center_vertical"/>
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

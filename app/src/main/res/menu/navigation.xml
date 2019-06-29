@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/navigation_athlete_statistics"
-        android:icon="@drawable/ic_new_mesocycle_white"
-        android:title="Estadísticas"
-        app:showAsAction="ifRoom|withText" />
-
-    <item
         android:id="@+id/navigation_athlete_test"
         android:icon="@drawable/ic_directions_run"
         android:title="Test"
         app:showAsAction="ifRoom|withText"/>
+
+    <item
+        android:id="@+id/navigation_athlete_statistics"
+        android:icon="@drawable/ic_new_mesocycle_white"
+        android:title="Estadísticas"
+        app:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/navigation_athlete_details"

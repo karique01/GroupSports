@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AddSpeedTestAdvancedActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/toolbarCardView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:cardCornerRadius="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/default_margin">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="Test de velocidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                app:layout_constraintStart_toEndOf="@id/conectadoImageButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/conectadoImageButton"
+                app:srcCompat="@drawable/ic_cloud_off_black_24dp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:tint="@color/colorAccent"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_margin="@dimen/default_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/limpiarImageButton"
+                app:srcCompat="@drawable/broom"
+                android:tint="@color/colorAccent"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                app:layout_constraintEnd_toStartOf="@id/visibilityImageButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/visibilityImageButton"
+                app:srcCompat="@drawable/ic_visibility_off_off"
+                android:tint="@color/colorAccent"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                style="?android:attr/borderlessButtonStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="visible"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/salidaAppCompatImageView"
+        app:srcCompat="@drawable/ic_circulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/toolbarCardView"
+        app:layout_constraintStart_toStartOf="@id/salidaTextView"
+        app:layout_constraintEnd_toEndOf="@id/salidaTextView"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/salidaTextView"
+        android:text="Salida"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/salidaAppCompatImageView"
+        android:visibility="gone"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/llegadaAppCompatImageView"
+        app:srcCompat="@drawable/ic_circulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintTop_toBottomOf="@id/toolbarCardView"
+        app:layout_constraintStart_toStartOf="@id/llegadaTextView"
+        app:layout_constraintEnd_toEndOf="@id/llegadaTextView"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/llegadaTextView"
+        android:text="Lllegada"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/big_margin"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/salidaAppCompatImageView"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/esperrarLlegadaProgressBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:indeterminate="true"
+        app:layout_constraintStart_toEndOf="@id/salidaAppCompatImageView"
+        app:layout_constraintEnd_toStartOf="@id/llegadaAppCompatImageView"
+        app:layout_constraintTop_toTopOf="@id/salidaAppCompatImageView"
+        app:layout_constraintBottom_toBottomOf="@id/salidaAppCompatImageView"
+        android:visibility="gone"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/barChartIzquierdo"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintEnd_toStartOf="@+id/barChartDerecho"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/salidaTextView"/>
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/barChartDerecho"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/barChartIzquierdo"
+        app:layout_constraintTop_toBottomOf="@id/salidaTextView"/>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/pieIzquierdoCarview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        app:cardCornerRadius="6dp"
+        app:layout_constraintEnd_toStartOf="@+id/pieDerechoCardView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barChartIzquierdo"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/pieIzquierdoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="@dimen/default_margin"
+            android:text="Pie izquierdo ↓"
+            android:textSize="12sp" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/pieDerechoCardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        app:cardCornerRadius="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pieIzquierdoCarview"
+        app:layout_constraintTop_toBottomOf="@id/barChartDerecho"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/pieDerechoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="@dimen/default_margin"
+            android:text="Pie derecho ↓"
+            android:textSize="12sp" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pieIzquierdoPisadasRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/pieDerechoPisadasRecyclerView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pieIzquierdoCarview" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pieDerechoPisadasRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/pieIzquierdoPisadasRecyclerView"
+        app:layout_constraintTop_toBottomOf="@id/pieDerechoCardView" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 repositories {
-    maven {
-        url 'https://maven.google.com'
-    }
+    maven { url 'https://maven.google.com' }
+    maven { url 'https://repo.eclipse.org/content/repositories/paho-releases/' }
+    maven { url "https://jitpack.io" }
 }
 android {
     compileSdkVersion 26
@@ -10,7 +10,7 @@ android {
         applicationId "pe.edu.karique.groupsports"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 1
+        versionCode 3
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -44,8 +44,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'io.github.yavski:fab-speed-dial:1.0.6'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.applandeo:material-calendar-view:1.4.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
     implementation 'com.github.imaNNeoFighT:StepBarView:1.0.3.2'
     implementation "com.leinardi.android:speed-dial:1.0.2"
@@ -54,4 +54,8 @@ dependencies {
     implementation 'com.github.prolificinteractive:material-calendarview:1.6.0'
     implementation 'com.libizo:customedittext:1.0.3'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+    implementation('org.eclipse.paho:org.eclipse.paho.android.service:1.0.2') {
+        exclude module: 'support-v4'
+    }
 }

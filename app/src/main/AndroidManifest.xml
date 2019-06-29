@@ -2,13 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pe.edu.karique.groupsports">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Permisos regulares -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Permisos websocket mqtt -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -18,78 +19,85 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="pe.edu.karique.groupsports.activities.MainAthleteActivity"
+            android:name=".activities.MySpeedTestAdvanced"
+            android:parentActivityName=".activities.AthleteDetailActivity" />
+        <activity android:name=".activities.SpeedTestAdvancedDetailsActivity" />
+        <activity android:name=".activities.AddSpeedTestAdvancedActivity" />
+        <activity
+            android:name=".activities.MainAthleteActivity"
             android:label="@string/athlete"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="pe.edu.karique.groupsports.activities.RegisterAthleteActivity"
+            android:name=".activities.RegisterAthleteActivity"
             android:label="@string/register_athlete"
-            android:parentActivityName="pe.edu.karique.groupsports.activities.LoginActivity" />
-        <activity android:name="pe.edu.karique.groupsports.activities.SessionHistoryActivity" />
+            android:parentActivityName=".activities.LoginActivity" />
+        <activity android:name=".activities.SessionHistoryActivity" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.MainCoachActivity"
+            android:name=".activities.MainCoachActivity"
             android:label="@string/coach"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.AthletesByCategoryActivity"
+            android:name=".activities.AthletesByCategoryActivity"
             android:label="Atletas por categoria"
-            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity" />
-        <activity android:name="pe.edu.karique.groupsports.activities.AddAthleteActivity" />
+            android:parentActivityName=".activities.MainCoachActivity" />
+        <activity android:name=".activities.AddAthleteActivity" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.AddTrainingPlanActivity"
+            android:name=".activities.AddTrainingPlanActivity"
             android:label="@string/add_training_plan"
-            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity"
+            android:parentActivityName=".activities.MainCoachActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.TrainingPlanDetailActivity"
+            android:name=".activities.TrainingPlanDetailActivity"
             android:label="Training Plan"
             android:launchMode="singleInstance"
-            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity" />
+            android:parentActivityName=".activities.MainCoachActivity" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.MesocycleDetailActivity"
+            android:name=".activities.MesocycleDetailActivity"
             android:label="Mesocycle"
             android:launchMode="singleInstance"
-            android:parentActivityName="pe.edu.karique.groupsports.activities.TrainingPlanDetailActivity" />
+            android:parentActivityName=".activities.TrainingPlanDetailActivity" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.WeekDetailActivity"
+            android:name=".activities.WeekDetailActivity"
             android:label="Week"
-            android:parentActivityName="pe.edu.karique.groupsports.activities.MesocycleDetailActivity" />
+            android:parentActivityName=".activities.MesocycleDetailActivity" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.AthleteDetailActivity"
+            android:name=".activities.AthleteDetailActivity"
             android:label="@string/title_activity_athlete_detail"
             android:launchMode="singleInstance"
-            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity"
+            android:parentActivityName=".activities.MainCoachActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="pe.edu.karique.groupsports.activities.BinnacleActivity" />
-        <activity android:name="pe.edu.karique.groupsports.activities.CoachQuizQuestionsActivity" />
+        <activity android:name=".activities.BinnacleActivity" />
+        <activity android:name=".activities.CoachQuizQuestionsActivity" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.AddQuizActivity"
+            android:name=".activities.AddQuizActivity"
             android:label="@string/add_quiz"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name="pe.edu.karique.groupsports.activities.AthleteQuizQuestionsActivity" />
+        <activity android:name=".activities.AthleteQuizQuestionsActivity" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.AthleteReplyQuizActivity"
+            android:name=".activities.AthleteReplyQuizActivity"
             android:label="@string/reply_quiz" />
-        <activity android:name="pe.edu.karique.groupsports.activities.WeightTestBySessionActivity" />
-        <activity android:name="pe.edu.karique.groupsports.activities.ChooseSessionWorkActivity" />
+        <activity android:name=".activities.WeightTestBySessionActivity" />
+        <activity android:name=".activities.ChooseSessionWorkActivity" />
         <activity
-            android:name="pe.edu.karique.groupsports.activities.CoachDetailActivity"
+            android:name=".activities.CoachDetailActivity"
             android:label="@string/title_activity_coach_detail"
-            android:parentActivityName="pe.edu.karique.groupsports.activities.MainCoachActivity"
+            android:parentActivityName=".activities.MainCoachActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="pe.edu.karique.groupsports.activities.CoachCVActivity" />
-        <activity android:name="pe.edu.karique.groupsports.activities.AthleteWearableActivity"></activity>
+        <activity android:name=".activities.CoachCVActivity" />
+        <activity android:name=".activities.AthleteWearableActivity" /> <!-- Declaración para el servicio en background de mqtt -->
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
 
 </manifest>

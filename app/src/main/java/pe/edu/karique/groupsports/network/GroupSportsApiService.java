@@ -7,12 +7,13 @@ package pe.edu.karique.groupsports.network;
 public class GroupSportsApiService {
     public static String BASE_URL = "http://13.59.172.169:80/";  //aws
     //public static String BASE_URL = "http://192.168.1.8:27425/"; //casa
-    //public static String BASE_URL = "http://192.168.43.79:27425/"; //cel viejo
+    //public static String BASE_URL = "http://192.168.43.79:27425/"; //cel mio
     //public static String BASE_URL = "http://172.16.198.7:27425/"; //starbucks UPC San isidro
     //public static String BASE_URL = "http://172.16.249.244:8080/"; //starbucks UPC Villa
     //public static String BASE_URL = "http://192.168.137.1:8080/"; //Cel luis
     //public static String BASE_URL = "http://10.21.130.44:8080/"; //UPC San isidro
     //public static String BASE_URL = "http://1d576257.ngrok.io"; //UPC San isidro tunel
+    //public static String BASE_URL = "http://172.16.72.147:27425/"; //starbucks UPC MO
     public static String LOGIN_URL = BASE_URL + "token";
 
     public static String COACHS_URL = BASE_URL + "api/coachs/";
@@ -43,6 +44,7 @@ public class GroupSportsApiService {
     public static String ACTIVE_CALORIES_URL = BASE_URL + "api/ActiveCaloriesWearable/";
     public static String STEPS_COUNT_URL = BASE_URL + "api/StepsCountWearable/";
     public static String HEART_RATE_URL = BASE_URL + "api/HeartRateWearable/";
+    public static String SPEED_TEST_ADVANCED_URL = BASE_URL + "api/SpeedTestAdvanced/";
 
     public static String ATHELETES_BY_COACH_URL(int id) {
         return COACHS_URL + id + "/atheletes/";
@@ -127,6 +129,9 @@ public class GroupSportsApiService {
     }
     public static String SALTABILITY_TEST_BY_ATHLETE(String athleteId) {
         return ATHLETES_URL + athleteId + "/JumpTest/";
+    }
+    public static String SPEED_TEST_ADVANCED_BY_ATHLETE(String athleteId) {
+        return ATHLETES_URL + athleteId + "/SpeedTestAdvanced/";
     }
     public static String SALTABILITY_TEST_BY_ATHLETE_BY_RANGE_DATE(String athleteId, String startDate, String endDate) {
         return ATHLETES_URL + athleteId + "/JumpTest/?startDate="+startDate+"&endDate="+endDate;

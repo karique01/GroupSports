@@ -294,5 +294,6 @@
     <string name="date_today">Date (Today)</string>
     <string name="no_athletes_for_this">No athletes for this</string>
     <string name="my_partners">My partners</string>
+    <string name="there_are_not_any_speed_test_registered_yet">There are not any speed test registered yet</string>
 
 </resources>

@@ -61,7 +61,7 @@
                     android:textSize="@dimen/text_input_size"
                     android:hint="@string/username_desc"
                     android:lines="1"
-                    android:digits="abcdefghijklmnñopqrstuvwxysABCDEFGHIJKLMNÑOPQRSTUVWXYZ123456789"
+                    android:digits="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ123456789"
                     android:inputType="textPersonName|textCapWords"
                     android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
@@ -82,7 +82,7 @@
                     android:layout_height="match_parent"
                     android:textSize="@dimen/text_input_size"
                     android:lines="1"
-                    android:digits="abcdefghijklmnñopqrstuvwxysABCDEFGHIJKLMNÑOPQRSTUVWXYZ123456789"
+                    android:digits="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ123456789"
                     android:inputType="textPersonName|textCapWords|textPassword"
                     android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
@@ -102,7 +102,7 @@
                     android:textSize="@dimen/text_input_size"
                     android:hint="@string/first_name"
                     android:lines="1"
-                    android:digits="abcdefghijklmnñopqrstuvwxysABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
+                    android:digits="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
                     android:inputType="textCapWords"
                     android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
@@ -122,7 +122,7 @@
                     android:textSize="@dimen/text_input_size"
                     android:hint="@string/last_name"
                     android:lines="1"
-                    android:digits="abcdefghijklmnñopqrstuvwxysABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
+                    android:digits="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ "
                     android:inputType="textCapWords"
                     android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
